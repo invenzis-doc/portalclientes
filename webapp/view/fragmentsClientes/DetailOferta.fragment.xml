@@ -42,7 +42,7 @@
 						<fb:FilterGroupItem id="groupItemOferta" name="FechaDesde" label="Fecha desde" groupName="Group2" visibleInFilterBar="true">
 							<fb:control>
 								<m:DatePicker
-									id="fechaOfertaPicker"											
+									id="fechaPickerOferta"											
 									change="onChangeFechaDesde"
 									valueFormat="yyyyMMdd"
 									displayFormat="dd/MM/yyyy"
@@ -53,7 +53,7 @@
 						<fb:FilterGroupItem id="groupItemHastaOferta" name="Fecha" label="Fecha hasta" groupName="Group2" visibleInFilterBar="true">
 							<fb:control>
 								<m:DatePicker
-									id="fechaHastaOfertaPicker"											
+									id="fechaHastaPickerOferta"											
 									change="handleChange"
 									valueFormat="yyyyMMdd"
 									displayFormat="dd/MM/yyyy"/>											
@@ -92,15 +92,15 @@
 						</template>
 					</Column>
 					<Column id="columnCampoVendedor" sortProperty="Vtext">
-						<m:Label id="labelCompoVendedor" text="Campo Vendedor"/>
+						<m:Label id="labelCampoVendedor" text="Campo Vendedor"/>
 						<template>
 							<m:Text id="textCampoVendedor" text="{Vtext}" />								
 						</template>
 					</Column>
 					<Column id="columnTipoPedido" sortProperty="Vtext">
-						<m:Label id="text5" text="Tipo de Pedido"/>
+						<m:Label id="labelTipoPedido" text="Tipo de Pedido"/>
 						<template>
-							<m:Text id="columnText3" text="{Vtext}" />								
+							<m:Text id="columnTextTipoPedido" text="{Vtext}" />								
 						</template>
 					</Column>
 					<Column id="columnMoneda" sortProperty="Vtext">
@@ -109,20 +109,20 @@
 							<m:Text id="textMoneda" text="{Vtext}" />								
 						</template>
 					</Column>
-					<Column id="columnm5" sortProperty="Netwr" >
-					<m:Label id="text4" text="Valor Neto"/>
+					<Column id="columnValorNetoOferta" sortProperty="Netwr" >
+					<m:Label id="textValorNetoOferta" text="Valor Neto"/>
 					<template>
-						<m:Text id="columnText2" text="{Netwr} {Waers}" />								
+						<m:Text id="columnTextValorNetoOferta" text="{Netwr} {Waers}" />								
 					</template>
 					</Column>
-					<Column id="columnm7" width="7rem" sortProperty="Bloqu">
-						<m:Label id="text6" text="Bloqueado"/>
+					<Column id="columnBloqueadoOferta" width="7rem" sortProperty="Bloqu">
+						<m:Label id="labelBloqueadoOferta" text="Bloqueado"/>
 						<template>
-							<m:Text id="columnText4" text="{path:'Bloqu' , formatter:'.formatter.stringBloq'}" />							
+							<m:Text id="textBloqueadoOferta" text="{path:'Bloqu' , formatter:'.formatter.stringBloq'}" />							
 						</template>
 					</Column>
 					<Column id="columnEstadoOferta" width="4rem" sortProperty="Estado" >
-						<m:Label id="text1" text="Estado" />
+						<m:Label id="labelEstadoOferta" text="Estado" />
 						<template>
 								<m:ObjectStatus class="sapUiSmallMarginBegin" id="statusOferta"		
 								icon="{path:'Estado' , formatter:'.formatter.statusIcon'}"

@@ -27,22 +27,18 @@
 			columnsL="1"
 			columnsM="1">
 			<form:content>
-				<fb:FilterBar showGoOnFB="false" showFilterConfiguration="false" id="filterbarPedidoClientes" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" >
+				<fb:FilterBar showGoOnFB="false" showFilterConfiguration="false" id="filterbarPedido" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" >
 					<fb:filterGroupItems>
-						<fb:FilterGroupItem id="filterPedidoId" name="PedidoName" label="Pedido" groupName="Group2" visibleInFilterBar="true">
+						<fb:FilterGroupItem id="filterIdPedido" name="NamePedido" label="Pedido" groupName="Group1" visibleInFilterBar="true">
 							<fb:control>
-								<m:Input
-									id="inputPedido"
-									name="Pedido"													
-									>												
-								</m:Input>
+								<m:Input id="inputPedido" name="Pedido"/>												
 							</fb:control>
 						</fb:FilterGroupItem>
 
-						<fb:FilterGroupItem id="groupItemPedido" name="FechaDesde" label="Fecha desde" groupName="Group2" visibleInFilterBar="true">
+						<fb:FilterGroupItem id="groupItemPedido" name="FechaDesde" label="FechaDesdePedido" groupName="Group2" visibleInFilterBar="true">
 							<fb:control>
 								<m:DatePicker
-									id="fechaPedidoPicker"											
+									id="fechaPickerPedido"											
 									change="onChangeFechaDesde"
 									valueFormat="yyyyMMdd"
 									displayFormat="dd/MM/yyyy"
@@ -50,10 +46,10 @@
 							</fb:control>
 						</fb:FilterGroupItem>
 
-						<fb:FilterGroupItem id="groupItemHastaPedido" name="Fecha" label="Fecha hasta" groupName="Group2" visibleInFilterBar="true">
+						<fb:FilterGroupItem id="groupItemHastaPedido" name="Fecha" label="FechaHastaPedido" groupName="Group2" visibleInFilterBar="true">
 							<fb:control>
 								<m:DatePicker
-									id="fechaHastaPedidoPicker"											
+									id="fechaHastaPickerPedido"											
 									change="handleChange"
 									valueFormat="yyyyMMdd"
 									displayFormat="dd/MM/yyyy"/>											

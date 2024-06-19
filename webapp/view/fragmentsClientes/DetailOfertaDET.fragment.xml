@@ -9,7 +9,7 @@
 	xmlns:fb="sap.ui.comp.filterbar"
     xmlns:ux="sap.uxap"
 	xmlns:f="sap.f">
-    <f:DynamicPage id="dyDET2" headerExpanded="{/headerExpanded}">			
+    <f:DynamicPage id="dyOfertaDET" headerExpanded="{/headerExpanded}">			
 			<f:title>
 			<f:DynamicPageTitle id="DynamicPageTitleOfertaDET">
 				<f:heading>
