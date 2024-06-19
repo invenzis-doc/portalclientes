@@ -29,6 +29,17 @@
 			<form:content>
 				<fb:FilterBar showGoOnFB="false" showFilterConfiguration="false" id="filterbarOfertaClientes" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" >
 					<fb:filterGroupItems>
+
+						<fb:FilterGroupItem id="filterEstadoOferta" name="EstadoName" label="Estado" groupName="Group2" visibleInFilterBar="true">
+							<fb:control>
+								<m:Input
+									id="inputEstadoOferta"
+									name="Estado"													
+									>												
+								</m:Input>
+							</fb:control>
+						</fb:FilterGroupItem>
+						
 						<fb:FilterGroupItem id="filterOfertaId" name="OfertaName" label="Oferta" groupName="Group2" visibleInFilterBar="true">
 							<fb:control>
 								<m:Input
@@ -57,16 +68,6 @@
 									change="handleChange"
 									valueFormat="yyyyMMdd"
 									displayFormat="dd/MM/yyyy"/>											
-							</fb:control>
-						</fb:FilterGroupItem>
-
-						<fb:FilterGroupItem id="filterEstadoOferta" name="EstadoName" label="Estado" groupName="Group2" visibleInFilterBar="true">
-							<fb:control>
-								<m:Input
-									id="inputEstadoOferta"
-									name="Estado"													
-									>												
-								</m:Input>
 							</fb:control>
 						</fb:FilterGroupItem>
 													

@@ -1,54 +1,65 @@
 <core:FragmentDefinition
-	xmlns="sap.ui.table"
+	xmlns="sap.m"
 	xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"    
     xmlns:r="sap.suite.ui.microchart"
 	xmlns:l="sap.ui.layout" 
-	xmlns:m="sap.m"
-	xmlns:form="sap.ui.layout.form"
-	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:m="sap.m"	
     xmlns:ux="sap.uxap"
-	xmlns:f="sap.f">
-    <f:DynamicPage id="dyOfertaDET" headerExpanded="{/headerExpanded}">			
-			<f:title>
-			<f:DynamicPageTitle id="DynamicPageTitleOfertaDET">
-				<f:heading>
-					<m:Title text="Datos de cabecera" id="TitleOfertaDET"/>    
-				</f:heading>
-				<f:expandedContent>
-					<l:VerticalLayout>
-						<l:HorizontalLayout>
-							<m:Label id="LabelPosnrOfertaDET" text="x:"/>
-							<m:Text text="POSNR" id="posnrOfertaDET" />
-						</l:HorizontalLayout>
-						
-						<l:HorizontalLayout>
-							<m:Label id="LabelMatnrOfertaDET" text="x:"/>
-							<m:Text text="MATNR" id="matnrOfertaDET" />
-						</l:HorizontalLayout>
+>
+    <ux:ObjectPageLayout id="ObjectPageLayoutOferta" showTitleInHeaderContent="true">
+		<ux:headerTitle>
+			<ux:ObjectPageHeader id="headerForOfertaDetail"
+							  objectTitle="Datos de Cabecera"
+							  showTitleSelector="false"
+							  showMarkers="false"
+							  markFavorite="true"
+							  markFlagged="true"
+							  markChanges="false"
+							  markChangesPress="handleMarkChangesPress"
+							  objectSubtitle="{/OfertaSeleccionado/Ebeln}"
+							  objectImageShape="Circle"
+							  isObjectTitleAlwaysVisible="false"
+							  isObjectSubtitleAlwaysVisible="false"
+							  showPlaceholder="false">	
+							  	<ux:breadcrumbs>					
+				</ux:breadcrumbs>		
+			</ux:ObjectPageHeader>
+		</ux:headerTitle>
+		<ux:headerContent>
+			<l:VerticalLayout>
 
-						<l:HorizontalLayout>
-							<m:Label id="LabelArktxOfertaDET" text="x:"/>
-							<m:Text text="ARKTX" id="arktxOfertaDET" />
-						</l:HorizontalLayout>
+				<l:HorizontalLayout>					
+					<m:Label id="LabelPosnrOfertaDET" text="Oferta: "/>
+					<Text text="POSNR" id="posnrOfertaDET" />
+				</l:HorizontalLayout>
 
-						<l:HorizontalLayout>
-							<m:Label id="LabelZmengOfertaDET" text="x:"/>
-							<m:Text text="ZMENG" id="zmengOfertaDET" />
-						</l:HorizontalLayout>
+				<l:HorizontalLayout>					
+					<m:Label id="LabelMatnrOfertaDET" text="x:"/>
+					<Text text="MATNR" id="matnrOfertaDET" />
+				</l:HorizontalLayout>
 
-						<l:HorizontalLayout>
-							<m:Label id="LabelMeinsOfertaDET" text="x:"/>
-							<m:Text text="MEINS" id="meinsOfertaDET" />
-						</l:HorizontalLayout>
+				<l:HorizontalLayout>					
+					<m:Label id="LabelArktxOfertaDET" text="x:"/>
+					<Text text="ARKTX" id="arktxOfertaDET" />
+				</l:HorizontalLayout>
+				
+				<l:HorizontalLayout>					
+					<m:Label id="LabelZmengOfertaDET" text="x:"/>
+					<Text text="ZMENG" id="zmengOfertaDET" />
+				</l:HorizontalLayout>
 
-						<l:HorizontalLayout>
-							<m:Label id="LabelNetwrOfertaDET" text="x:"/>
-							<m:Text text="NETWR" id="netwrOfertaDET" />
-						</l:HorizontalLayout>
-					</l:VerticalLayout>
-				</f:expandedContent>
-    		</f:DynamicPageTitle>
-			</f:title>
-		</f:DynamicPage>
+				<l:HorizontalLayout>					
+					<m:Label id="LabelMeinsOfertaDET" text="x:"/>
+					<Text text="MEINS" id="meinsOfertaDET" />
+				</l:HorizontalLayout>
+
+				<l:HorizontalLayout>					
+					<m:Label id="LabelNetwrOfertaDET" text="Valor Neto: "/>
+					<Text text="NETWR" id="netwrOfertaDET" />
+				</l:HorizontalLayout>
+			</l:VerticalLayout>			
+			
+		</ux:headerContent>
+	</ux:ObjectPageLayout>
 </core:FragmentDefinition>

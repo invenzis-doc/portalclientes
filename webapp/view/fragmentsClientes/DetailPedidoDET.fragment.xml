@@ -30,7 +30,7 @@
 			<l:VerticalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelPosnrPedidoDET" text="x:"/>
+					<m:Label id="LabelPosnrPedidoDET" text="Pedido: "/>
 					<Text text="POSNR" id="posnrPedidoDET" />
 				</l:HorizontalLayout>
 
@@ -55,7 +55,7 @@
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelNetwrPedidoDET" text="x:"/>
+					<m:Label id="LabelNetwrPedidoDET" text="Valor Neto: "/>
 					<Text text="NETWR" id="netwrPedidoDET" />
 				</l:HorizontalLayout>
 			</l:VerticalLayout>			
@@ -74,13 +74,13 @@
 					    >
 						<columns>
 							<Column id="columnVBELNFactura" minScreenWidth="Tablet" demandPopin="true">
-								<Text id="textVBELNFactura" text="VBELN"/>
+								<Text id="textVBELNFactura" text="Entrega"/>
 							</Column>
 							<Column id="columnPOSNRFactura" minScreenWidth="Tablet" demandPopin="true">
 								<Text id="textPOSNRFactura" text="POSNR"/>									
 							</Column>
 							<Column id="columnERDATFactura"  minScreenWidth="Tablet" demandPopin="true">
-								<Text id="precioERDATFactura" text="ERDAT"/>	
+								<Text id="precioERDATFactura" text="Fecha"/>	
 							</Column>
 							<Column id="columnMATNRFactura" minScreenWidth="Tablet" demandPopin="true">
 								<Text id="textMATNRFactura" text="MATNR"/>								
@@ -134,7 +134,7 @@
 								<Text id="precioFKDATFactura" text="FKDAT"/>	
 							</Column>
 							<Column id="columnNETWRFactura" minScreenWidth="Tablet" demandPopin="true">
-								<Text id="textNETWRFactura" text="NETWR"/>								
+								<Text id="textNETWRFactura" text="Valor Neto"/>								
 							</Column>
 							<Column id="columnXBLNRFactura" minScreenWidth="Tablet" demandPopin="true">
 								<Text id="textXBLNRFactura" text="XBLNR"/>								
