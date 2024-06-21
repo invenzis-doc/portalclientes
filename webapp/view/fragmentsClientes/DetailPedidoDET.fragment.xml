@@ -5,8 +5,7 @@
     xmlns:r="sap.suite.ui.microchart"
 	xmlns:l="sap.ui.layout" 
 	xmlns:m="sap.m"	
-    xmlns:ux="sap.uxap"
->
+    xmlns:ux="sap.uxap">
     <ux:ObjectPageLayout id="ObjectPageLayoutPedido" showTitleInHeaderContent="true">
 		<ux:headerTitle>
 			<ux:ObjectPageHeader id="headerForPedidoDetail"
@@ -21,41 +20,39 @@
 							  objectImageShape="Circle"
 							  isObjectTitleAlwaysVisible="false"
 							  isObjectSubtitleAlwaysVisible="false"
-							  showPlaceholder="false">	
-							  	<ux:breadcrumbs>					
-				</ux:breadcrumbs>		
+							  showPlaceholder="false">		
 			</ux:ObjectPageHeader>
 		</ux:headerTitle>
 		<ux:headerContent>
 			<l:VerticalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelPosnrPedidoDET" text="Pedido: "/>
+					<m:Label id="LabelPosnrPedidoDET" text="Pedido: " class="labelHeader"/>
 					<Text text="POSNR" id="posnrPedidoDET" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelMatnrPedidoDET" text="x:"/>
+					<m:Label id="LabelMatnrPedidoDET" text="x:" class="labelHeader"/>
 					<Text text="MATNR" id="matnrPedidoDET" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelArktxPedidoDET" text="x:"/>
+					<m:Label id="LabelArktxPedidoDET" text="x:" class="labelHeader"/>
 					<Text text="ARKTX" id="arktxPedidoDET" />
 				</l:HorizontalLayout>
 				
 				<l:HorizontalLayout>					
-					<m:Label id="LabelZmengPedidoDET" text="x:"/>
+					<m:Label id="LabelZmengPedidoDET" text="x:" class="labelHeader"/>
 					<Text text="ZMENG" id="zmengPedidoDET" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout id="horizontalLayoutSocFactura">					
-					<m:Label id="LabelMeinsPedidoDET" text="x:"/>
+					<m:Label id="LabelMeinsPedidoDET" text="x:" class="labelHeader"/>
 					<Text text="MEINS" id="meinsPedidoDET" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelNetwrPedidoDET" text="Valor Neto: "/>
+					<m:Label id="LabelNetwrPedidoDET" text="Valor Neto: " class="labelHeader"/>
 					<Text text="NETWR" id="netwrPedidoDET" />
 				</l:HorizontalLayout>
 			</l:VerticalLayout>			

@@ -13,32 +13,10 @@
 		<form:SimpleForm id="SimpleFormOfertas"
 			editable="true"
 			layout="ResponsiveGridLayout"
-			title="Ofertas"
-			labelSpanXL="3"
-			labelSpanL="3"
-			labelSpanM="3"
-			labelSpanS="3"
-			adjustLabelSpan="false"
-			emptySpanXL="4"
-			emptySpanL="4"
-			emptySpanM="4"
-			emptySpanS="0"
-			columnsXL="1"
-			columnsL="1"
-			columnsM="1">
+			title="Ofertas">
 			<form:content>
 				<fb:FilterBar showGoOnFB="false" showFilterConfiguration="false" id="filterbarOfertaClientes" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" >
 					<fb:filterGroupItems>
-
-						<fb:FilterGroupItem id="filterEstadoOferta" name="EstadoName" label="Estado" groupName="Group2" visibleInFilterBar="true">
-							<fb:control>
-								<m:Input
-									id="inputEstadoOferta"
-									name="Estado"													
-									>												
-								</m:Input>
-							</fb:control>
-						</fb:FilterGroupItem>
 						
 						<fb:FilterGroupItem id="filterOfertaId" name="OfertaName" label="Oferta" groupName="Group2" visibleInFilterBar="true">
 							<fb:control>
@@ -53,7 +31,7 @@
 						<fb:FilterGroupItem id="groupItemOferta" name="FechaDesde" label="Fecha desde" groupName="Group2" visibleInFilterBar="true">
 							<fb:control>
 								<m:DatePicker
-									id="fechaPickerOferta"											
+									id="fechaDesdePickerOferta"											
 									change="onChangeFechaDesde"
 									valueFormat="yyyyMMdd"
 									displayFormat="dd/MM/yyyy"
@@ -72,12 +50,29 @@
 						</fb:FilterGroupItem>
 													
 					</fb:filterGroupItems>
-				</fb:FilterBar>			
+				</fb:FilterBar>
+				<l:VerticalLayout class="sapUiSmallMarginTop" >					
+					<m:Label class="sapUiTinyMarginTop" text="Completo" />	
+					<m:CheckBox id="checkEstadoOfertasV" />		
+					<m:Label class="sapUiTinyMarginTop" text="Cumpliendo" />	
+					<m:CheckBox id="checkEstadoOfertasA" />	
+					<m:Label class="sapUiTinyMarginTop" text="Sin Tratar  " />	
+					<m:CheckBox id="checkEstadoOfertasR"											/>	
+				</l:VerticalLayout>	
+				<l:VerticalLayout class="sapUiSmallMarginTop" >					
+					<m:Label class="sapUiTinyMarginTop" text="Anticipos" />	
+					<m:CheckBox id="checkAnticipoOfertas" />		
+					<m:Label class="sapUiTinyMarginTop" text="Bloqueados" />	
+					<m:CheckBox id="checkLiberarOfertas" />	
+					<m:Label class="sapUiTinyMarginTop" text="Vencidos" />	
+					<m:CheckBox id="checkVencidoOfertas" />	
+					<m:Button text="Buscar" press="onFilterOfertas"/>
+				</l:VerticalLayout>		
 			</form:content>
 		</form:SimpleForm>
 		<Table
 			id="tableOferta"						
-			rows="{path: '/PedidoSet'}"	
+			rows="{path: '/Ofertaset'}"	
 			selectionMode="None">
 				<columns>
 					<Column id="columnPedidoOferta" width="7rem" sortProperty="Ebeln" >

@@ -5,8 +5,7 @@
     xmlns:r="sap.suite.ui.microchart"
 	xmlns:l="sap.ui.layout" 
 	xmlns:m="sap.m"	
-    xmlns:ux="sap.uxap"
->
+    xmlns:ux="sap.uxap">
     <ux:ObjectPageLayout id="ObjectPageLayoutOferta" showTitleInHeaderContent="true">
 		<ux:headerTitle>
 			<ux:ObjectPageHeader id="headerForOfertaDetail"
@@ -21,41 +20,39 @@
 							  objectImageShape="Circle"
 							  isObjectTitleAlwaysVisible="false"
 							  isObjectSubtitleAlwaysVisible="false"
-							  showPlaceholder="false">	
-							  	<ux:breadcrumbs>					
-				</ux:breadcrumbs>		
+							  showPlaceholder="false">		
 			</ux:ObjectPageHeader>
 		</ux:headerTitle>
 		<ux:headerContent>
 			<l:VerticalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelPosnrOfertaDET" text="Oferta: "/>
+					<m:Label id="LabelPosnrOfertaDET" text="Oferta: " class="labelHeader"/>
 					<Text text="POSNR" id="posnrOfertaDET" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelMatnrOfertaDET" text="x:"/>
+					<m:Label id="LabelMatnrOfertaDET" text="x:" class="labelHeader"/>
 					<Text text="MATNR" id="matnrOfertaDET" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelArktxOfertaDET" text="x:"/>
+					<m:Label id="LabelArktxOfertaDET" text="x:" class="labelHeader"/>
 					<Text text="ARKTX" id="arktxOfertaDET" />
 				</l:HorizontalLayout>
 				
 				<l:HorizontalLayout>					
-					<m:Label id="LabelZmengOfertaDET" text="x:"/>
+					<m:Label id="LabelZmengOfertaDET" text="x:" class="labelHeader"/>
 					<Text text="ZMENG" id="zmengOfertaDET" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelMeinsOfertaDET" text="x:"/>
+					<m:Label id="LabelMeinsOfertaDET" text="x:" class="labelHeader"/>
 					<Text text="MEINS" id="meinsOfertaDET" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelNetwrOfertaDET" text="Valor Neto: "/>
+					<m:Label id="LabelNetwrOfertaDET" text="Valor Neto: " class="labelHeader"/>
 					<Text text="NETWR" id="netwrOfertaDET" />
 				</l:HorizontalLayout>
 			</l:VerticalLayout>			
