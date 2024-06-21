@@ -17,7 +17,7 @@ sap.ui.define([
 
             formatter:formatter,
                         
-            onInit: function () {
+            onInit: function () { //al cargar la pagina setea los datos
                 /** Cambiar esto por el cliente cuando tenga la informacion
               	//Seteo el proveedor para filtrar las entidades
                 this._oProveedor = "0000200542";
@@ -44,11 +44,11 @@ sap.ui.define([
                 });*/		       
             },
             
-            onSelectHome: function() {
+            onSelectHome: function() { //nav list item home -> carga fragment detailHome
                 this.getSplitAppObj().toDetail(this.createId("detailHome"));
             },
             
-            onSelectOfertas: function() {
+            onSelectOfertas: function() { //nav list item ofertas -> carga fragment detailOfertas y setea filters
                 
                 //Inicializar los filtros de fecha
                 var fechaHoy = new Date();
@@ -71,7 +71,7 @@ sap.ui.define([
                 this.getSplitAppObj().toDetail(this.createId("detailOfertas"));
             },
 
-            onSelectPedidos: function() {
+            onSelectPedidos: function() {// nav list item pedidos -> carga fragment y filters
                 //Inicializar los filtros de fecha
                 var fechaHoy = new Date();
                 var fechaHasta = this.formatFilterDate(fechaHoy)
@@ -93,16 +93,16 @@ sap.ui.define([
                 this.getSplitAppObj().toDetail(this.createId("detailPedidos"));
             },
 
-            onSelectOfertaDET: function() {
+            onSelectOfertaDET: function() { // DELETE (nav list item -> detailOferta)
                 this.getSplitAppObj().toDetail(this.createId("detailOfertaDET"));
                 
             },
 
-            onSelectPedidoDET: function() {
+            onSelectPedidoDET: function() { //DELETE (nav list item -> detailPedido)
                 this.getSplitAppObj().toDetail(this.createId("detailPedidoDET"));
             },
 
-            handleLinkPedido: function(evt) {
+            handleLinkPedido: function(evt) { //link pedido -> detail pedido
                 /**var linkPedido = evt.getSource();
                 var numPedido = linkPedido.getText();
                 var that = this;
@@ -126,7 +126,7 @@ sap.ui.define([
 
             },
 
-            handleLinkOferta: function(evt) {
+            handleLinkOferta: function(evt) {// link oferta -> detail oferta
                 /**var linkPedido = evt.getSource();
                 var numPedido = linkPedido.getText();
                 var that = this;
@@ -150,7 +150,7 @@ sap.ui.define([
 
             },
 
-            onFilterOfertas: function() {
+            onFilterOfertas: function() { // boton buscar -> aplica filtros
                 
                 var that = this;                
                 this.byId("tableOferta").setBusy(true);
@@ -197,7 +197,7 @@ sap.ui.define([
                 that.getSplitAppObj().toDetail(that.createId("detailOferta"));
             } ,
             
-            onSearchPedidos: function() {
+            onSearchPedidos: function() { //busqueda pedidos
                 //Inicio los filtros vacios
                 var tableFilters = [];
                 
@@ -257,7 +257,7 @@ sap.ui.define([
                 oTable.getBinding("rows").filter(totalFilter);   
 
             },
-            onFilterPedidos: function() {
+            onFilterPedidos: function() { //boton buscar -> aplica filtros pedido
                 var that = this;
 
                 //Obtiene los filtros de fecha              
@@ -307,30 +307,6 @@ sap.ui.define([
                 });      
                 this.getSplitAppObj().toDetail(this.createId("detailPedidos"));
             },
-            onExportPedidos: function() {
-                var aCols, oRowBinding, oSettings, oSheet, oTable;
-    
-                this._oTable = this.byId('tablePedidos');
-                    
-                oTable = this._oTable;
-                oRowBinding = oTable.getBinding('rows');
-                aCols = this.createColumnConfigPedidos();
-    
-                oSettings = {
-                    workbook: {
-                        columns: aCols,
-                        hierarchyLevel: 'Level'
-                    },
-                    dataSource: oRowBinding,
-                    fileName: 'Export Pedidos.xlsx',
-                    worker: false // We need to disable worker because we are using a MockServer as OData Service
-                };
-    
-                oSheet = new Spreadsheet(oSettings);
-                oSheet.build().finally(function() {
-                    oSheet.destroy();
-                });
-            },
             createColumnConfigPedidos: function() {
                 var aCols = [];
 
@@ -379,15 +355,14 @@ sap.ui.define([
                 return aCols;
             },
 
-            getSplitAppObj: function () {
+            getSplitAppObj: function () { // nav function
                 var result = this.byId("SplitContDemo");
                 if (!result) {
                     Log.info("SplitApp object can't be found");
                 }
                 return result;
             },
-
-            formatFilterDate : function (date) {
+            formatFilterDate : function (date) { //format date filters
                 var dia = date.getDate().toString().padStart(2, '0');
                 var mes = date.getMonth() + 1;
                 mes = mes.toString().padStart(2, '0');

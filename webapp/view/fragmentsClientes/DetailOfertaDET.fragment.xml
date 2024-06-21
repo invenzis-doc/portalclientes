@@ -17,7 +17,6 @@
 							  markChanges="false"
 							  markChangesPress="handleMarkChangesPress"
 							  objectSubtitle="{/OfertaSeleccionado/Ebeln}"
-							  objectImageShape="Circle"
 							  isObjectTitleAlwaysVisible="false"
 							  isObjectSubtitleAlwaysVisible="false"
 							  showPlaceholder="false">		
