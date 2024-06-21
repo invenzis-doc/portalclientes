@@ -9,6 +9,7 @@
 	xmlns:fb="sap.ui.comp.filterbar"
     xmlns:ux="sap.uxap"
 	xmlns:f="sap.f">
+	
 		<l:VerticalLayout>		
 			<form:SimpleForm id="SimpleFormPedidos"
 			editable="true"
@@ -17,13 +18,14 @@
 			<form:content>
 				<fb:FilterBar showGoOnFB="false" showFilterConfiguration="false" id="filterbarPedido" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" >
 					<fb:filterGroupItems>
-						<fb:FilterGroupItem id="filterIdPedido" name="NamePedido" label="Pedido" groupName="Group1" visibleInFilterBar="true">
+						
+						<fb:FilterGroupItem id="filterGroupItemIdPedido" name="NamePedido" label="Pedido" groupName="Group1" visibleInFilterBar="true">
 							<fb:control>
 								<m:Input id="inputPedido" name="Pedido"/>												
 							</fb:control>
 						</fb:FilterGroupItem>
 
-						<fb:FilterGroupItem id="groupItemPedido" name="FechaDesde" label="Fecha desde" groupName="Group2" visibleInFilterBar="true">
+						<fb:FilterGroupItem id="filterGroupItemDesdePedidos" name="FechaDesde" label="Fecha desde" groupName="Group2" visibleInFilterBar="true">
 							<fb:control>
 								<m:DatePicker
 									id="fechaDesdePickerPedidos"											
@@ -34,7 +36,7 @@
 							</fb:control>
 						</fb:FilterGroupItem>
 
-						<fb:FilterGroupItem id="groupItemHastaPedido" name="Fecha" label="Fecha hasta" groupName="Group2" visibleInFilterBar="true">
+						<fb:FilterGroupItem id="filterGroupItemHastaPedidos" name="Fecha" label="Fecha hasta" groupName="Group2" visibleInFilterBar="true">
 							<fb:control>
 								<m:DatePicker
 									id="fechaHastaPickerPedidos"											
@@ -43,32 +45,37 @@
 									displayFormat="dd/MM/yyyy"/>											
 							</fb:control>
 						</fb:FilterGroupItem>
-						</fb:filterGroupItems>
-					</fb:FilterBar>
-					<l:VerticalLayout class="sapUiSmallMarginTop" >					
-						<m:Label class="sapUiTinyMarginTop" text="Completo" />	
-						<m:CheckBox id="checkEstadoPedidosV" />		
-						<m:Label class="sapUiTinyMarginTop" text="Cumpliendo" />	
-						<m:CheckBox id="checkEstadoPedidosA" />	
-						<m:Label class="sapUiTinyMarginTop" text="Sin Tratar  " />	
-						<m:CheckBox id="checkEstadoPedidosR"											/>	
-					</l:VerticalLayout>	
-					<l:VerticalLayout class="sapUiSmallMarginTop" >					
-						<m:Label class="sapUiTinyMarginTop" text="Anticipos" />	
-						<m:CheckBox id="checkAnticipoPedidos" />		
-						<m:Label class="sapUiTinyMarginTop" text="Bloqueados" />	
-						<m:CheckBox id="checkLiberarPedidos" />	
-						<m:Label class="sapUiTinyMarginTop" text="Vencidos" />	
-						<m:CheckBox id="checkVencidoPedidos" />	
-						<m:Button text="Buscar" press="onFilterPedidos"/>
-					</l:VerticalLayout>	
-				</form:content>
-			</form:SimpleForm>
-			<Table
-				id="tablePedidos"						
-				rows="{path: '/PedidoSet'}"	
-				selectionMode="None">
-					<columns>
+						
+					</fb:filterGroupItems>
+				</fb:FilterBar>
+					
+				<l:VerticalLayout class="sapUiSmallMarginTop" >					
+					<m:Label class="sapUiTinyMarginTop" text="Completo" />	
+					<m:CheckBox id="checkEstadoPedidosV" />		
+					<m:Label class="sapUiTinyMarginTop" text="Cumpliendo" />	
+					<m:CheckBox id="checkEstadoPedidosA" />	
+					<m:Label class="sapUiTinyMarginTop" text="Sin Tratar  " />	
+					<m:CheckBox id="checkEstadoPedidosR"											/>	
+				</l:VerticalLayout>	
+				
+				<l:VerticalLayout class="sapUiSmallMarginTop" >					
+					<m:Label class="sapUiTinyMarginTop" text="Anticipos" />	
+					<m:CheckBox id="checkAnticipoPedidos" />		
+					<m:Label class="sapUiTinyMarginTop" text="Bloqueados" />	
+					<m:CheckBox id="checkLiberarPedidos" />	
+					<m:Label class="sapUiTinyMarginTop" text="Vencidos" />	
+					<m:CheckBox id="checkVencidoPedidos" />	
+					<m:Button text="Buscar" press="onFilterPedidos"/>
+				</l:VerticalLayout>	
+			
+			</form:content>
+		</form:SimpleForm>
+
+		<Table
+			id="tablePedidos"						
+			rows="{path: '/PedidoSet'}"	
+			selectionMode="None">
+				<columns>
 					<Column id="columnPedido" width="7rem" sortProperty="Ebeln" >
 						<m:Label id="labelPedido" text="Pedido"/>
 						<template>
@@ -119,8 +126,8 @@
 								state="{path:'Estado' , formatter:'.formatter.statusColor'}" />
 						</template>
 					</Column>
-					</columns>						
-				</Table>
+				</columns>						
+			</Table>
 		</l:VerticalLayout>
 
 </core:FragmentDefinition>

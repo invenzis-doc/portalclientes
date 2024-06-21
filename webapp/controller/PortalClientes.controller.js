@@ -48,8 +48,7 @@ sap.ui.define([
                 this.getSplitAppObj().toDetail(this.createId("detailHome"));
             },
             
-            onSelectOferta: function() {
-                
+            onSelectOfertas: function() {
                 
                 //Inicializar los filtros de fecha
                 var fechaHoy = new Date();
@@ -69,7 +68,7 @@ sap.ui.define([
                     error: function(oError) {
                     }
                 });*/      
-                this.getSplitAppObj().toDetail(this.createId("detailOferta"));
+                this.getSplitAppObj().toDetail(this.createId("detailOfertas"));
             },
 
             onSelectPedidos: function() {
@@ -99,8 +98,8 @@ sap.ui.define([
                 
             },
 
-            onSelectPedidosDET: function() {
-                this.getSplitAppObj().toDetail(this.createId("detailPedidosDET"));
+            onSelectPedidoDET: function() {
+                this.getSplitAppObj().toDetail(this.createId("detailPedidoDET"));
             },
 
             handleLinkPedido: function(evt) {
@@ -123,7 +122,7 @@ sap.ui.define([
                     }
                 });*/
 
-                this.getSplitAppObj().toDetail(this.createId("detailPedidosDET"));
+                this.getSplitAppObj().toDetail(this.createId("detailPedidoDET"));
 
             },
 

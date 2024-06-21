@@ -10,36 +10,34 @@
     xmlns:ux="sap.uxap"
 	xmlns:f="sap.f">
     <l:VerticalLayout>
+		
 		<form:SimpleForm id="SimpleFormOfertas"
 			editable="true"
 			layout="ResponsiveGridLayout"
 			title="Ofertas">
+			
 			<form:content>
-				<fb:FilterBar showGoOnFB="false" showFilterConfiguration="false" id="filterbarOfertaClientes" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" >
+
+				<fb:FilterBar id="filterbarOfertas" showGoOnFB="false" showFilterConfiguration="false" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" >
 					<fb:filterGroupItems>
 						
-						<fb:FilterGroupItem id="filterOfertaId" name="OfertaName" label="Oferta" groupName="Group2" visibleInFilterBar="true">
+						<fb:FilterGroupItem id="filterGroupItemInputOfertas" name="OfertaName" label="Oferta" groupName="Group2" visibleInFilterBar="true">
 							<fb:control>
-								<m:Input
-									id="inputOferta"
-									name="Oferta"													
-									>												
-								</m:Input>
+								<m:Input id="inputOfertas" name="Oferta" />												
 							</fb:control>
 						</fb:FilterGroupItem>
 
-						<fb:FilterGroupItem id="groupItemOferta" name="FechaDesde" label="Fecha desde" groupName="Group2" visibleInFilterBar="true">
+						<fb:FilterGroupItem id="filterGroupItemFechaDesdeOfertas" name="FechaDesde" label="Fecha desde" groupName="Group1" visibleInFilterBar="true">
 							<fb:control>
 								<m:DatePicker
 									id="fechaDesdePickerOferta"											
 									change="onChangeFechaDesde"
 									valueFormat="yyyyMMdd"
-									displayFormat="dd/MM/yyyy"
-								/>											
+									displayFormat="dd/MM/yyyy" />											
 							</fb:control>
 						</fb:FilterGroupItem>
 
-						<fb:FilterGroupItem id="groupItemHastaOferta" name="Fecha" label="Fecha hasta" groupName="Group2" visibleInFilterBar="true">
+						<fb:FilterGroupItem id="filterGroupItemFechaHastaOfertas" name="Fecha" label="Fecha hasta" groupName="Group1" visibleInFilterBar="true">
 							<fb:control>
 								<m:DatePicker
 									id="fechaHastaPickerOferta"											
@@ -50,7 +48,9 @@
 						</fb:FilterGroupItem>
 													
 					</fb:filterGroupItems>
+
 				</fb:FilterBar>
+				
 				<l:VerticalLayout class="sapUiSmallMarginTop" >					
 					<m:Label class="sapUiTinyMarginTop" text="Completo" />	
 					<m:CheckBox id="checkEstadoOfertasV" />		
@@ -58,7 +58,8 @@
 					<m:CheckBox id="checkEstadoOfertasA" />	
 					<m:Label class="sapUiTinyMarginTop" text="Sin Tratar  " />	
 					<m:CheckBox id="checkEstadoOfertasR"											/>	
-				</l:VerticalLayout>	
+				</l:VerticalLayout>
+
 				<l:VerticalLayout class="sapUiSmallMarginTop" >					
 					<m:Label class="sapUiTinyMarginTop" text="Anticipos" />	
 					<m:CheckBox id="checkAnticipoOfertas" />		
@@ -67,7 +68,8 @@
 					<m:Label class="sapUiTinyMarginTop" text="Vencidos" />	
 					<m:CheckBox id="checkVencidoOfertas" />	
 					<m:Button text="Buscar" press="onFilterOfertas"/>
-				</l:VerticalLayout>		
+				</l:VerticalLayout>
+					
 			</form:content>
 		</form:SimpleForm>
 		<Table

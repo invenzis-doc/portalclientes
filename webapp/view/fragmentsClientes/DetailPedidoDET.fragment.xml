@@ -118,8 +118,7 @@
                             id="tableFacturaPedido"
                             inset="false"
                             items="{path: '/FacturaSeleccionada/DetalleSet'}"
-							noDataText="Sin posiciones"
-					    >
+							noDataText="Sin posiciones">
 						<columns>
 							<Column id="columnVBELNFactura2" minScreenWidth="Tablet" demandPopin="true">
 								<Text id="textVBELNFactura2" text="VBELN"/>
