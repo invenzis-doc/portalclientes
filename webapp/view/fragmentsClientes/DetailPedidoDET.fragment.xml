@@ -8,7 +8,7 @@
     xmlns:ux="sap.uxap">
     <ux:ObjectPageLayout id="ObjectPageLayoutPedido" showTitleInHeaderContent="true">
 		<ux:headerTitle>
-			<ux:ObjectPageHeader id="headerForPedidoDetail"
+			<ux:ObjectPageHeader id="headerPedidoDetail"
 							  objectTitle="Datos de Cabecera"
 							  showTitleSelector="false"
 							  showMarkers="false"
@@ -17,7 +17,6 @@
 							  markChanges="false"
 							  markChangesPress="handleMarkChangesPress"
 							  objectSubtitle="{/PedidoSeleccionado/Ebeln}"
-							  objectImageShape="Circle"
 							  isObjectTitleAlwaysVisible="false"
 							  isObjectSubtitleAlwaysVisible="false"
 							  showPlaceholder="false">		
@@ -32,23 +31,23 @@
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelMatnrPedidoDET" text="x:" class="labelHeader"/>
-					<Text text="MATNR" id="matnrPedidoDET" />
+					<m:Label id="LabelMatnrPedidoDET" text="Material:" class="labelHeader"/>
+					<Text text="Material" id="matnrPedidoDET" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelArktxPedidoDET" text="x:" class="labelHeader"/>
+					<m:Label id="LabelArktxPedidoDET" text="Arktx:" class="labelHeader"/>
 					<Text text="ARKTX" id="arktxPedidoDET" />
 				</l:HorizontalLayout>
 				
 				<l:HorizontalLayout>					
-					<m:Label id="LabelZmengPedidoDET" text="x:" class="labelHeader"/>
+					<m:Label id="LabelZmengPedidoDET" text="Zmeng:" class="labelHeader"/>
 					<Text text="ZMENG" id="zmengPedidoDET" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout id="horizontalLayoutSocFactura">					
-					<m:Label id="LabelMeinsPedidoDET" text="x:" class="labelHeader"/>
-					<Text text="MEINS" id="meinsPedidoDET" />
+					<m:Label id="LabelMeinsPedidoDET" text="Cantidad:" class="labelHeader"/>
+					<Text text="Cantidad" id="meinsPedidoDET" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
@@ -80,16 +79,16 @@
 								<Text id="precioERDATFactura" text="Fecha"/>	
 							</Column>
 							<Column id="columnMATNRFactura" minScreenWidth="Tablet" demandPopin="true">
-								<Text id="textMATNRFactura" text="MATNR"/>								
+								<Text id="textMATNRFactura" text="Material"/>								
 							</Column>
 							<Column id="columnARKTXFactura" minScreenWidth="Tablet" demandPopin="true">
 								<Text id="textARKTXFactura" text="ARKTX"/>								
 							</Column>
 							<Column id="columnLFIMGFactura" minScreenWidth="Tablet" demandPopin="true">
-								<Text id="textLFIMGFactura" text="LFIMG"/>								
+								<Text id="textLFIMGFactura" text="Cantidad entregada"/>								
 							</Column>
 							<Column id="columnMEINSFactura" minScreenWidth="Tablet" demandPopin="true">
-								<Text id="textMEINSFactura" text="ARKTX"/>								
+								<Text id="textMEINSFactura" text="Cantidad"/>								
 							</Column>									
 						</columns>
 

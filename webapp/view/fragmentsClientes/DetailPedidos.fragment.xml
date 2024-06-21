@@ -100,16 +100,16 @@
 							<m:Text id="textTipoPedidoPedido" text="{Vtext}" />								
 						</template>
 					</Column>
-					<Column id="columnMonedaPedido" sortProperty="Vtext">
+					<Column id="columnMonedaPedido" width="5rem" sortProperty="Waers">
 						<m:Label id="labelMonedaPedido" text="Moneda"/>
 						<template>
-							<m:Text id="textMonedaPedido" text="{Vtext}" />								
+							<m:Text id="textMonedaPedido" text="{Waers}" />								
 						</template>
 					</Column>
 					<Column id="columnValorNetoPedido" sortProperty="Netwr" >
 					<m:Label id="labelValorNetoPedido" text="Valor Neto"/>
 					<template>
-						<m:Text id="textValorNetoPedido" text="{Netwr} {Waers}" />								
+						<m:Text id="textValorNetoPedido" text="{Netwr}" />								
 					</template>
 					</Column>
 					<Column id="columnBloqueadoPedido" width="7rem" sortProperty="Bloqu">

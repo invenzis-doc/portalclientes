@@ -8,7 +8,7 @@
     xmlns:ux="sap.uxap">
     <ux:ObjectPageLayout id="ObjectPageLayoutOferta" showTitleInHeaderContent="true">
 		<ux:headerTitle>
-			<ux:ObjectPageHeader id="headerForOfertaDetail"
+			<ux:ObjectPageHeader id="headerOfertaDetail"
 							  objectTitle="Datos de Cabecera"
 							  showTitleSelector="false"
 							  showMarkers="false"
@@ -31,23 +31,23 @@
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelMatnrOfertaDET" text="x:" class="labelHeader"/>
-					<Text text="MATNR" id="matnrOfertaDET" />
+					<m:Label id="LabelMatnrOfertaDET" text="Material:" class="labelHeader"/>
+					<Text text="Material" id="matnrOfertaDET" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelArktxOfertaDET" text="x:" class="labelHeader"/>
+					<m:Label id="LabelArktxOfertaDET" text="Arktx:" class="labelHeader"/>
 					<Text text="ARKTX" id="arktxOfertaDET" />
 				</l:HorizontalLayout>
 				
 				<l:HorizontalLayout>					
-					<m:Label id="LabelZmengOfertaDET" text="x:" class="labelHeader"/>
+					<m:Label id="LabelZmengOfertaDET" text="Zmeng:" class="labelHeader"/>
 					<Text text="ZMENG" id="zmengOfertaDET" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelMeinsOfertaDET" text="x:" class="labelHeader"/>
-					<Text text="MEINS" id="meinsOfertaDET" />
+					<m:Label id="LabelMeinsOfertaDET" text="Cantidad:" class="labelHeader"/>
+					<Text text="Cantidad" id="meinsOfertaDET" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
