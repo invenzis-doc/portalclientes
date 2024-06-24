@@ -95,12 +95,13 @@
 						<items>
 							<ColumnListItem id="columnPosItemEntrega" vAlign="Middle">
 								<cells>								
-                                    <Text id="rowPosicionEntrega" text="{Ebelp}" />
-                                    <Text id="rowCodEntrega" text="{Matnr}" />
-                                    <Text id="rowDescEntrega" text="{Txz01}" />                                                                      							
-									<Text id="rowCantEntrega" text="{Menge}" />
-									<Text id="rowTotalEntrega" text="{path:'Dmbtr' , formatter:'.formatter.removeZeros'}" />
-									<Text id="rowMonedaEntrega" text="{Waers}" />
+                                    <Text id="rowPosicionEntrega" text="{Vbeln}" />
+                                    <Text id="rowCodEntrega" text="{Posnr}" />
+                                    <Text id="rowDescEntrega" text="{Erdat}" />                                                                      							
+									<Text id="rowCantEntrega" text="{Matnr}" />
+									<Text id="rowPosicionTextoEntrega" text="{Arktx}" />
+									<Text id="rowCantidadEntrega" text="{path:'Lfimg' , formatter:'.formatter.removeZeros'}" />
+									<Text id="rowUnidadEntrega" text="{Meins}" />
 								</cells>
 							</ColumnListItem>
 						</items>
@@ -117,7 +118,7 @@
                             id="tableFacturaPedido"
                             inset="false"
                             items="{path: '/FacturaSeleccionada/DetalleSet'}"
-							noDataText="Sin posiciones">
+							noDataText="Sin facturas">
 						<columns>
 							<Column id="columnDocFactura" minScreenWidth="Tablet" demandPopin="true">
 								<Text id="textDocFactura" text="Doc Factura"/>
@@ -139,11 +140,12 @@
 
 						<items>
 							<ColumnListItem id="columnPosItemFactura" vAlign="Middle">
-								<cells>								
-                                    <Link id="linkFactura" text="{Xblnr}" press="handleLinkFactura" />
-                                    <Text id="rowFechaFactura" text="{path:'Budat' , formatter:'.formatter.stringDate'}" />
-                                    <Text id="rowImporteFactura" text="{path:'Rmwwr' , formatter:'.formatter.removeZeros'}" />
-                                    <Text id="rowMonedaFactura" text="{Waers}" />                                    																
+								<cells>
+									<Text id="rowDocFactura" text="{Vbeln}" />
+									<Text id="rowMonedaFactura" text="{Waerk}" />								
+                                    <Text id="rowFechaFactura" text="{path:'Fkdat' , formatter:'.formatter.stringDate'}" />
+                                    <Text id="rowImporteFactura" text="{path:'Netwr' , formatter:'.formatter.removeZeros'}" />
+									<Link id="linkFactura" text="{Xblnr}" press="handleLinkFactura" />                                    																
 								</cells>
 							</ColumnListItem>
 						</items>

@@ -63,35 +63,35 @@
 			rows="{path: '/PedidosSet'}"	
 			selectionMode="None">
 				<columns>
-					<Column id="columnPedidoEntrega" width="7rem" sortProperty="Ebeln" >
+					<Column id="columnPedidoEntrega" width="7rem" sortProperty="Vbeln" >
 						<m:Label id="labelPedidoEntrega" text="Entrega"/>
 						<template>
-								<m:Link id="linkPedidoEntrega" text="{Ebeln}" press="handleLinkPedido"/>	
+								<m:Link id="linkPedidoEntrega" text="{Vbeln}" press="handleLinkPedido"/>	
 						</template>									
 					</Column>
-					<Column id="columnCampoVendedorEntrega" sortProperty="Vtext">
-						<m:Label id="labelCampoVendedorEntrega" text="Posicion"/>
+					<Column id="columnPosicionEntrega" sortProperty="Posnr">
+						<m:Label id="labelPosicionEntrega" text="Posicion"/>
 						<template>
-							<m:Text id="textCampoVendedorEntrega" text="{Vtext}" />								
+							<m:Text id="textPosicionEntrega" text="{Posnr}" />								
 						</template>
 					</Column>
-					<Column id="columFechaEntrega" width="6rem" sortProperty="Bedat" >
+					<Column id="columFechaEntrega" width="6rem" sortProperty="Fkdat" >
 						<m:Label id="labelFechaEntrega"   text="Fecha"/>
 						<template>
-							<m:Text id="textFechaEntrega" text="{path:'Bedat' , formatter:'.formatter.stringDate'}" />
+							<m:Text id="textFechaEntrega" text="{path:'Fkdat' , formatter:'.formatter.stringDate'}" />
 						</template>
 					</Column>
 					
-					<Column id="columnTipoEntrega" sortProperty="Vtext">
-						<m:Label id="labelTipoEntrega" text="Material"/>
+					<Column id="columnMaterialEntrega" sortProperty="Matnr">
+						<m:Label id="labelMaterialEntrega" text="Material"/>
 						<template>
-							<m:Text id="textTipoEntrega" text="{Vtext}" />								
+							<m:Text id="textMaterialEntrega" text="{Matnr}" />								
 						</template>
 					</Column>
-					<Column id="columnMonedaEntrega" width="5rem" sortProperty="Waers">
-						<m:Label id="labelMonedaEntrega" text="Texto Posicion"/>
+					<Column id="columnTextoPosicionEntrega" width="5rem" sortProperty="Arktx">
+						<m:Label id="labelTextoPosicionEntrega" text="Texto Posicion"/>
 						<template>
-							<m:Text id="textMonedaEntrega" text="{Waers}" />								
+							<m:Text id="textTextoPosicionEntrega" text="{Arktx}" />								
 						</template>
 					</Column>
 					<Column id="columnValorNetoEntrega" sortProperty="Netwr" >
@@ -100,10 +100,10 @@
 						<m:Text id="textValorNetoEntrega" text="{Netwr}" />								
 					</template>
 					</Column>
-					<Column id="columnBloqueadoEntrega" width="7rem" sortProperty="Bloqu">
-						<m:Label id="labelBloqueadoEntrega" text="Unidad"/>
+					<Column id="columnUnidadEntrega" width="7rem" sortProperty="Meins">
+						<m:Label id="labelUnidadEntrega" text="Unidad"/>
 						<template>
-							<m:Text id="textBloqueadoEntrega" text="{path:'Bloqu' , formatter:'.formatter.stringBloq'}" />							
+							<m:Text id="textUnidadEntrega" text="{Meins}" />							
 						</template>
 					</Column>
 				</columns>						

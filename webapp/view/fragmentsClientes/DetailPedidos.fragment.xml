@@ -79,34 +79,34 @@
 			rows="{path: '/PedidoSet'}"	
 			selectionMode="None">
 				<columns>
-					<Column id="columnPedido" width="7rem" sortProperty="Ebeln" >
+					<Column id="columnPedido" width="7rem" sortProperty="Vbeln" >
 						<m:Label id="labelPedido" text="Pedido"/>
 						<template>
-								<m:Link id="linkPedido" text="{Ebeln}" press="handleLinkPedido"/>	
+								<m:Link id="linkPedido" text="{Vbeln}" press="handleLinkPedido"/>	
 						</template>									
 					</Column>
-					<Column id="columFechaPedido" width="6rem" sortProperty="Bedat" >
+					<Column id="columFechaPedido" width="6rem" sortProperty="Erdat" >
 						<m:Label id="labelFechaPedido"   text="Fecha"/>
 						<template>
-							<m:Text id="textFechaPedido" text="{path:'Bedat' , formatter:'.formatter.stringDate'}" />
+							<m:Text id="textFechaPedido" text="{path:'Erdat' , formatter:'.formatter.stringDate'}" />
 						</template>
 					</Column>
-					<Column id="columnCampoVendedorPedido" sortProperty="Vtext">
+					<Column id="columnCampoVendedorPedido" sortProperty="Vkgrp">
 						<m:Label id="labelCampoVendedorPedido" text="Campo Vendedor"/>
 						<template>
-							<m:Text id="textCampoVendedorPedido" text="{Vtext}" />								
+							<m:Text id="textCampoVendedorPedido" text="{Vkgrp}" />								
 						</template>
 					</Column>
-					<Column id="columnTipoPedidoPedido" sortProperty="Vtext">
+					<Column id="columnTipoPedidoPedido" sortProperty="Auart">
 						<m:Label id="labelTipoPedidoPedido" text="Tipo de Pedido"/>
 						<template>
-							<m:Text id="textTipoPedidoPedido" text="{Vtext}" />								
+							<m:Text id="textTipoPedidoPedido" text="{Auart}" />								
 						</template>
 					</Column>
-					<Column id="columnMonedaPedido" width="5rem" sortProperty="Waers">
+					<Column id="columnMonedaPedido" width="5rem" sortProperty="Waerk">
 						<m:Label id="labelMonedaPedido" text="Moneda"/>
 						<template>
-							<m:Text id="textMonedaPedido" text="{Waers}" />								
+							<m:Text id="textMonedaPedido" text="{Waerk}" />								
 						</template>
 					</Column>
 					<Column id="columnValorNetoPedido" sortProperty="Netwr" >
@@ -115,10 +115,10 @@
 						<m:Text id="textoValorNetoPedido" text="{Netwr}" />								
 					</template>
 					</Column>
-					<Column id="columnBloqueadoPedido" width="7rem" sortProperty="Bloqu">
+					<Column id="columnBloqueadoPedido" width="7rem" sortProperty="Lifsk">
 						<m:Label id="labelBloqueadoPedido" text="Bloqueado"/>
 						<template>
-							<m:Text id="textBloqueadoPedido" text="{path:'Bloqu' , formatter:'.formatter.stringBloq'}" />							
+							<m:Text id="textBloqueadoPedido" text="{path:'Lifsk' , formatter:'.formatter.stringBloq'}" />							
 						</template>
 					</Column>
 					<Column id="columnEstadoPedido" width="4rem" sortProperty="Estado" >
