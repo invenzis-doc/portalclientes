@@ -28,6 +28,14 @@
 			<core:Fragment fragmentName="portalclientes.view.fragmentsClientes.DetailPedidos" type="XML" />
 		</Page>
 
+		<Page id="detailEntregas" title="">
+			<core:Fragment fragmentName="portalclientes.view.fragmentsClientes.DetailEntregas" type="XML" />
+		</Page>
+
+		<Page id="detailFacturas" title="">
+			<core:Fragment fragmentName="portalclientes.view.fragmentsClientes.DetailFacturas" type="XML" />
+		</Page>
+
 		<Page id="detailPedidoDET" title="">
 			<core:Fragment fragmentName="portalclientes.view.fragmentsClientes.DetailPedidoDET" type="XML" />
 		</Page>
@@ -54,11 +62,17 @@
 							
 							<tnt:NavigationListItem id="item3" text="Ofertas" icon="sap-icon://order-status" select="onSelectOfertas">						
 							</tnt:NavigationListItem>
-							
-							<tnt:NavigationListItem id="item4" text="Pedidos de venta DET" icon="sap-icon://sales-order" select="onSelectPedidoDET">						
+
+							<tnt:NavigationListItem id="item4" text="Entregas" icon="sap-icon://shipping-status" select="onSelectEntregas">						
 							</tnt:NavigationListItem>	
 							
-							<tnt:NavigationListItem id="item5" text="Oferta DET" icon="sap-icon://order-status" select="onSelectOfertaDET">						
+							<tnt:NavigationListItem id="item5" text="Facturas" icon="sap-icon://customer-briefing" select="onSelectFacturas">						
+							</tnt:NavigationListItem>
+							
+							<tnt:NavigationListItem id="item6" text="Pedidos de venta DET" icon="sap-icon://sales-order" select="onSelectPedidoDET">						
+							</tnt:NavigationListItem>	
+							
+							<tnt:NavigationListItem id="item7" text="Oferta DET" icon="sap-icon://order-status" select="onSelectOfertaDET">						
 							</tnt:NavigationListItem>
 
 						</tnt:NavigationList>		

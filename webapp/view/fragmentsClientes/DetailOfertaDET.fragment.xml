@@ -26,33 +26,33 @@
 			<l:VerticalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelPosnrOfertaDET" text="Oferta: " class="labelHeader"/>
-					<Text text="POSNR" id="posnrOfertaDET" />
+					<m:Label id="LabelPosicionOferta" text="Posicion: " class="labelHeader"/>
+					<Text text="Posicion del pedido" id="textPosicionOferta" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelMatnrOfertaDET" text="Material:" class="labelHeader"/>
-					<Text text="Material" id="matnrOfertaDET" />
+					<m:Label id="labelMaterialOferta" text="Material:" class="labelHeader"/>
+					<Text text="Material" id="textMaterialOferta" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelArktxOfertaDET" text="Arktx:" class="labelHeader"/>
-					<Text text="ARKTX" id="arktxOfertaDET" />
+					<m:Label id="labelTextoPosicionOferta" text="Posicion:" class="labelHeader"/>
+					<Text text="Texto breve posicion de pedido de cliente" id="textTextoPosicionOferta" />
 				</l:HorizontalLayout>
 				
 				<l:HorizontalLayout>					
-					<m:Label id="LabelZmengOfertaDET" text="Zmeng:" class="labelHeader"/>
-					<Text text="ZMENG" id="zmengOfertaDET" />
+					<m:Label id="labelCantidadOferta" text="Cantidad:" class="labelHeader"/>
+					<Text text="Cantidad" id="textCantidadOferta" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelMeinsOfertaDET" text="Cantidad:" class="labelHeader"/>
-					<Text text="Cantidad" id="meinsOfertaDET" />
+					<m:Label id="labelUnidadOferta" text="Unidad:" class="labelHeader"/>
+					<Text text="Unidad" id="textUnidadOferta" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelNetwrOfertaDET" text="Valor Neto: " class="labelHeader"/>
-					<Text text="NETWR" id="netwrOfertaDET" />
+					<m:Label id="labelValorNetoOferta" text="Valor Neto: " class="labelHeader"/>
+					<Text text="Valor Neto" id="textValorNetoOferta" />
 				</l:HorizontalLayout>
 			</l:VerticalLayout>			
 			

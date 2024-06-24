@@ -55,7 +55,7 @@
 					<m:Label class="sapUiTinyMarginTop" text="Cumpliendo" />	
 					<m:CheckBox id="checkEstadoPedidosA" />	
 					<m:Label class="sapUiTinyMarginTop" text="Sin Tratar  " />	
-					<m:CheckBox id="checkEstadoPedidosR"											/>	
+					<m:CheckBox id="checkEstadoPedidosR"/>	
 				</l:VerticalLayout>	
 				
 				<l:VerticalLayout class="sapUiSmallMarginTop" >					
@@ -65,6 +65,9 @@
 					<m:CheckBox id="checkLiberarPedidos" />	
 					<m:Label class="sapUiTinyMarginTop" text="Vencidos" />	
 					<m:CheckBox id="checkVencidoPedidos" />	
+				</l:VerticalLayout>
+
+				<l:VerticalLayout class="sapUiSmallMarginTop" >					
 					<m:Button text="Buscar" press="onFilterPedidos"/>
 				</l:VerticalLayout>	
 			
@@ -107,9 +110,9 @@
 						</template>
 					</Column>
 					<Column id="columnValorNetoPedido" sortProperty="Netwr" >
-					<m:Label id="labelValorNetoPedido" text="Valor Neto"/>
+					<m:Label id="label2ValorNetoPedido" text="Valor Neto"/>
 					<template>
-						<m:Text id="textValorNetoPedido" text="{Netwr}" />								
+						<m:Text id="textoValorNetoPedido" text="{Netwr}" />								
 					</template>
 					</Column>
 					<Column id="columnBloqueadoPedido" width="7rem" sortProperty="Bloqu">

@@ -1,0 +1,113 @@
+<core:FragmentDefinition
+	xmlns="sap.ui.table"
+	xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"    
+    xmlns:r="sap.suite.ui.microchart"
+	xmlns:l="sap.ui.layout" 
+	xmlns:m="sap.m"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:ux="sap.uxap"
+	xmlns:f="sap.f">
+	
+		<l:VerticalLayout>		
+			<form:SimpleForm id="SimpleFormEntregas"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			title="Entregas">
+			<form:content>
+				<l:VerticalLayout class="sapUiSmallMarginTop" >
+				<fb:FilterBar showGoOnFB="false" showFilterConfiguration="false" id="filterbarEntrega" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" >
+					<fb:filterGroupItems>
+							
+						<fb:FilterGroupItem id="filterGroupItemIdEntrega" name="NameEntrega" label="Entrega" groupName="Group1" visibleInFilterBar="true">
+							<fb:control>
+								<m:Input id="inputEntrega" name="Entrega"/>												
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem id="filterGroupItemDesdeEntregas" name="FechaDesde" label="Fecha desde" groupName="Group2" visibleInFilterBar="true">
+							<fb:control>
+								<m:DatePicker
+									id="fechaDesdePickerEntregas"											
+									change="onChangeFechaDesde"
+									valueFormat="yyyyMMdd"
+									displayFormat="dd/MM/yyyy"
+								/>											
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem id="filterGroupItemHastaEntregas" name="Fecha" label="Fecha hasta" groupName="Group2" visibleInFilterBar="true">
+							<fb:control>
+								<m:DatePicker
+									id="fechaHastaPickerEntregas"											
+									change="handleChange"
+									valueFormat="yyyyMMdd"
+									displayFormat="dd/MM/yyyy"/>											
+							</fb:control>
+						</fb:FilterGroupItem>
+						
+					</fb:filterGroupItems>
+				</fb:FilterBar>
+				</l:VerticalLayout>
+
+				<l:VerticalLayout class="sapUiSmallMarginTop" >					
+					<m:Button text="Buscar" press="onFilterEntregas"/>
+				</l:VerticalLayout>	
+			
+			</form:content>
+		</form:SimpleForm>
+
+		<Table
+			id="tableEntregas"						
+			rows="{path: '/PedidosSet'}"	
+			selectionMode="None">
+				<columns>
+					<Column id="columnPedidoEntrega" width="7rem" sortProperty="Ebeln" >
+						<m:Label id="labelPedidoEntrega" text="Entrega"/>
+						<template>
+								<m:Link id="linkPedidoEntrega" text="{Ebeln}" press="handleLinkPedido"/>	
+						</template>									
+					</Column>
+					<Column id="columnCampoVendedorEntrega" sortProperty="Vtext">
+						<m:Label id="labelCampoVendedorEntrega" text="Posicion"/>
+						<template>
+							<m:Text id="textCampoVendedorEntrega" text="{Vtext}" />								
+						</template>
+					</Column>
+					<Column id="columFechaEntrega" width="6rem" sortProperty="Bedat" >
+						<m:Label id="labelFechaEntrega"   text="Fecha"/>
+						<template>
+							<m:Text id="textFechaEntrega" text="{path:'Bedat' , formatter:'.formatter.stringDate'}" />
+						</template>
+					</Column>
+					
+					<Column id="columnTipoEntrega" sortProperty="Vtext">
+						<m:Label id="labelTipoEntrega" text="Material"/>
+						<template>
+							<m:Text id="textTipoEntrega" text="{Vtext}" />								
+						</template>
+					</Column>
+					<Column id="columnMonedaEntrega" width="5rem" sortProperty="Waers">
+						<m:Label id="labelMonedaEntrega" text="Texto Posicion"/>
+						<template>
+							<m:Text id="textMonedaEntrega" text="{Waers}" />								
+						</template>
+					</Column>
+					<Column id="columnValorNetoEntrega" sortProperty="Netwr" >
+					<m:Label id="labelValorNetoEntrega" text="Cantidad Entregada"/>
+					<template>
+						<m:Text id="textValorNetoEntrega" text="{Netwr}" />								
+					</template>
+					</Column>
+					<Column id="columnBloqueadoEntrega" width="7rem" sortProperty="Bloqu">
+						<m:Label id="labelBloqueadoEntrega" text="Unidad"/>
+						<template>
+							<m:Text id="textBloqueadoEntrega" text="{path:'Bloqu' , formatter:'.formatter.stringBloq'}" />							
+						</template>
+					</Column>
+				</columns>						
+			</Table>
+		</l:VerticalLayout>
+
+</core:FragmentDefinition>

@@ -1,0 +1,98 @@
+<core:FragmentDefinition
+	xmlns="sap.ui.table"
+	xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"    
+    xmlns:r="sap.suite.ui.microchart"
+	xmlns:l="sap.ui.layout" 
+	xmlns:m="sap.m"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:ux="sap.uxap"
+	xmlns:f="sap.f">
+	
+		<l:VerticalLayout>		
+			<form:SimpleForm id="SimpleFormFacturas"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			title="Facturas">
+			<form:content>
+				<fb:FilterBar showGoOnFB="false" showFilterConfiguration="false" id="filterbarFactura" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" >
+					<fb:filterGroupItems>
+						
+						<fb:FilterGroupItem id="filterGroupItemIdFactura" name="NameFactura" label="Factura" groupName="Group1" visibleInFilterBar="true">
+							<fb:control>
+								<m:Input id="inputFactura" name="Factura"/>												
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem id="filterGroupItemDesdeFacturas" name="FechaDesde" label="Fecha desde" groupName="Group2" visibleInFilterBar="true">
+							<fb:control>
+								<m:DatePicker
+									id="fechaDesdePickerFacturas"											
+									change="onChangeFechaDesde"
+									valueFormat="yyyyMMdd"
+									displayFormat="dd/MM/yyyy"
+								/>											
+							</fb:control>
+						</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem id="filterGroupItemHastaFacturas" name="Fecha" label="Fecha hasta" groupName="Group2" visibleInFilterBar="true">
+							<fb:control>
+								<m:DatePicker
+									id="fechaHastaPickerFacturas"											
+									change="handleChange"
+									valueFormat="yyyyMMdd"
+									displayFormat="dd/MM/yyyy"/>											
+							</fb:control>
+						</fb:FilterGroupItem>
+						
+					</fb:filterGroupItems>
+				</fb:FilterBar>
+
+				<l:VerticalLayout class="sapUiSmallMarginTop" >					
+					<m:Button text="Buscar" press="onFilterFacturas"/>
+				</l:VerticalLayout>	
+			
+			</form:content>
+		</form:SimpleForm>
+
+		<Table
+			id="tableFacturas"						
+			rows="{path: '/PedidosSet'}"	
+			selectionMode="None">
+				<columns>
+					<Column id="columnPedidoFactura" width="7rem" sortProperty="Ebeln" >
+						<m:Label id="labelPedidoFactura" text="DocFactura"/>
+						<template>
+								<m:Link id="linkPedidoFactura" text="{Ebeln}" press="handleLinkPedido"/>	
+						</template>									
+					</Column>
+					<Column id="columnMonedaFactura" width="5rem" sortProperty="Waers">
+						<m:Label id="labelMonedaFactura" text="Moneda"/>
+						<template>
+							<m:Text id="textMonedaFactura" text="{Waers}" />								
+						</template>
+					</Column>
+					<Column id="columFechaFactura" width="6rem" sortProperty="Bedat" >
+						<m:Label id="labelFechaFactura"   text="Fecha"/>
+						<template>
+							<m:Text id="textFechaFactura" text="{path:'Bedat' , formatter:'.formatter.stringDate'}" />
+						</template>
+					</Column>
+					<Column id="columnValorNetoFactura" sortProperty="Netwr" >
+					<m:Label id="labelValorNetoFactura" text="Valor Neto"/>
+					<template>
+						<m:Text id="textValorNetoFactura" text="{Netwr}" />								
+					</template>
+					</Column>
+					<Column id="columnCampoVendedorFactura" sortProperty="Vtext">
+						<m:Label id="labelCampoVendedorFactura" text="Numero de Referencia"/>
+						<template>
+							<m:Text id="textCampoVendedorFactura" text="{Vtext}" />								
+						</template>
+					</Column>
+				</columns>						
+			</Table>
+		</l:VerticalLayout>
+
+</core:FragmentDefinition>

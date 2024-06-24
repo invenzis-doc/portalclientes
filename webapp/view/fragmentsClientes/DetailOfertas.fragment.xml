@@ -30,7 +30,7 @@
 						<fb:FilterGroupItem id="filterGroupItemFechaDesdeOfertas" name="FechaDesde" label="Fecha desde" groupName="Group1" visibleInFilterBar="true">
 							<fb:control>
 								<m:DatePicker
-									id="fechaDesdePickerOferta"											
+									id="fechaDesdePickerOfertas"											
 									change="onChangeFechaDesde"
 									valueFormat="yyyyMMdd"
 									displayFormat="dd/MM/yyyy" />											
@@ -40,7 +40,7 @@
 						<fb:FilterGroupItem id="filterGroupItemFechaHastaOfertas" name="Fecha" label="Fecha hasta" groupName="Group1" visibleInFilterBar="true">
 							<fb:control>
 								<m:DatePicker
-									id="fechaHastaPickerOferta"											
+									id="fechaHastaPickerOfertas"											
 									change="handleChange"
 									valueFormat="yyyyMMdd"
 									displayFormat="dd/MM/yyyy"/>											
@@ -57,7 +57,7 @@
 					<m:Label class="sapUiTinyMarginTop" text="Cumpliendo" />	
 					<m:CheckBox id="checkEstadoOfertasA" />	
 					<m:Label class="sapUiTinyMarginTop" text="Sin Tratar  " />	
-					<m:CheckBox id="checkEstadoOfertasR"											/>	
+					<m:CheckBox id="checkEstadoOfertasR"/>	
 				</l:VerticalLayout>
 
 				<l:VerticalLayout class="sapUiSmallMarginTop" >					
@@ -67,8 +67,11 @@
 					<m:CheckBox id="checkLiberarOfertas" />	
 					<m:Label class="sapUiTinyMarginTop" text="Vencidos" />	
 					<m:CheckBox id="checkVencidoOfertas" />	
-					<m:Button text="Buscar" press="onFilterOfertas"/>
 				</l:VerticalLayout>
+
+				<l:VerticalLayout class="sapUiSmallMarginTop" >					
+					<m:Button text="Buscar" press="onFilterOfertas"/>
+				</l:VerticalLayout>	
 					
 			</form:content>
 		</form:SimpleForm>
@@ -108,7 +111,7 @@
 						</template>
 					</Column>
 					<Column id="columnValorNetoOferta" sortProperty="Netwr" >
-					<m:Label id="textValorNetoOferta" text="Valor Neto"/>
+					<m:Label id="textValorNeto" text="Valor Neto"/>
 					<template>
 						<m:Text id="columnTextValorNetoOferta" text="{Netwr}" />								
 					</template>

@@ -26,33 +26,33 @@
 			<l:VerticalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelPosnrPedidoDET" text="Pedido: " class="labelHeader"/>
-					<Text text="POSNR" id="posnrPedidoDET" />
+					<m:Label id="labelPosicionPedido" text="Pedido: " class="labelHeader"/>
+					<Text text="Posicion" id="textPosicionPedido" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelMatnrPedidoDET" text="Material:" class="labelHeader"/>
-					<Text text="Material" id="matnrPedidoDET" />
+					<m:Label id="labelMaterialPedido" text="Material:" class="labelHeader"/>
+					<Text text="Material" id="textMaterialPedido" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelArktxPedidoDET" text="Arktx:" class="labelHeader"/>
-					<Text text="ARKTX" id="arktxPedidoDET" />
+					<m:Label id="labelTextoPosicionPedido" text="Posicion:" class="labelHeader"/>
+					<Text text="Texto breve posicion de pedido de cliente" id="textTextoPosicionPedido" />
 				</l:HorizontalLayout>
 				
 				<l:HorizontalLayout>					
-					<m:Label id="LabelZmengPedidoDET" text="Zmeng:" class="labelHeader"/>
-					<Text text="ZMENG" id="zmengPedidoDET" />
-				</l:HorizontalLayout>
-
-				<l:HorizontalLayout id="horizontalLayoutSocFactura">					
-					<m:Label id="LabelMeinsPedidoDET" text="Cantidad:" class="labelHeader"/>
-					<Text text="Cantidad" id="meinsPedidoDET" />
+					<m:Label id="labelCantidadPedido" text="Cantidad:" class="labelHeader"/>
+					<Text text="Cantidad" id="textCantidadPedido" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelNetwrPedidoDET" text="Valor Neto: " class="labelHeader"/>
-					<Text text="NETWR" id="netwrPedidoDET" />
+					<m:Label id="labelUnidadPedido" text="Unidad:" class="labelHeader"/>
+					<Text text="Unidad" id="textUnidadPedido" />
+				</l:HorizontalLayout>
+
+				<l:HorizontalLayout>					
+					<m:Label id="labelValorNetoPedido" text="Valor Neto: " class="labelHeader"/>
+					<Text text="Valor Neto" id="textValorNetoPedido" />
 				</l:HorizontalLayout>
 			</l:VerticalLayout>			
 			
@@ -69,26 +69,26 @@
 							noDataText="Sin entregas"
 					    >
 						<columns>
-							<Column id="columnVBELNFactura" minScreenWidth="Tablet" demandPopin="true">
-								<Text id="textVBELNFactura" text="Entrega"/>
+							<Column id="columnEntrega" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textEntrega" text="Entrega"/>
 							</Column>
-							<Column id="columnPOSNRFactura" minScreenWidth="Tablet" demandPopin="true">
-								<Text id="textPOSNRFactura" text="POSNR"/>									
+							<Column id="columnPosicion" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textPosicion" text="Posicion"/>									
 							</Column>
-							<Column id="columnERDATFactura"  minScreenWidth="Tablet" demandPopin="true">
-								<Text id="precioERDATFactura" text="Fecha"/>	
+							<Column id="columnFechaEntrega"  minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textFechaCreacionEntrega" text="Fecha"/>	
 							</Column>
-							<Column id="columnMATNRFactura" minScreenWidth="Tablet" demandPopin="true">
-								<Text id="textMATNRFactura" text="Material"/>								
+							<Column id="columnMaterial" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textMaterial" text="Material"/>								
 							</Column>
-							<Column id="columnARKTXFactura" minScreenWidth="Tablet" demandPopin="true">
-								<Text id="textARKTXFactura" text="ARKTX"/>								
+							<Column id="columnTextoPosicion" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textTextoPosicion" text="Posicion"/>								
 							</Column>
-							<Column id="columnLFIMGFactura" minScreenWidth="Tablet" demandPopin="true">
-								<Text id="textLFIMGFactura" text="Cantidad entregada"/>								
+							<Column id="columnCantidadEntregada" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textCantidadEntregada" text="Cantidad entregada"/>								
 							</Column>
-							<Column id="columnMEINSFactura" minScreenWidth="Tablet" demandPopin="true">
-								<Text id="textMEINSFactura" text="Cantidad"/>								
+							<Column id="columnUnidad" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textUnidad" text="Unidad"/>								
 							</Column>									
 						</columns>
 
@@ -119,20 +119,20 @@
                             items="{path: '/FacturaSeleccionada/DetalleSet'}"
 							noDataText="Sin posiciones">
 						<columns>
-							<Column id="columnVBELNFactura2" minScreenWidth="Tablet" demandPopin="true">
-								<Text id="textVBELNFactura2" text="VBELN"/>
+							<Column id="columnDocFactura" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textDocFactura" text="Doc Factura"/>
 							</Column>
-							<Column id="columnWAERKFactura" minScreenWidth="Tablet" demandPopin="true">
-								<Text id="textWAERKFactura" text="WAERK"/>									
+							<Column id="columnMonedaTablaFactura" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textMonedaTablaFactura" text="Moneda"/>									
 							</Column>
-							<Column id="columnFKDATFactura"  minScreenWidth="Tablet" demandPopin="true">
-								<Text id="precioFKDATFactura" text="FKDAT"/>	
+							<Column id="columnFechaTablaFactura"  minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textFechaTablaFactura" text="Fecha"/>	
 							</Column>
-							<Column id="columnNETWRFactura" minScreenWidth="Tablet" demandPopin="true">
-								<Text id="textNETWRFactura" text="Valor Neto"/>								
+							<Column id="columnValorNetoTablaFactura" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textValorNetoTablaFactura" text="Valor Neto"/>								
 							</Column>
-							<Column id="columnXBLNRFactura" minScreenWidth="Tablet" demandPopin="true">
-								<Text id="textXBLNRFactura" text="XBLNR"/>								
+							<Column id="columnNReferencia" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textNReferencia" text="Numero de Referencia"/>								
 							</Column>
 																	
 						</columns>
@@ -148,6 +148,15 @@
 							</ColumnListItem>
 						</items>
 						</Table>
+						</ux:blocks>
+					</ux:ObjectPageSubSection>
+				</ux:subSections>
+			</ux:ObjectPageSection>
+			<ux:ObjectPageSection id="pageSectionDocFlow" title="Flujo de Documentos">
+				<ux:subSections>
+					<ux:ObjectPageSubSection id="pageSubsectionDocFlow">
+						<ux:blocks>
+							<Text text="ejemplo"/>
 						</ux:blocks>
 					</ux:ObjectPageSubSection>
 				</ux:subSections>
