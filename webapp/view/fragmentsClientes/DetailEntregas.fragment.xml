@@ -60,7 +60,7 @@
 
 		<Table
 			id="tableEntregas"						
-			rows="{path: '/PedidosSet'}"	
+			rows="{path: '/ZI_PurchaseOrder'}"	
 			selectionMode="None">
 				<columns>
 					<Column id="columnPedidoEntrega" width="7rem" sortProperty="Vbeln" >

@@ -15,6 +15,10 @@ server:
             - /resources
             - /test-resources
           url: https://ui5.sap.com
+        backend:
+          - url: http://sap-bghtp-qadev:8000
+            path: /sap
+            destination: BHG_QA_DEV
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

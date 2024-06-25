@@ -58,7 +58,7 @@
 
 		<Table
 			id="tableFacturas"						
-			rows="{path: '/PedidosSet'}"	
+			rows="{path: '/ZI_PurchaseOrder'}"	
 			selectionMode="None">
 				<columns>
 					<Column id="columnPedidoFactura" width="7rem" sortProperty="Vbeln" >

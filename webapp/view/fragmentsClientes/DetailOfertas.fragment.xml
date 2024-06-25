@@ -77,7 +77,7 @@
 		</form:SimpleForm>
 		<Table
 			id="tableOferta"						
-			rows="{path: '/Ofertaset'}"	
+			rows="{path: '/ZI_PurchaseOrder'}"	
 			selectionMode="None">
 				<columns>
 					<Column id="columnPedidoOferta" width="7rem" sortProperty="Vbeln" >

@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0"
+xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+xmlns:sap="http://www.sap.com/Protocols/SAPData">
+<edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"
+xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+<edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+</edmx:Reference>
+<edmx:DataServices m:DataServiceVersion="2.0">
+    <Schema Namespace="Z_PURCHASEORDER_SRV" xml:lang="es" sap:schema-version="1"
+    xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+    <EntityType Name="I_AddressType" sap:label="Dirección" sap:content-version="1">
+        <Key>
+            <PropertyRef Name="AddressID"/>
+        </Key>
+        <Property Name="AddressID" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Nº dirección"/>
+        <Property Name="POBoxDeviatingCityName" Type="Edm.String" MaxLength="40" sap:label="Población apartado" sap:quickinfo="Población del apartado"/>
+        <Property Name="POBoxDeviatingRegion" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Región del apartado" sap:quickinfo="Región del apartado (estado federal, land, provincia, etc.)"/>
+        <Property Name="POBoxDeviatingCountry" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="País rel.apartado" sap:quickinfo="País relativo al apartado de correos"/>
+        <Property Name="DeliveryServiceTypeCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Cl.serv.entrega" sap:quickinfo="Clase del servicio de entrega"/>
+        <Property Name="DeliveryServiceNumber" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Número serv.entrega" sap:quickinfo="Número del servicio de entrega"/>
+        <Property Name="AddressTimeZone" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="Huso horario" sap:quickinfo="Huso horario de la dirección"/>
+        <Property Name="FullName" Type="Edm.String" MaxLength="80" sap:label="Nombre completo" sap:quickinfo="Nombre completo de parte (int.cial., un.org., direc.doc.)"/>
+        <Property Name="CityName" Type="Edm.String" MaxLength="40" sap:label="Población"/>
+        <Property Name="District" Type="Edm.String" MaxLength="40" sap:label="Distrito"/>
+        <Property Name="CityCode" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Nº de población" sap:quickinfo="Codificación de población para fichero de población y calle"/>
+        <Property Name="CareOfName" Type="Edm.String" MaxLength="40" sap:label="c/o" sap:quickinfo="Nombre c/o"/>
+        <Property Name="HomeCityName" Type="Edm.String" MaxLength="40" sap:label="Residencia alt." sap:quickinfo="Lugar de residencia (diferente de población cód.postal)"/>
+        <Property Name="PostalCode" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Código postal" sap:quickinfo="Código postal de la población"/>
+        <Property Name="CompanyPostalCode" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Cód.postal empresa" sap:quickinfo="Código postal de la empresa (en caso de clientes import.)"/>
+        <Property Name="StreetName" Type="Edm.String" MaxLength="60" sap:label="Calle"/>
+        <Property Name="StreetPrefixName" Type="Edm.String" MaxLength="40" sap:label="Calle 2"/>
+        <Property Name="AdditionalStreetPrefixName" Type="Edm.String" MaxLength="40" sap:label="Calle 3"/>
+        <Property Name="StreetSuffixName" Type="Edm.String" MaxLength="40" sap:label="Calle 4"/>
+        <Property Name="HouseNumber" Type="Edm.String" MaxLength="10" sap:label="Nº (edificio)"/>
+        <Property Name="HouseNumberSupplementText" Type="Edm.String" MaxLength="10" sap:label="Apéndice" sap:quickinfo="Suplemento al número de casa"/>
+        <Property Name="Building" Type="Edm.String" MaxLength="20" sap:label="Sigla del edificio" sap:quickinfo="Edificio (número o sigla)"/>
+        <Property Name="AdditionalStreetSuffixName" Type="Edm.String" MaxLength="40" sap:label="Calle 5"/>
+        <Property Name="Floor" Type="Edm.String" MaxLength="10" sap:label="Piso" sap:quickinfo="Planta del edificio"/>
+        <Property Name="RoomNumber" Type="Edm.String" MaxLength="10" sap:label="Nº habitación" sap:quickinfo="Número del piso, apartamento o habitación"/>
+        <Property Name="Country" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Clave de país"/>
+        <Property Name="Region" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Región" sap:quickinfo="Región (Estado federal, &quot;land&quot;, provincia, condado)"/>
+        <Property Name="County" Type="Edm.String" MaxLength="40" sap:label="Distrito" sap:quickinfo="Distrito (US: County)"/>
+        <Property Name="FormOfAddress" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Tratamiento" sap:quickinfo="Clave de tratamiento"/>
+        <Property Name="BusinessPartnerName1" Type="Edm.String" MaxLength="40" sap:label="Nombre" sap:quickinfo="Nombre 1"/>
+        <Property Name="BusinessPartnerName2" Type="Edm.String" MaxLength="40" sap:label="Nombre 2"/>
+        <Property Name="Nation" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Versión dirección" sap:quickinfo="Indicadores de versión para direcciones internacionales"/>
+        <Property Name="PhoneNumber" Type="Edm.String" MaxLength="30" sap:display-format="UpperCase" sap:label="Teléfono" sap:quickinfo="Primer número teléfono: Prefijo + número"/>
+        <Property Name="CorrespondenceLanguage" Type="Edm.String" MaxLength="2" sap:label="Clave de idioma"/>
+        <Property Name="FaxNumber" Type="Edm.String" MaxLength="30" sap:display-format="UpperCase" sap:label="Fax" sap:quickinfo="Primer número de fax: Prefijo + número"/>
+        <Property Name="SearchTerm1" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Concepto búsqueda 1" sap:quickinfo="Concepto de búsqueda 1"/>
+        <Property Name="StreetSearch" Type="Edm.String" MaxLength="25" sap:display-format="UpperCase" sap:label="Calle" sap:quickinfo="Nombre de la calle en mayúsculas para ayuda para búsqueda"/>
+        <Property Name="CitySearch" Type="Edm.String" MaxLength="25" sap:display-format="UpperCase" sap:label="Población" sap:quickinfo="Nombre del lugar en mayúsculas para ayuda p.búsqueda"/>
+        <Property Name="BusinessPartnerName3" Type="Edm.String" MaxLength="40" sap:label="Nombre 3"/>
+        <Property Name="BusinessPartnerName4" Type="Edm.String" MaxLength="40" sap:label="Nombre 4"/>
+        <Property Name="TaxJurisdiction" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Domicilio fiscal"/>
+        <Property Name="TransportZone" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Zona de transporte" sap:quickinfo="Zona de transporte donde se efectúan las entregas"/>
+        <Property Name="Person" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Número de persona"/>
+        <Property Name="PrfrdCommMediumType" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Forma comunicación" sap:quickinfo="Forma de comunicación (clave) (Business Address Services)"/>
+        <Property Name="POBox" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Apartado"/>
+        <Property Name="POBoxIsWithoutNumber" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Apartado sin nº" sap:quickinfo="Indicador: Datos del apartado del correos sin número"/>
+        <Property Name="POBoxPostalCode" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="CP apartado" sap:quickinfo="Código postal del apartado"/>
+        <Property Name="POBoxLobbyName" Type="Edm.String" MaxLength="40" sap:label="Estación ap.correos" sap:quickinfo="Estación de apartado de correos (PO Box Lobby)"/>
+    </EntityType>
+    <EntityType Name="I_CompanyCodeType" sap:label="Sociedad" sap:content-version="1">
+        <Key>
+            <PropertyRef Name="CompanyCode"/>
+        </Key>
+        <Property Name="CompanyCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="CompanyCodeName" sap:label="Sociedad"/>
+        <Property Name="CreditControlArea" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Área ctrl.créditos" sap:quickinfo="Área de control de créditos"/>
+        <Property Name="CountryChartOfAccounts" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Pl.cuentas del país" sap:quickinfo="Plan de cuentas según la legislación del país"/>
+        <Property Name="FinancialManagementArea" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Entidad CP"/>
+        <Property Name="AddressID" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Dirección"/>
+        <Property Name="TaxableEntity" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Sociedad IVA"/>
+        <Property Name="VATRegistration" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="N.I.F. comunitario" sap:quickinfo="Número de identificación fiscal comunitario"/>
+        <Property Name="ExtendedWhldgTaxIsActive" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Liquid.imptos.ampl." sap:quickinfo="Indicador: liquidación de impuestos ampliada activa"/>
+        <Property Name="ControllingArea" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Sociedad CO"/>
+        <Property Name="FieldStatusVariant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Variante stat.campos" sap:quickinfo="Variante de status de campos"/>
+        <Property Name="CompanyCodeName" Type="Edm.String" MaxLength="25" sap:label="Nombre empresa" sap:quickinfo="Denominación de la sociedad o empresa"/>
+        <Property Name="CityName" Type="Edm.String" MaxLength="25" sap:label="Población"/>
+        <Property Name="Country" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Clave de país"/>
+        <Property Name="Currency" Type="Edm.String" MaxLength="5" sap:label="Moneda" sap:quickinfo="Clave de moneda" sap:semantics="currency-code"/>
+        <Property Name="Language" Type="Edm.String" MaxLength="2" sap:label="Clave de idioma"/>
+        <Property Name="ChartOfAccounts" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Plan de cuentas"/>
+        <Property Name="FiscalYearVariant" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Variante ejercicio" sap:quickinfo="Variante de ejercicio"/>
+        <Property Name="Company" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="Sociedad GL"/>
+    </EntityType>
+    <EntityType Name="I_CurrencyType" sap:label="Moneda" sap:content-version="1">
+        <Key>
+            <PropertyRef Name="Currency"/>
+        </Key>
+        <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:text="Currency_Text" sap:label="Moneda" sap:quickinfo="Clave de moneda" sap:semantics="currency-code"/>
+        <Property Name="Currency_Text" Type="Edm.String" MaxLength="40" sap:label="Texto explicativo" sap:creatable="false" sap:updatable="false"/>
+        <Property Name="Decimals" Type="Edm.Byte" sap:label="Decimales" sap:quickinfo="Cantidad de decimales"/>
+        <Property Name="CurrencyISOCode" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Código ISO" sap:quickinfo="Código ISO para moneda"/>
+        <Property Name="AlternativeCurrencyKey" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Clave alternativa" sap:quickinfo="Clave alternativa para monedas"/>
+        <Property Name="IsPrimaryCurrencyForISOCrcy" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Primario" sap:quickinfo="Código moneda SAP primario p.código ISO"/>
+    </EntityType>
+    <EntityType Name="I_IncotermsClassificationType" sap:label="Clasificación de Incoterms" sap:content-version="1">
+        <Key>
+            <PropertyRef Name="IncotermsClassification"/>
+        </Key>
+        <Property Name="IncotermsClassification" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:text="IncotermsClassification_Text" sap:label="Incoterms" sap:quickinfo="Incoterms parte 1"/>
+        <Property Name="IncotermsClassification_Text" Type="Edm.String" MaxLength="30" sap:label="Denominación" sap:creatable="false" sap:updatable="false"/>
+        <Property Name="LocationIsMandatory" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Entrada obl.lugar" sap:quickinfo="Entrada obligatoria de localidad/población"/>
+    </EntityType>
+    <EntityType Name="I_PaymentTermsType" sap:label="Condiciones de pago" sap:content-version="1">
+        <Key>
+            <PropertyRef Name="PaymentTerms"/>
+        </Key>
+        <Property Name="PaymentTerms" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="PaymentTerms_Text" sap:label="Condiciones" sap:quickinfo="Clave de condiciones de pago"/>
+        <Property Name="PaymentTerms_Text" Type="Edm.String" MaxLength="30" sap:label="Denominación" sap:quickinfo="Denominación de las condiciones de pago" sap:creatable="false" sap:updatable="false"/>
+    </EntityType>
+    <EntityType Name="I_PlantType" sap:label="Centro" sap:content-version="1">
+        <Key>
+            <PropertyRef Name="Plant"/>
+        </Key>
+        <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="PlantName" sap:label="Centro"/>
+        <Property Name="PlantCategory" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Tipo centro" sap:quickinfo="Tipo de centro"/>
+        <Property Name="PlantName" Type="Edm.String" MaxLength="30" sap:label="Nombre del centro"/>
+        <Property Name="ValuationArea" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Ámbito de valoración"/>
+        <Property Name="PlantCustomer" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Núm.cliente, centro" sap:quickinfo="Número de cliente del centro"/>
+        <Property Name="PlantSupplier" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Núm.proveedor centro" sap:quickinfo="Número de proveedor del centro"/>
+        <Property Name="FactoryCalendar" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Calendario fábrica" sap:quickinfo="Clave de identidad para calendario de fábrica"/>
+        <Property Name="DefaultPurchasingOrganization" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Organización compras" sap:quickinfo="Organización de compras"/>
+        <Property Name="SalesOrganization" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Organiz.ventas" sap:quickinfo="Organización de ventas para facturación interna"/>
+        <Property Name="AddressID" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Dirección"/>
+    </EntityType>
+    <EntityType Name="I_PurchaseOrderCalcFieldsType" sap:label="Colección de campos calculados en nivel cabecera PO" sap:content-version="1">
+        <Key>
+            <PropertyRef Name="PurchaseOrder"/>
+        </Key>
+        <Property Name="PurchaseOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Pedido" sap:quickinfo="Número de pedido"/>
+    </EntityType>
+    <EntityType Name="I_PurchaseOrderItemType" sap:label="Posición de pedido" sap:content-version="1">
+        <Key>
+            <PropertyRef Name="PurchaseOrder"/>
+            <PropertyRef Name="PurchaseOrderItem"/>
+        </Key>
+        <Property Name="PurchaseOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Documento compras" sap:quickinfo="Número del documento de compras"/>
+        <Property Name="ManufacturerMaterial" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Material" sap:quickinfo="Número de material"/>
+        <Property Name="PurchaseOrderItemText" Type="Edm.String" MaxLength="40" sap:label="Texto breve"/>
+        <Property Name="ProductType" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Gpo.tipos producto" sap:quickinfo="Grupo de tipos de producto"/>
+        <Property Name="CompanyCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Sociedad"/>
+        <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Centro"/>
+        <Property Name="ManualDeliveryAddressID" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Dirección" sap:quickinfo="Nº dirección manual en posición de documento de compras"/>
+        <Property Name="ReferenceDeliveryAddressID" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Dirección" sap:quickinfo="Número dirección de la entrega"/>
+        <Property Name="Customer" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Cliente"/>
+        <Property Name="StorageLocation" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Ubicación de almacén"/>
+        <Property Name="PurchaseOrderQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Unidad medida pedido" sap:quickinfo="Unidad de medida de pedido" sap:semantics="unit-of-measure"/>
+        <Property Name="PurchaseOrderItem" Type="Edm.String" Nullable="false" MaxLength="5" sap:display-format="NonNegative" sap:label="Posición de pedido" sap:quickinfo="Número de posición de pedido"/>
+        <Property Name="OrderItemQtyToBaseQtyNmrtr" Type="Edm.Decimal" Precision="5" Scale="0" sap:label="corresponde" sap:quickinfo="Numerador para la conversión de UM pedido en UM base"/>
+        <Property Name="OrderItemQtyToBaseQtyDnmntr" Type="Edm.Decimal" Precision="5" Scale="0" sap:label="Denominador" sap:quickinfo="Denominador para la conversión de UM-pedido en UM-base"/>
+        <Property Name="NetPriceQuantity" Type="Edm.Decimal" Precision="5" Scale="0" sap:unit="OrderPriceUnit" sap:label="Unidad de precio"/>
+        <Property Name="IsCompletelyDelivered" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Entrega final" sap:quickinfo="Indicador de entrega final"/>
+        <Property Name="IsFinallyInvoiced" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Factura final" sap:quickinfo="Indicador de factura final"/>
+        <Property Name="GoodsReceiptIsExpected" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Entrada mercancías" sap:quickinfo="Indicador de entrada de mercancías"/>
+        <Property Name="InvoiceIsExpected" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Recepción facturas" sap:quickinfo="Indicador de recepción de factura"/>
+        <Property Name="InvoiceIsGoodsReceiptBased" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Verific.fact.base EM" sap:quickinfo="Indicador p.verificación de facturas sobre la base de la EM"/>
+        <Property Name="PurchaseContractItem" Type="Edm.String" MaxLength="5" sap:display-format="NonNegative" sap:label="Pos.contrato sup." sap:quickinfo="Número de posición del contrato superior"/>
+        <Property Name="PurchaseContract" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Contrato marco" sap:quickinfo="Número del contrato superior"/>
+        <Property Name="PurchaseOrderCategory" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Tipo doc.compras" sap:quickinfo="Tipo de documento de compras"/>
+        <Property Name="PurchaseRequisition" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Solicitud de pedido" sap:quickinfo="Número de la solicitud de pedido"/>
+        <Property Name="PurchaseRequisitionItem" Type="Edm.String" MaxLength="5" sap:display-format="NonNegative" sap:label="Pos.solicitud pedido" sap:quickinfo="Número de posición de la solicitud de pedido"/>
+        <Property Name="EvaldRcptSettlmtIsAllowed" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Autofacturación"/>
+        <Property Name="UnlimitedOverdeliveryIsAllowed" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Exceso sumin.ilim." sap:quickinfo="Indicador: Exceso de suministro ilimitado"/>
+        <Property Name="OverdelivTolrtdLmtRatioInPct" Type="Edm.Decimal" Precision="3" Scale="1" sap:label="Tol.exc.suministro" sap:quickinfo="Límite de tolerancia para el exceso de suministro"/>
+        <Property Name="UnderdelivTolrtdLmtRatioInPct" Type="Edm.Decimal" Precision="3" Scale="1" sap:label="Toler.faltas sumin." sap:quickinfo="Límite de tolerancia p.entrega incompleta"/>
+        <Property Name="RequisitionerName" Type="Edm.String" MaxLength="12" sap:label="Solicitante" sap:quickinfo="Nombre del solicitante"/>
+        <Property Name="ServicePerformer" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Proveedor Servicios" sap:quickinfo="Proveedor de servicios"/>
+        <Property Name="ServicePackage" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="Nº paquete"/>
+        <Property Name="BaseUnit" Type="Edm.String" MaxLength="3" sap:label="Unidad medida base" sap:quickinfo="Unidad de medida base" sap:semantics="unit-of-measure"/>
+        <Property Name="DocumentCurrency" Type="Edm.String" MaxLength="5" sap:label="Moneda" sap:quickinfo="Clave de moneda" sap:semantics="currency-code"/>
+        <Property Name="PurchaseOrderItemCategory" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Tipo de posición" sap:quickinfo="Tipo de posición del documento de compras"/>
+        <Property Name="ProfitCenter" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Centro de beneficio"/>
+        <Property Name="OrderPriceUnit" Type="Edm.String" MaxLength="3" sap:label="UM precio pedido" sap:quickinfo="Unidad medida de precio de pedido" sap:semantics="unit-of-measure"/>
+        <Property Name="ItemVolumeUnit" Type="Edm.String" MaxLength="3" sap:label="Unidad de volumen" sap:semantics="unit-of-measure"/>
+        <Property Name="ItemWeightUnit" Type="Edm.String" MaxLength="3" sap:label="Unidad de peso" sap:semantics="unit-of-measure"/>
+        <Property Name="MultipleAcctAssgmtDistribution" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Ind.distribución" sap:quickinfo="Indicador de distribución en la imputación múltiple"/>
+        <Property Name="PartialInvoiceDistribution" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Factura parcial" sap:quickinfo="Indicador de factura parcial"/>
+        <Property Name="PricingDateControl" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Control fecha precio" sap:quickinfo="Control fecha determinación del precio"/>
+        <Property Name="IsStatisticalItem" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Estadística" sap:quickinfo="Posición es estadística"/>
+        <Property Name="IsReturnsItem" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Posición devolución" sap:quickinfo="Posición de devolución"/>
+        <Property Name="PurchasingDocumentDeletionCode" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Indicador de borrado" sap:quickinfo="Indicador de borrado en el documento de compras"/>
+        <Property Name="IncotermsClassification" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Incoterms" sap:quickinfo="Incoterms parte 1"/>
+        <Property Name="IncotermsTransferLocation" Type="Edm.String" MaxLength="28" sap:label="Incoterms, parte 2"/>
+        <Property Name="IncotermsLocation1" Type="Edm.String" MaxLength="70" sap:label="Ubic.incoterms 1" sap:quickinfo="Ubicación de incoterms 1"/>
+        <Property Name="IncotermsLocation2" Type="Edm.String" MaxLength="70" sap:label="Ubic.incoterms 2" sap:quickinfo="Ubicación de incoterms 2"/>
+        <Property Name="InternationalArticleNumber" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:label="Código EAN/UPC" sap:quickinfo="Número de artículo europeo (EAN)"/>
+        <Property Name="ConfirmationControl" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Control confirmación" sap:quickinfo="Clave de control de confirmaciones"/>
+        <Property Name="PriceIsToBePrinted" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Impresión de precio"/>
+        <Property Name="AccountAssignmentCategory" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Tipo de imputación"/>
+        <Property Name="PurchasingInfoRecord" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Reg.info de compras" sap:quickinfo="Número del registro info de compras"/>
+        <Property Name="NetAmount" Type="Edm.Decimal" Precision="14" Scale="3" sap:unit="DocumentCurrency" sap:label="Valor neto de pedido" sap:quickinfo="Valor neto de pedido en moneda de pedido"/>
+        <Property Name="MaterialGroup" Type="Edm.String" MaxLength="9" sap:display-format="UpperCase" sap:label="Grupo de artículos"/>
+        <Property Name="EffectiveAmount" Type="Edm.Decimal" Precision="14" Scale="3" sap:unit="DocumentCurrency" sap:label="Valor efectivo" sap:quickinfo="Valor efectivo de la posición"/>
+        <Property Name="OrderQuantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="PurchaseOrderQuantityUnit" sap:label="Cantidad de pedido"/>
+        <Property Name="NetPriceAmount" Type="Edm.Decimal" Precision="12" Scale="3" sap:unit="DocumentCurrency" sap:label="Precio neto pedido" sap:quickinfo="Precio neto en doc.compras moneda documento"/>
+        <Property Name="ItemVolume" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="ItemVolumeUnit" sap:label="Volumen"/>
+        <Property Name="ItemNetWeight" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="ItemWeightUnit" sap:label="Peso neto"/>
+        <Property Name="OrderPriceUnitToOrderUnitNmrtr" Type="Edm.Decimal" Precision="5" Scale="0" sap:label="Conversión cantidad" sap:quickinfo="Numerador para la conversión UMPRP en UMP"/>
+        <Property Name="OrdPriceUnitToOrderUnitDnmntr" Type="Edm.Decimal" Precision="5" Scale="0" sap:label="Conversión cantidad" sap:quickinfo="Denominador para la conversión UMPRP en UMP"/>
+        <Property Name="GoodsReceiptIsNonValuated" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="EM no valorada" sap:quickinfo="Entrada de mercancías no valorada"/>
+        <Property Name="TaxCode" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Indicador impuestos" sap:quickinfo="Indicador IVA"/>
+        <Property Name="ValuationType" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Clase de valoración"/>
+        <Property Name="Material" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Material" sap:quickinfo="Número de material"/>
+        <Property Name="EarmarkedFunds" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Doc.presupuestario" sap:quickinfo="Número de documento presupuestario"/>
+        <Property Name="EarmarkedFundsItem" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="Posición documento" sap:quickinfo="Posición de documento: Documento presupuestario"/>
+        <Property Name="SupplierMaterialNumber" Type="Edm.String" MaxLength="35" sap:display-format="UpperCase" sap:label="Nº mater.proveedor" sap:quickinfo="Número de material utilizado por el proveedor"/>
+        <Property Name="ManufacturerPartNmbr" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Nº pieza fabricante"/>
+    </EntityType>
+    <EntityType Name="I_PurchasingDocumentTypeType" sap:label="Clase de documento de compras" sap:content-version="1">
+        <Key>
+            <PropertyRef Name="PurchasingDocumentCategory"/>
+            <PropertyRef Name="PurchasingDocumentType"/>
+        </Key>
+        <Property Name="PurchasingDocumentCategory" Type="Edm.String" Nullable="false" MaxLength="1" sap:display-format="UpperCase" sap:label="Tipo doc.compras" sap:quickinfo="Tipo de documento de compras"/>
+        <Property Name="PurchasingDocumentType" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Cl.documento compras" sap:quickinfo="Clase de documento de compras"/>
+    </EntityType>
+    <EntityType Name="I_PurchasingGroupType" sap:label="Grupo de compras" sap:content-version="1">
+        <Key>
+            <PropertyRef Name="PurchasingGroup"/>
+        </Key>
+        <Property Name="PurchasingGroup" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:text="PurchasingGroupName" sap:label="Grupo de compras"/>
+        <Property Name="PurchasingGroupName" Type="Edm.String" MaxLength="18" sap:label="Nombre grupo compras" sap:quickinfo="Nombre del grupo de compras"/>
+        <Property Name="PurchasingGroupPhoneNumber" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Teléfono Grp-compras" sap:quickinfo="Número de telefono del grupo de compras"/>
+        <Property Name="FaxNumber" Type="Edm.String" MaxLength="31" sap:label="Número de telefax" sap:quickinfo="Número telefax del grupo de compradores"/>
+        <Property Name="PhoneNumber" Type="Edm.String" MaxLength="30" sap:display-format="UpperCase" sap:label="Teléfono" sap:quickinfo="Número teléfono: Prefijo+número"/>
+        <Property Name="PhoneNumberExtension" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Extensión" sap:quickinfo="Número teléfono: Extensión"/>
+        <Property Name="EmailAddress" Type="Edm.String" MaxLength="241" sap:label="Dir.cor.elec." sap:quickinfo="Dirección de correo electrónico"/>
+    </EntityType>
+    <EntityType Name="I_PurchasingOrganizationType" sap:label="Datos de organización de compras" sap:content-version="1">
+        <Key>
+            <PropertyRef Name="PurchasingOrganization"/>
+        </Key>
+        <Property Name="PurchasingOrganization" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="PurchasingOrganizationName" sap:label="Organización compras" sap:quickinfo="Organización de compras"/>
+        <Property Name="PurchasingOrganizationName" Type="Edm.String" MaxLength="20" sap:label="Nom.organiz.compras" sap:quickinfo="Nombre de organización de compras"/>
+        <Property Name="CompanyCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Sociedad"/>
+    </EntityType>
+    <EntityType Name="I_SupplierType" sap:label="Proveedor" sap:content-version="1">
+        <Key>
+            <PropertyRef Name="Supplier"/>
+        </Key>
+        <Property Name="Supplier" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:text="SupplierName" sap:label="Proveedor" sap:quickinfo="Número de cuenta del proveedor o acreedor"/>
+        <Property Name="VATRegistration" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="N.I.F. comunitario" sap:quickinfo="Número de identificación fiscal comunitario"/>
+        <Property Name="AccountIsBlockedForPosting" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Bloqueo contab." sap:quickinfo="Bloqueo contabilización central"/>
+        <Property Name="TaxJurisdiction" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Domicilio fiscal"/>
+        <Property Name="SupplierCorporateGroup" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Clave de grupo"/>
+        <Property Name="Customer" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Cliente" sap:quickinfo="Número de deudor"/>
+        <Property Name="Industry" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Ramo" sap:quickinfo="Clave de ramo industrial"/>
+        <Property Name="TaxNumber1" Type="Edm.String" MaxLength="16" sap:display-format="UpperCase" sap:label="Nº ident.fis.1" sap:quickinfo="Número de identificación fiscal 1"/>
+        <Property Name="TaxNumber2" Type="Edm.String" MaxLength="11" sap:display-format="UpperCase" sap:label="Nº ident.fis.2" sap:quickinfo="Número de identificación fiscal suplementario"/>
+        <Property Name="TaxNumber3" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:label="NIF 3" sap:quickinfo="Número identificación fiscal 3"/>
+        <Property Name="TaxNumber4" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:label="NIF 4" sap:quickinfo="Número identificación fiscal 4"/>
+        <Property Name="SupplierAccountGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Grupo de cuentas" sap:quickinfo="Grupo de cuentas acreedor"/>
+        <Property Name="TaxNumber5" Type="Edm.String" MaxLength="60" sap:display-format="UpperCase" sap:label="Número fiscal 5"/>
+        <Property Name="PostingIsBlocked" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Bloqueo contab." sap:quickinfo="Bloqueo contabilización central"/>
+        <Property Name="PurchasingIsBlocked" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Bloq.compras" sap:quickinfo="Bloqueo de compras asignado centralizadamente"/>
+        <Property Name="InternationalLocationNumber1" Type="Edm.String" MaxLength="7" sap:display-format="NonNegative" sap:label="Núm.ubicación int.1" sap:quickinfo="International Location Number (parte 1)"/>
+        <Property Name="InternationalLocationNumber2" Type="Edm.String" MaxLength="5" sap:display-format="NonNegative" sap:label="Núm.ubicación int.2" sap:quickinfo="Número de ubicación internacional (parte 2)"/>
+        <Property Name="InternationalLocationNumber3" Type="Edm.String" MaxLength="1" sap:display-format="NonNegative" sap:label="Dígito de control" sap:quickinfo="Dígito de control para el Nº de empresa internacional"/>
+        <Property Name="AddressID" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Dirección"/>
+        <Property Name="OrganizationBPName1" Type="Edm.String" MaxLength="35" sap:label="Nombre" sap:quickinfo="Nombre 1"/>
+        <Property Name="OrganizationBPName2" Type="Edm.String" MaxLength="35" sap:label="Nombre 2"/>
+        <Property Name="CityName" Type="Edm.String" MaxLength="35" sap:label="Población"/>
+        <Property Name="SupplierName" Type="Edm.String" MaxLength="80" sap:label="Nombre de proveedor"/>
+        <Property Name="PostalCode" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Código postal"/>
+        <Property Name="StreetName" Type="Edm.String" MaxLength="35" sap:label="Calle" sap:quickinfo="Calle y nº"/>
+        <Property Name="Country" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="País" sap:quickinfo="Clave de país"/>
+        <Property Name="ConcatenatedInternationalLocNo" Type="Edm.String" MaxLength="20" sap:label="Nº ubicación int." sap:quickinfo="Número de ubicación internacional concatenado"/>
+        <Property Name="SupplierProcurementBlock" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Función de bloqueo" sap:quickinfo="Función bloqueada"/>
+        <Property Name="SuplrQualityManagementSystem" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Sistema QM real" sap:quickinfo="Sist.gestión calidad del proveedor"/>
+        <Property Name="SuplrQltyInProcmtCertfnValidTo" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Sist.QM válido a" sap:quickinfo="Fecha validez de la certificación"/>
+        <Property Name="SupplierLanguage" Type="Edm.String" MaxLength="2" sap:label="Clave de idioma"/>
+        <Property Name="AlternativePayeeAccountNumber" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Receptor alter.pago" sap:quickinfo="Número de cuenta del receptor alternativo del pago"/>
+        <Property Name="PhoneNumber1" Type="Edm.String" MaxLength="16" sap:label="Teléfono 1" sap:quickinfo="1º número de teléfono"/>
+        <Property Name="SupplierFullName" Type="Edm.String" MaxLength="220" sap:display-format="UpperCase" sap:label="Nombre del proveedor" sap:quickinfo="Nombre completo del proveedor"/>
+        <Property Name="FaxNumber" Type="Edm.String" MaxLength="31" sap:label="Nº telefax"/>
+        <Property Name="IsNaturalPerson" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Persona física"/>
+        <Property Name="TaxNumberResponsible" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:label="N.I.F." sap:quickinfo="Número identificación fiscal en Hacienda competente"/>
+        <Property Name="UK_ContractorBusinessType" Type="Edm.String" MaxLength="12" sap:label="Clase de operación" sap:quickinfo="Clase de operación del subcontratista"/>
+        <Property Name="UK_PartnerTradingName" Type="Edm.String" MaxLength="30" sap:label="Nom.comerc.interl." sap:quickinfo="Nombre comercial del interlocutor"/>
+        <Property Name="UK_PartnerTaxReference" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="UTR interlocutor" sap:quickinfo="Número de control unequívoco (UTR) para interlocutor"/>
+        <Property Name="UK_VerificationStatus" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Status verificación"/>
+        <Property Name="UK_VerificationNumber" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Nº verificación" sap:quickinfo="Número de verificación"/>
+        <Property Name="UK_CompanyRegistrationNumber" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Empr.Nº reg.casa" sap:quickinfo="Empresa Número de registro de casa"/>
+        <Property Name="UK_VerifiedTaxStatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="StatusImpto" sap:quickinfo="Status del impuesto del subcontratista verificado"/>
+        <Property Name="IsBusinessPurposeCompleted" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Ind.obj.empr.cumpl." sap:quickinfo="Indicador para objetivo empresarial cumplido"/>
+        <Property Name="ResponsibleType" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Clase de impuesto"/>
+        <Property Name="TaxNumberType" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Tipo NIF" sap:quickinfo="Tipo de número de identificación fiscal"/>
+        <Property Name="FiscalAddress" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Domicilio fiscal" sap:quickinfo="Número de cuenta del registro maestro con domicilio fiscal"/>
+        <Property Name="CreatedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Creado por" sap:quickinfo="Nombre del responsable que ha añadido el objeto"/>
+        <Property Name="CreationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Creado el" sap:quickinfo="Fecha de creación del registro"/>
+        <Property Name="IsOneTimeAccount" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Cuenta CPD" sap:quickinfo="Indicador: ¿Es cuenta pro diversos (CPD)?"/>
+        <Property Name="AuthorizationGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Grupo autorizaciones"/>
+    </EntityType>
+    <EntityType Name="I_UserType" sap:label="Usuario" sap:content-version="1">
+        <Key>
+            <PropertyRef Name="UserID"/>
+        </Key>
+        <Property Name="UserID" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="ID de usuario"/>
+        <Property Name="UserDescription" Type="Edm.String" MaxLength="80" sap:label="Descripción" sap:quickinfo="Descr.usuario"/>
+        <Property Name="IsTechnicalUser" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase"/>
+    </EntityType>
+    <EntityType Name="ZI_PurchaseOrderType" sap:content-version="1">
+        <Key>
+            <PropertyRef Name="PurchaseOrder"/>
+        </Key>
+        <Property Name="PurchaseOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Pedido" sap:quickinfo="Número de pedido"/>
+        <Property Name="PurchasingDocumentDeletionCode" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Indicador de borrado" sap:quickinfo="Indicador de borrado en el documento de compras"/>
+        <Property Name="ReleaseIsNotCompleted" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Relevante p.liber." sap:quickinfo="Liberación incompleta"/>
+        <Property Name="PurchasingCompletenessStatus" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="incompleto" sap:quickinfo="Pedido incompleto"/>
+        <Property Name="PurchasingProcessingStatus" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Stat.trat." sap:quickinfo="Status tratamiento documento compras"/>
+        <Property Name="CompanyCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:text="to_CompanyCode/CompanyCodeName" sap:label="Sociedad" sap:value-list="standard"/>
+        <Property Name="PurchasingOrganization" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:text="to_PurchasingOrganization/PurchasingOrganizationName" sap:label="Organización compras" sap:quickinfo="Organización de compras" sap:value-list="standard"/>
+        <Property Name="PurchasingGroup" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:text="to_PurchasingGroup/PurchasingGroupName" sap:label="Grupo de compras" sap:value-list="standard"/>
+        <Property Name="Supplier" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:text="to_Supplier/SupplierName" sap:label="Proveedor" sap:value-list="standard"/>
+        <Property Name="ManualSupplierAddressID" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Nº dirección" sap:value-list="standard"/>
+        <Property Name="SupplierAddressID" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Nº dirección"/>
+        <Property Name="PurchaseOrderType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Cl.documento compras" sap:quickinfo="Clase de documento de compras" sap:value-list="standard"/>
+        <Property Name="SupplierRespSalesPersonName" Type="Edm.String" MaxLength="30" sap:label="Vendedor/a" sap:quickinfo="Vendedor responsable en el proveedor"/>
+        <Property Name="SupplierPhoneNumber" Type="Edm.String" MaxLength="16" sap:label="Teléfono" sap:quickinfo="Número de teléfono del proveedor"/>
+        <Property Name="SupplyingSupplier" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:text="to_SupplyingSupplier/SupplierName" sap:label="Proveedor mercancías" sap:quickinfo="Proveedor de mercancías" sap:value-list="standard"/>
+        <Property Name="SupplyingPlant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:text="to_SupplyingPlant/PlantName" sap:label="Centro suministrador" sap:quickinfo="Centro suministrador en el pedido de transporte" sap:value-list="standard"/>
+        <Property Name="InvoicingParty" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:text="to_InvoicingParty/SupplierName" sap:label="Emisor de factura" sap:quickinfo="Emisor de factura diferente" sap:value-list="standard"/>
+        <Property Name="SupplierQuotationExternalID" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Oferta" sap:quickinfo="Número de oferta"/>
+        <Property Name="PaymentTerms" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:text="to_PaymentTerms/PaymentTerms_Text" sap:label="Condiciones" sap:quickinfo="Clave de condiciones de pago" sap:value-list="standard"/>
+        <Property Name="CashDiscount1Days" Type="Edm.Decimal" Precision="3" Scale="0" sap:label="Días 1" sap:quickinfo="Días del descuento por pronto pago 1"/>
+        <Property Name="CashDiscount2Days" Type="Edm.Decimal" Precision="3" Scale="0" sap:label="Días 2" sap:quickinfo="Días del descuento por pronto pago 2"/>
+        <Property Name="NetPaymentDays" Type="Edm.Decimal" Precision="3" Scale="0" sap:label="Días neto" sap:quickinfo="Plazo para condición de pago neto"/>
+        <Property Name="PurchaseOrderSubtype" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Indicador de control" sap:quickinfo="Indicador de control para clase de documento de compras"/>
+        <Property Name="CashDiscount1Percent" Type="Edm.Decimal" Precision="5" Scale="3" sap:label="% dto.pronto pago 1" sap:quickinfo="Porcentaje de descuento por pronto pago 1"/>
+        <Property Name="CashDiscount2Percent" Type="Edm.Decimal" Precision="5" Scale="3" sap:label="Porcentaje DPP 2" sap:quickinfo="Porcentaje de descuento por pronto pago 2"/>
+        <Property Name="IncotermsClassification" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:text="to_IncotermsClassification/IncotermsClassification_Text" sap:label="Incoterms" sap:quickinfo="Incoterms parte 1" sap:value-list="standard"/>
+        <Property Name="IncotermsTransferLocation" Type="Edm.String" MaxLength="28" sap:label="Incoterms, parte 2"/>
+        <Property Name="IncotermsVersion" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Versión de Incoterms"/>
+        <Property Name="IncotermsLocation1" Type="Edm.String" MaxLength="70" sap:label="Ubic.incoterms 1" sap:quickinfo="Ubicación de incoterms 1"/>
+        <Property Name="IncotermsLocation2" Type="Edm.String" MaxLength="70" sap:label="Ubic.incoterms 2" sap:quickinfo="Ubicación de incoterms 2"/>
+        <Property Name="PurchasingDocumentCondition" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Nº condición docum." sap:quickinfo="Número de la condición de documento"/>
+        <Property Name="PricingProcedure" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="Esquema" sap:quickinfo="Esquema (determ.precio, mensajes, determ.cuentas,...)"/>
+        <Property Name="DocumentCurrency" Type="Edm.String" MaxLength="5" sap:text="to_DocumentCurrency/Currency_Text" sap:label="Moneda" sap:quickinfo="Clave de moneda" sap:value-list="standard" sap:semantics="currency-code"/>
+        <Property Name="PurchasingDocumentOrigin" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Status" sap:quickinfo="Status del documento de compras"/>
+        <Property Name="ValidityStartDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="In.período validez"/>
+        <Property Name="ValidityEndDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Fin período validez"/>
+        <Property Name="ExchangeRate" Type="Edm.Decimal" Precision="9" Scale="5" sap:label="Tipo cambio moneda" sap:quickinfo="Tipo de cambio de moneda"/>
+        <Property Name="PurchasingDocumentIsAged" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Documento antiguo" sap:quickinfo="El documento es antiguo"/>
+        <Property Name="CreatedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Creado por" sap:quickinfo="Nombre del responsable que ha añadido el objeto"/>
+        <Property Name="CreationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Creado el" sap:quickinfo="Fecha de creación del registro"/>
+        <Property Name="PurchaseOrderDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Fecha de pedido"/>
+        <Property Name="Language" Type="Edm.String" MaxLength="2" sap:label="Clave de idioma"/>
+        <NavigationProperty Name="to_CompanyCode" Relationship="Z_PURCHASEORDER_SRV.assoc_9687B6C13176828570E0F04EADE90BDA" FromRole="FromRole_assoc_9687B6C13176828570E0F04EADE90BDA" ToRole="ToRole_assoc_9687B6C13176828570E0F04EADE90BDA"/>
+        <NavigationProperty Name="to_CreatedByUser" Relationship="Z_PURCHASEORDER_SRV.assoc_0CBFE0E1B065912BC8C2AC4C092B99FA" FromRole="FromRole_assoc_0CBFE0E1B065912BC8C2AC4C092B99FA" ToRole="ToRole_assoc_0CBFE0E1B065912BC8C2AC4C092B99FA"/>
+        <NavigationProperty Name="to_DocumentCurrency" Relationship="Z_PURCHASEORDER_SRV.assoc_9C4880F84D1E8D3C5A88C692E941ED30" FromRole="FromRole_assoc_9C4880F84D1E8D3C5A88C692E941ED30" ToRole="ToRole_assoc_9C4880F84D1E8D3C5A88C692E941ED30"/>
+        <NavigationProperty Name="to_IncotermsClassification" Relationship="Z_PURCHASEORDER_SRV.assoc_632734F6B389609706700C7D4A235C97" FromRole="FromRole_assoc_632734F6B389609706700C7D4A235C97" ToRole="ToRole_assoc_632734F6B389609706700C7D4A235C97"/>
+        <NavigationProperty Name="to_InvoicingParty" Relationship="Z_PURCHASEORDER_SRV.assoc_9B3897B02551266454DB5D20A2692FA5" FromRole="FromRole_assoc_9B3897B02551266454DB5D20A2692FA5" ToRole="ToRole_assoc_9B3897B02551266454DB5D20A2692FA5"/>
+        <NavigationProperty Name="to_PaymentTerms" Relationship="Z_PURCHASEORDER_SRV.assoc_0CD1A06E2023F2BED08F323FF46EEF25" FromRole="FromRole_assoc_0CD1A06E2023F2BED08F323FF46EEF25" ToRole="ToRole_assoc_0CD1A06E2023F2BED08F323FF46EEF25"/>
+        <NavigationProperty Name="to_PurchaseOrderCalcFields" Relationship="Z_PURCHASEORDER_SRV.assoc_893BBB1B1BE817A5439F3A6F6B404840" FromRole="FromRole_assoc_893BBB1B1BE817A5439F3A6F6B404840" ToRole="ToRole_assoc_893BBB1B1BE817A5439F3A6F6B404840"/>
+        <NavigationProperty Name="to_PurchaseOrderItem" Relationship="Z_PURCHASEORDER_SRV.assoc_C5E5FA047A0E0F2C5BD4B2DE02BD5265" FromRole="FromRole_assoc_C5E5FA047A0E0F2C5BD4B2DE02BD5265" ToRole="ToRole_assoc_C5E5FA047A0E0F2C5BD4B2DE02BD5265"/>
+        <NavigationProperty Name="to_PurchaseOrderType" Relationship="Z_PURCHASEORDER_SRV.assoc_89E3B3FFDDCAFBB304A40CE824477248" FromRole="FromRole_assoc_89E3B3FFDDCAFBB304A40CE824477248" ToRole="ToRole_assoc_89E3B3FFDDCAFBB304A40CE824477248"/>
+        <NavigationProperty Name="to_PurchasingGroup" Relationship="Z_PURCHASEORDER_SRV.assoc_34AD79E3FAB9451443767621C6B9A7D5" FromRole="FromRole_assoc_34AD79E3FAB9451443767621C6B9A7D5" ToRole="ToRole_assoc_34AD79E3FAB9451443767621C6B9A7D5"/>
+        <NavigationProperty Name="to_PurchasingOrganization" Relationship="Z_PURCHASEORDER_SRV.assoc_B1774800DA537F37A2DE86606FA6428E" FromRole="FromRole_assoc_B1774800DA537F37A2DE86606FA6428E" ToRole="ToRole_assoc_B1774800DA537F37A2DE86606FA6428E"/>
+        <NavigationProperty Name="to_Supplier" Relationship="Z_PURCHASEORDER_SRV.assoc_41DFB6D36738F3874D6F8FC405E4A371" FromRole="FromRole_assoc_41DFB6D36738F3874D6F8FC405E4A371" ToRole="ToRole_assoc_41DFB6D36738F3874D6F8FC405E4A371"/>
+        <NavigationProperty Name="to_SupplierAddress" Relationship="Z_PURCHASEORDER_SRV.assoc_CF96E9A92D1B9F0679025B6D1B913326" FromRole="FromRole_assoc_CF96E9A92D1B9F0679025B6D1B913326" ToRole="ToRole_assoc_CF96E9A92D1B9F0679025B6D1B913326"/>
+        <NavigationProperty Name="to_SupplyingPlant" Relationship="Z_PURCHASEORDER_SRV.assoc_E98645B3601D9D15ACB26EE62A171DE2" FromRole="FromRole_assoc_E98645B3601D9D15ACB26EE62A171DE2" ToRole="ToRole_assoc_E98645B3601D9D15ACB26EE62A171DE2"/>
+        <NavigationProperty Name="to_SupplyingSupplier" Relationship="Z_PURCHASEORDER_SRV.assoc_2D59888533306721B46079ECB29F54AB" FromRole="FromRole_assoc_2D59888533306721B46079ECB29F54AB" ToRole="ToRole_assoc_2D59888533306721B46079ECB29F54AB"/>
+    </EntityType>
+    <Association Name="assoc_0CBFE0E1B065912BC8C2AC4C092B99FA" sap:content-version="1">
+        <End Type="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType" Multiplicity="1" Role="FromRole_assoc_0CBFE0E1B065912BC8C2AC4C092B99FA"/>
+        <End Type="Z_PURCHASEORDER_SRV.I_UserType" Multiplicity="0..1" Role="ToRole_assoc_0CBFE0E1B065912BC8C2AC4C092B99FA"/>
+    </Association>
+    <Association Name="assoc_9C4880F84D1E8D3C5A88C692E941ED30" sap:content-version="1">
+        <End Type="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType" Multiplicity="1" Role="FromRole_assoc_9C4880F84D1E8D3C5A88C692E941ED30"/>
+        <End Type="Z_PURCHASEORDER_SRV.I_CurrencyType" Multiplicity="0..1" Role="ToRole_assoc_9C4880F84D1E8D3C5A88C692E941ED30"/>
+        <ReferentialConstraint>
+            <Principal Role="ToRole_assoc_9C4880F84D1E8D3C5A88C692E941ED30">
+                <PropertyRef Name="Currency"/>
+            </Principal>
+            <Dependent Role="FromRole_assoc_9C4880F84D1E8D3C5A88C692E941ED30">
+                <PropertyRef Name="DocumentCurrency"/>
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
+    <Association Name="assoc_632734F6B389609706700C7D4A235C97" sap:content-version="1">
+        <End Type="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType" Multiplicity="1" Role="FromRole_assoc_632734F6B389609706700C7D4A235C97"/>
+        <End Type="Z_PURCHASEORDER_SRV.I_IncotermsClassificationType" Multiplicity="0..1" Role="ToRole_assoc_632734F6B389609706700C7D4A235C97"/>
+        <ReferentialConstraint>
+            <Principal Role="ToRole_assoc_632734F6B389609706700C7D4A235C97">
+                <PropertyRef Name="IncotermsClassification"/>
+            </Principal>
+            <Dependent Role="FromRole_assoc_632734F6B389609706700C7D4A235C97">
+                <PropertyRef Name="IncotermsClassification"/>
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
+    <Association Name="assoc_9B3897B02551266454DB5D20A2692FA5" sap:content-version="1">
+        <End Type="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType" Multiplicity="1" Role="FromRole_assoc_9B3897B02551266454DB5D20A2692FA5"/>
+        <End Type="Z_PURCHASEORDER_SRV.I_SupplierType" Multiplicity="0..1" Role="ToRole_assoc_9B3897B02551266454DB5D20A2692FA5"/>
+        <ReferentialConstraint>
+            <Principal Role="ToRole_assoc_9B3897B02551266454DB5D20A2692FA5">
+                <PropertyRef Name="Supplier"/>
+            </Principal>
+            <Dependent Role="FromRole_assoc_9B3897B02551266454DB5D20A2692FA5">
+                <PropertyRef Name="InvoicingParty"/>
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
+    <Association Name="assoc_0CD1A06E2023F2BED08F323FF46EEF25" sap:content-version="1">
+        <End Type="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType" Multiplicity="1" Role="FromRole_assoc_0CD1A06E2023F2BED08F323FF46EEF25"/>
+        <End Type="Z_PURCHASEORDER_SRV.I_PaymentTermsType" Multiplicity="0..1" Role="ToRole_assoc_0CD1A06E2023F2BED08F323FF46EEF25"/>
+        <ReferentialConstraint>
+            <Principal Role="ToRole_assoc_0CD1A06E2023F2BED08F323FF46EEF25">
+                <PropertyRef Name="PaymentTerms"/>
+            </Principal>
+            <Dependent Role="FromRole_assoc_0CD1A06E2023F2BED08F323FF46EEF25">
+                <PropertyRef Name="PaymentTerms"/>
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
+    <Association Name="assoc_893BBB1B1BE817A5439F3A6F6B404840" sap:content-version="1">
+        <End Type="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType" Multiplicity="1" Role="FromRole_assoc_893BBB1B1BE817A5439F3A6F6B404840"/>
+        <End Type="Z_PURCHASEORDER_SRV.I_PurchaseOrderCalcFieldsType" Multiplicity="1" Role="ToRole_assoc_893BBB1B1BE817A5439F3A6F6B404840"/>
+    </Association>
+    <Association Name="assoc_C5E5FA047A0E0F2C5BD4B2DE02BD5265" sap:content-version="1">
+        <End Type="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType" Multiplicity="1" Role="FromRole_assoc_C5E5FA047A0E0F2C5BD4B2DE02BD5265"/>
+        <End Type="Z_PURCHASEORDER_SRV.I_PurchaseOrderItemType" Multiplicity="*" Role="ToRole_assoc_C5E5FA047A0E0F2C5BD4B2DE02BD5265"/>
+        <ReferentialConstraint>
+            <Principal Role="FromRole_assoc_C5E5FA047A0E0F2C5BD4B2DE02BD5265">
+                <PropertyRef Name="PurchaseOrder"/>
+            </Principal>
+            <Dependent Role="ToRole_assoc_C5E5FA047A0E0F2C5BD4B2DE02BD5265">
+                <PropertyRef Name="PurchaseOrder"/>
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
+    <Association Name="assoc_89E3B3FFDDCAFBB304A40CE824477248" sap:content-version="1">
+        <End Type="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType" Multiplicity="1" Role="FromRole_assoc_89E3B3FFDDCAFBB304A40CE824477248"/>
+        <End Type="Z_PURCHASEORDER_SRV.I_PurchasingDocumentTypeType" Multiplicity="0..1" Role="ToRole_assoc_89E3B3FFDDCAFBB304A40CE824477248"/>
+    </Association>
+    <Association Name="assoc_34AD79E3FAB9451443767621C6B9A7D5" sap:content-version="1">
+        <End Type="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType" Multiplicity="1" Role="FromRole_assoc_34AD79E3FAB9451443767621C6B9A7D5"/>
+        <End Type="Z_PURCHASEORDER_SRV.I_PurchasingGroupType" Multiplicity="0..1" Role="ToRole_assoc_34AD79E3FAB9451443767621C6B9A7D5"/>
+        <ReferentialConstraint>
+            <Principal Role="ToRole_assoc_34AD79E3FAB9451443767621C6B9A7D5">
+                <PropertyRef Name="PurchasingGroup"/>
+            </Principal>
+            <Dependent Role="FromRole_assoc_34AD79E3FAB9451443767621C6B9A7D5">
+                <PropertyRef Name="PurchasingGroup"/>
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
+    <Association Name="assoc_B1774800DA537F37A2DE86606FA6428E" sap:content-version="1">
+        <End Type="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType" Multiplicity="1" Role="FromRole_assoc_B1774800DA537F37A2DE86606FA6428E"/>
+        <End Type="Z_PURCHASEORDER_SRV.I_PurchasingOrganizationType" Multiplicity="0..1" Role="ToRole_assoc_B1774800DA537F37A2DE86606FA6428E"/>
+        <ReferentialConstraint>
+            <Principal Role="ToRole_assoc_B1774800DA537F37A2DE86606FA6428E">
+                <PropertyRef Name="PurchasingOrganization"/>
+            </Principal>
+            <Dependent Role="FromRole_assoc_B1774800DA537F37A2DE86606FA6428E">
+                <PropertyRef Name="PurchasingOrganization"/>
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
+    <Association Name="assoc_41DFB6D36738F3874D6F8FC405E4A371" sap:content-version="1">
+        <End Type="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType" Multiplicity="1" Role="FromRole_assoc_41DFB6D36738F3874D6F8FC405E4A371"/>
+        <End Type="Z_PURCHASEORDER_SRV.I_SupplierType" Multiplicity="0..1" Role="ToRole_assoc_41DFB6D36738F3874D6F8FC405E4A371"/>
+        <ReferentialConstraint>
+            <Principal Role="ToRole_assoc_41DFB6D36738F3874D6F8FC405E4A371">
+                <PropertyRef Name="Supplier"/>
+            </Principal>
+            <Dependent Role="FromRole_assoc_41DFB6D36738F3874D6F8FC405E4A371">
+                <PropertyRef Name="Supplier"/>
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
+    <Association Name="assoc_CF96E9A92D1B9F0679025B6D1B913326" sap:content-version="1">
+        <End Type="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType" Multiplicity="1" Role="FromRole_assoc_CF96E9A92D1B9F0679025B6D1B913326"/>
+        <End Type="Z_PURCHASEORDER_SRV.I_AddressType" Multiplicity="0..1" Role="ToRole_assoc_CF96E9A92D1B9F0679025B6D1B913326"/>
+        <ReferentialConstraint>
+            <Principal Role="ToRole_assoc_CF96E9A92D1B9F0679025B6D1B913326">
+                <PropertyRef Name="AddressID"/>
+            </Principal>
+            <Dependent Role="FromRole_assoc_CF96E9A92D1B9F0679025B6D1B913326">
+                <PropertyRef Name="ManualSupplierAddressID"/>
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
+    <Association Name="assoc_E98645B3601D9D15ACB26EE62A171DE2" sap:content-version="1">
+        <End Type="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType" Multiplicity="1" Role="FromRole_assoc_E98645B3601D9D15ACB26EE62A171DE2"/>
+        <End Type="Z_PURCHASEORDER_SRV.I_PlantType" Multiplicity="0..1" Role="ToRole_assoc_E98645B3601D9D15ACB26EE62A171DE2"/>
+        <ReferentialConstraint>
+            <Principal Role="ToRole_assoc_E98645B3601D9D15ACB26EE62A171DE2">
+                <PropertyRef Name="Plant"/>
+            </Principal>
+            <Dependent Role="FromRole_assoc_E98645B3601D9D15ACB26EE62A171DE2">
+                <PropertyRef Name="SupplyingPlant"/>
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
+    <Association Name="assoc_2D59888533306721B46079ECB29F54AB" sap:content-version="1">
+        <End Type="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType" Multiplicity="1" Role="FromRole_assoc_2D59888533306721B46079ECB29F54AB"/>
+        <End Type="Z_PURCHASEORDER_SRV.I_SupplierType" Multiplicity="0..1" Role="ToRole_assoc_2D59888533306721B46079ECB29F54AB"/>
+        <ReferentialConstraint>
+            <Principal Role="ToRole_assoc_2D59888533306721B46079ECB29F54AB">
+                <PropertyRef Name="Supplier"/>
+            </Principal>
+            <Dependent Role="FromRole_assoc_2D59888533306721B46079ECB29F54AB">
+                <PropertyRef Name="SupplyingSupplier"/>
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
+    <Association Name="assoc_9687B6C13176828570E0F04EADE90BDA" sap:content-version="1">
+        <End Type="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType" Multiplicity="1" Role="FromRole_assoc_9687B6C13176828570E0F04EADE90BDA"/>
+        <End Type="Z_PURCHASEORDER_SRV.I_CompanyCodeType" Multiplicity="0..1" Role="ToRole_assoc_9687B6C13176828570E0F04EADE90BDA"/>
+        <ReferentialConstraint>
+            <Principal Role="ToRole_assoc_9687B6C13176828570E0F04EADE90BDA">
+                <PropertyRef Name="CompanyCode"/>
+            </Principal>
+            <Dependent Role="FromRole_assoc_9687B6C13176828570E0F04EADE90BDA">
+                <PropertyRef Name="CompanyCode"/>
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
+    <EntityContainer Name="Z_PURCHASEORDER_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+        <EntitySet Name="I_Address" EntityType="Z_PURCHASEORDER_SRV.I_AddressType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+        <EntitySet Name="I_CompanyCode" EntityType="Z_PURCHASEORDER_SRV.I_CompanyCodeType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+        <EntitySet Name="I_Currency" EntityType="Z_PURCHASEORDER_SRV.I_CurrencyType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+        <EntitySet Name="I_IncotermsClassification" EntityType="Z_PURCHASEORDER_SRV.I_IncotermsClassificationType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+        <EntitySet Name="I_PaymentTerms" EntityType="Z_PURCHASEORDER_SRV.I_PaymentTermsType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+        <EntitySet Name="I_Plant" EntityType="Z_PURCHASEORDER_SRV.I_PlantType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+        <EntitySet Name="I_PurchaseOrderCalcFields" EntityType="Z_PURCHASEORDER_SRV.I_PurchaseOrderCalcFieldsType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+        <EntitySet Name="I_PurchaseOrderItem" EntityType="Z_PURCHASEORDER_SRV.I_PurchaseOrderItemType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+        <EntitySet Name="I_PurchasingDocumentType" EntityType="Z_PURCHASEORDER_SRV.I_PurchasingDocumentTypeType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+        <EntitySet Name="I_PurchasingGroup" EntityType="Z_PURCHASEORDER_SRV.I_PurchasingGroupType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+        <EntitySet Name="I_PurchasingOrganization" EntityType="Z_PURCHASEORDER_SRV.I_PurchasingOrganizationType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+        <EntitySet Name="I_Supplier" EntityType="Z_PURCHASEORDER_SRV.I_SupplierType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+        <EntitySet Name="I_User" EntityType="Z_PURCHASEORDER_SRV.I_UserType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+        <EntitySet Name="ZI_PurchaseOrder" EntityType="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+        <AssociationSet Name="assoc_893BBB1B1BE817A5439F3A6F6B404840" Association="Z_PURCHASEORDER_SRV.assoc_893BBB1B1BE817A5439F3A6F6B404840" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+            <End EntitySet="ZI_PurchaseOrder" Role="FromRole_assoc_893BBB1B1BE817A5439F3A6F6B404840"/>
+            <End EntitySet="I_PurchaseOrderCalcFields" Role="ToRole_assoc_893BBB1B1BE817A5439F3A6F6B404840"/>
+        </AssociationSet>
+        <AssociationSet Name="assoc_0CD1A06E2023F2BED08F323FF46EEF25" Association="Z_PURCHASEORDER_SRV.assoc_0CD1A06E2023F2BED08F323FF46EEF25" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+            <End EntitySet="ZI_PurchaseOrder" Role="FromRole_assoc_0CD1A06E2023F2BED08F323FF46EEF25"/>
+            <End EntitySet="I_PaymentTerms" Role="ToRole_assoc_0CD1A06E2023F2BED08F323FF46EEF25"/>
+        </AssociationSet>
+        <AssociationSet Name="assoc_CF96E9A92D1B9F0679025B6D1B913326" Association="Z_PURCHASEORDER_SRV.assoc_CF96E9A92D1B9F0679025B6D1B913326" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+            <End EntitySet="ZI_PurchaseOrder" Role="FromRole_assoc_CF96E9A92D1B9F0679025B6D1B913326"/>
+            <End EntitySet="I_Address" Role="ToRole_assoc_CF96E9A92D1B9F0679025B6D1B913326"/>
+        </AssociationSet>
+        <AssociationSet Name="assoc_9B3897B02551266454DB5D20A2692FA5" Association="Z_PURCHASEORDER_SRV.assoc_9B3897B02551266454DB5D20A2692FA5" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+            <End EntitySet="ZI_PurchaseOrder" Role="FromRole_assoc_9B3897B02551266454DB5D20A2692FA5"/>
+            <End EntitySet="I_Supplier" Role="ToRole_assoc_9B3897B02551266454DB5D20A2692FA5"/>
+        </AssociationSet>
+        <AssociationSet Name="assoc_B1774800DA537F37A2DE86606FA6428E" Association="Z_PURCHASEORDER_SRV.assoc_B1774800DA537F37A2DE86606FA6428E" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+            <End EntitySet="ZI_PurchaseOrder" Role="FromRole_assoc_B1774800DA537F37A2DE86606FA6428E"/>
+            <End EntitySet="I_PurchasingOrganization" Role="ToRole_assoc_B1774800DA537F37A2DE86606FA6428E"/>
+        </AssociationSet>
+        <AssociationSet Name="assoc_2D59888533306721B46079ECB29F54AB" Association="Z_PURCHASEORDER_SRV.assoc_2D59888533306721B46079ECB29F54AB" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+            <End EntitySet="ZI_PurchaseOrder" Role="FromRole_assoc_2D59888533306721B46079ECB29F54AB"/>
+            <End EntitySet="I_Supplier" Role="ToRole_assoc_2D59888533306721B46079ECB29F54AB"/>
+        </AssociationSet>
+        <AssociationSet Name="assoc_34AD79E3FAB9451443767621C6B9A7D5" Association="Z_PURCHASEORDER_SRV.assoc_34AD79E3FAB9451443767621C6B9A7D5" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+            <End EntitySet="ZI_PurchaseOrder" Role="FromRole_assoc_34AD79E3FAB9451443767621C6B9A7D5"/>
+            <End EntitySet="I_PurchasingGroup" Role="ToRole_assoc_34AD79E3FAB9451443767621C6B9A7D5"/>
+        </AssociationSet>
+        <AssociationSet Name="assoc_9C4880F84D1E8D3C5A88C692E941ED30" Association="Z_PURCHASEORDER_SRV.assoc_9C4880F84D1E8D3C5A88C692E941ED30" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+            <End EntitySet="ZI_PurchaseOrder" Role="FromRole_assoc_9C4880F84D1E8D3C5A88C692E941ED30"/>
+            <End EntitySet="I_Currency" Role="ToRole_assoc_9C4880F84D1E8D3C5A88C692E941ED30"/>
+        </AssociationSet>
+        <AssociationSet Name="assoc_89E3B3FFDDCAFBB304A40CE824477248" Association="Z_PURCHASEORDER_SRV.assoc_89E3B3FFDDCAFBB304A40CE824477248" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+            <End EntitySet="ZI_PurchaseOrder" Role="FromRole_assoc_89E3B3FFDDCAFBB304A40CE824477248"/>
+            <End EntitySet="I_PurchasingDocumentType" Role="ToRole_assoc_89E3B3FFDDCAFBB304A40CE824477248"/>
+        </AssociationSet>
+        <AssociationSet Name="assoc_41DFB6D36738F3874D6F8FC405E4A371" Association="Z_PURCHASEORDER_SRV.assoc_41DFB6D36738F3874D6F8FC405E4A371" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+            <End EntitySet="ZI_PurchaseOrder" Role="FromRole_assoc_41DFB6D36738F3874D6F8FC405E4A371"/>
+            <End EntitySet="I_Supplier" Role="ToRole_assoc_41DFB6D36738F3874D6F8FC405E4A371"/>
+        </AssociationSet>
+        <AssociationSet Name="assoc_E98645B3601D9D15ACB26EE62A171DE2" Association="Z_PURCHASEORDER_SRV.assoc_E98645B3601D9D15ACB26EE62A171DE2" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+            <End EntitySet="ZI_PurchaseOrder" Role="FromRole_assoc_E98645B3601D9D15ACB26EE62A171DE2"/>
+            <End EntitySet="I_Plant" Role="ToRole_assoc_E98645B3601D9D15ACB26EE62A171DE2"/>
+        </AssociationSet>
+        <AssociationSet Name="assoc_632734F6B389609706700C7D4A235C97" Association="Z_PURCHASEORDER_SRV.assoc_632734F6B389609706700C7D4A235C97" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+            <End EntitySet="ZI_PurchaseOrder" Role="FromRole_assoc_632734F6B389609706700C7D4A235C97"/>
+            <End EntitySet="I_IncotermsClassification" Role="ToRole_assoc_632734F6B389609706700C7D4A235C97"/>
+        </AssociationSet>
+        <AssociationSet Name="assoc_9687B6C13176828570E0F04EADE90BDA" Association="Z_PURCHASEORDER_SRV.assoc_9687B6C13176828570E0F04EADE90BDA" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+            <End EntitySet="ZI_PurchaseOrder" Role="FromRole_assoc_9687B6C13176828570E0F04EADE90BDA"/>
+            <End EntitySet="I_CompanyCode" Role="ToRole_assoc_9687B6C13176828570E0F04EADE90BDA"/>
+        </AssociationSet>
+        <AssociationSet Name="assoc_C5E5FA047A0E0F2C5BD4B2DE02BD5265" Association="Z_PURCHASEORDER_SRV.assoc_C5E5FA047A0E0F2C5BD4B2DE02BD5265" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+            <End EntitySet="ZI_PurchaseOrder" Role="FromRole_assoc_C5E5FA047A0E0F2C5BD4B2DE02BD5265"/>
+            <End EntitySet="I_PurchaseOrderItem" Role="ToRole_assoc_C5E5FA047A0E0F2C5BD4B2DE02BD5265"/>
+        </AssociationSet>
+        <AssociationSet Name="assoc_0CBFE0E1B065912BC8C2AC4C092B99FA" Association="Z_PURCHASEORDER_SRV.assoc_0CBFE0E1B065912BC8C2AC4C092B99FA" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+            <End EntitySet="ZI_PurchaseOrder" Role="FromRole_assoc_0CBFE0E1B065912BC8C2AC4C092B99FA"/>
+            <End EntitySet="I_User" Role="ToRole_assoc_0CBFE0E1B065912BC8C2AC4C092B99FA"/>
+        </AssociationSet>
+    </EntityContainer>
+    <Annotations Target="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType/CompanyCode"
+    xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Common.ValueList">
+        <Record>
+            <PropertyValue Property="Label" String="Company Code"/>
+            <PropertyValue Property="CollectionPath" String="I_CompanyCode"/>
+            <PropertyValue Property="SearchSupported" Bool="false"/>
+            <PropertyValue Property="Parameters">
+                <Collection>
+                    <Record Type="Common.ValueListParameterInOut">
+                        <PropertyValue Property="LocalDataProperty" PropertyPath="CompanyCode"/>
+                        <PropertyValue Property="ValueListProperty" String="CompanyCode"/>
+                    </Record>
+                    <Record Type="Common.ValueListParameterDisplayOnly">
+                        <PropertyValue Property="ValueListProperty" String="CompanyCodeName"/>
+                    </Record>
+                </Collection>
+            </PropertyValue>
+        </Record>
+    </Annotation>
+</Annotations>
+<Annotations Target="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType/PurchasingOrganization"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Common.ValueList">
+    <Record>
+        <PropertyValue Property="Label" String="Purchasing Organization"/>
+        <PropertyValue Property="CollectionPath" String="I_PurchasingOrganization"/>
+        <PropertyValue Property="SearchSupported" Bool="false"/>
+        <PropertyValue Property="Parameters">
+            <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                    <PropertyValue Property="LocalDataProperty" PropertyPath="PurchasingOrganization"/>
+                    <PropertyValue Property="ValueListProperty" String="PurchasingOrganization"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                    <PropertyValue Property="ValueListProperty" String="PurchasingOrganizationName"/>
+                </Record>
+            </Collection>
+        </PropertyValue>
+    </Record>
+</Annotation>
+</Annotations>
+<Annotations Target="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType/PurchasingGroup"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Common.ValueList">
+    <Record>
+        <PropertyValue Property="Label" String="Purchasing Group"/>
+        <PropertyValue Property="CollectionPath" String="I_PurchasingGroup"/>
+        <PropertyValue Property="SearchSupported" Bool="true"/>
+        <PropertyValue Property="Parameters">
+            <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                    <PropertyValue Property="LocalDataProperty" PropertyPath="PurchasingGroup"/>
+                    <PropertyValue Property="ValueListProperty" String="PurchasingGroup"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                    <PropertyValue Property="ValueListProperty" String="PurchasingGroupName"/>
+                </Record>
+            </Collection>
+        </PropertyValue>
+    </Record>
+</Annotation>
+</Annotations>
+<Annotations Target="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType/Supplier"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Common.ValueList">
+    <Record>
+        <PropertyValue Property="Label" String="Supplier"/>
+        <PropertyValue Property="CollectionPath" String="I_Supplier"/>
+        <PropertyValue Property="SearchSupported" Bool="false"/>
+        <PropertyValue Property="Parameters">
+            <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                    <PropertyValue Property="LocalDataProperty" PropertyPath="Supplier"/>
+                    <PropertyValue Property="ValueListProperty" String="Supplier"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                    <PropertyValue Property="ValueListProperty" String="SupplierName"/>
+                </Record>
+            </Collection>
+        </PropertyValue>
+    </Record>
+</Annotation>
+</Annotations>
+<Annotations Target="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType/ManualSupplierAddressID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Common.ValueList">
+    <Record>
+        <PropertyValue Property="Label" String="Address"/>
+        <PropertyValue Property="CollectionPath" String="I_Address"/>
+        <PropertyValue Property="SearchSupported" Bool="false"/>
+        <PropertyValue Property="Parameters">
+            <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                    <PropertyValue Property="LocalDataProperty" PropertyPath="ManualSupplierAddressID"/>
+                    <PropertyValue Property="ValueListProperty" String="AddressID"/>
+                </Record>
+            </Collection>
+        </PropertyValue>
+    </Record>
+</Annotation>
+</Annotations>
+<Annotations Target="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType/PurchaseOrderType"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Common.ValueList">
+    <Record>
+        <PropertyValue Property="Label" String="Purchasing Document Type"/>
+        <PropertyValue Property="CollectionPath" String="I_PurchasingDocumentType"/>
+        <PropertyValue Property="SearchSupported" Bool="false"/>
+        <PropertyValue Property="Parameters">
+            <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                    <PropertyValue Property="LocalDataProperty" PropertyPath="PurchaseOrderType"/>
+                    <PropertyValue Property="ValueListProperty" String="PurchasingDocumentCategory"/>
+                </Record>
+            </Collection>
+        </PropertyValue>
+    </Record>
+</Annotation>
+</Annotations>
+<Annotations Target="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType/SupplyingSupplier"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Common.ValueList">
+    <Record>
+        <PropertyValue Property="Label" String="Supplier"/>
+        <PropertyValue Property="CollectionPath" String="I_Supplier"/>
+        <PropertyValue Property="SearchSupported" Bool="false"/>
+        <PropertyValue Property="Parameters">
+            <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                    <PropertyValue Property="LocalDataProperty" PropertyPath="SupplyingSupplier"/>
+                    <PropertyValue Property="ValueListProperty" String="Supplier"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                    <PropertyValue Property="ValueListProperty" String="SupplierName"/>
+                </Record>
+            </Collection>
+        </PropertyValue>
+    </Record>
+</Annotation>
+</Annotations>
+<Annotations Target="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType/SupplyingPlant"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Common.ValueList">
+    <Record>
+        <PropertyValue Property="Label" String="Plant"/>
+        <PropertyValue Property="CollectionPath" String="I_Plant"/>
+        <PropertyValue Property="SearchSupported" Bool="true"/>
+        <PropertyValue Property="Parameters">
+            <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                    <PropertyValue Property="LocalDataProperty" PropertyPath="SupplyingPlant"/>
+                    <PropertyValue Property="ValueListProperty" String="Plant"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                    <PropertyValue Property="ValueListProperty" String="PlantName"/>
+                </Record>
+            </Collection>
+        </PropertyValue>
+    </Record>
+</Annotation>
+</Annotations>
+<Annotations Target="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType/InvoicingParty"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Common.ValueList">
+    <Record>
+        <PropertyValue Property="Label" String="Supplier"/>
+        <PropertyValue Property="CollectionPath" String="I_Supplier"/>
+        <PropertyValue Property="SearchSupported" Bool="false"/>
+        <PropertyValue Property="Parameters">
+            <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                    <PropertyValue Property="LocalDataProperty" PropertyPath="InvoicingParty"/>
+                    <PropertyValue Property="ValueListProperty" String="Supplier"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                    <PropertyValue Property="ValueListProperty" String="SupplierName"/>
+                </Record>
+            </Collection>
+        </PropertyValue>
+    </Record>
+</Annotation>
+</Annotations>
+<Annotations Target="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType/PaymentTerms"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Common.ValueList">
+    <Record>
+        <PropertyValue Property="Label" String="Payment Terms"/>
+        <PropertyValue Property="CollectionPath" String="I_PaymentTerms"/>
+        <PropertyValue Property="SearchSupported" Bool="false"/>
+        <PropertyValue Property="Parameters">
+            <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                    <PropertyValue Property="LocalDataProperty" PropertyPath="PaymentTerms"/>
+                    <PropertyValue Property="ValueListProperty" String="PaymentTerms"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                    <PropertyValue Property="ValueListProperty" String="PaymentTerms_Text"/>
+                </Record>
+            </Collection>
+        </PropertyValue>
+    </Record>
+</Annotation>
+</Annotations>
+<Annotations Target="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType/IncotermsClassification"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Common.ValueList">
+    <Record>
+        <PropertyValue Property="Label" String="Incoterms Classification"/>
+        <PropertyValue Property="CollectionPath" String="I_IncotermsClassification"/>
+        <PropertyValue Property="SearchSupported" Bool="false"/>
+        <PropertyValue Property="Parameters">
+            <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                    <PropertyValue Property="LocalDataProperty" PropertyPath="IncotermsClassification"/>
+                    <PropertyValue Property="ValueListProperty" String="IncotermsClassification"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                    <PropertyValue Property="ValueListProperty" String="IncotermsClassification_Text"/>
+                </Record>
+            </Collection>
+        </PropertyValue>
+    </Record>
+</Annotation>
+</Annotations>
+<Annotations Target="Z_PURCHASEORDER_SRV.ZI_PurchaseOrderType/DocumentCurrency"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Common.ValueList">
+    <Record>
+        <PropertyValue Property="Label" String="Currency"/>
+        <PropertyValue Property="CollectionPath" String="I_Currency"/>
+        <PropertyValue Property="SearchSupported" Bool="true"/>
+        <PropertyValue Property="Parameters">
+            <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                    <PropertyValue Property="LocalDataProperty" PropertyPath="DocumentCurrency"/>
+                    <PropertyValue Property="ValueListProperty" String="Currency"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                    <PropertyValue Property="ValueListProperty" String="Currency_Text"/>
+                </Record>
+            </Collection>
+        </PropertyValue>
+    </Record>
+</Annotation>
+</Annotations>
+<Annotations Target="Z_PURCHASEORDER_SRV.I_PurchaseOrderCalcFieldsType"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Common.SemanticKey">
+    <Collection>
+        <PropertyPath>PurchaseOrder</PropertyPath>
+    </Collection>
+</Annotation>
+</Annotations>
+<atom:link rel="self" href="http://sap-bghtp-qadev:8000/sap/opu/odata/sap/Z_PURCHASEORDER_SRV/$metadata"
+xmlns:atom="http://www.w3.org/2005/Atom"/>
+<atom:link rel="latest-version" href="http://sap-bghtp-qadev:8000/sap/opu/odata/sap/Z_PURCHASEORDER_SRV/$metadata"
+xmlns:atom="http://www.w3.org/2005/Atom"/>
+</Schema>
+</edmx:DataServices>
+</edmx:Edmx>

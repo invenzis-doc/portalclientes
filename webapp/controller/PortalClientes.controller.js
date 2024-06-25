@@ -19,17 +19,14 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary) {
         onInit: function () { //al cargar la pagina setea los datos
             //Seteo el proveedor para filtrar las entidades
                 this._oProveedor = "0000200542";
-                
-                //Dato hardcoded en el portal
-                this._oSociedad = "AR10";
 
-                this._oModel = new ODataModel("/sap/opu/odata/sap/ZI_PURCHASEORDER_CDS", true);
+                this._oModel = new ODataModel("/sap/opu/odata/sap/Z_PURCHASEORDER_SRV", true);
                 this._oModel.setHeaders({
                     "Accept":"application/pdf",
                     "Content-Type": "application/pdf"
                 })
                 var that = this;
-                this._oModel.read("", {
+                this._oModel.read("/ZI_PurchaseOrder", {
                     success: function(data, response) {
                         var jsonModel = new JSONModel();
                         that.getView().setModel(jsonModel);
@@ -39,17 +36,6 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary) {
                     error: function(oError) {
                     }
                 });	     
-                /*this._oModel.read("/SociedadSet", {
-                    success: function(data, response) {
-                        var jsonModel = new JSONModel();
-                        jsonModel.setProperty("/SociedadSet",data.results);
-                        that.getView().setModel(jsonModel);
-                        that._jsonModel = jsonModel;
-                                                                   
-                    },
-                    error: function(oError) {
-                    }
-                });	      */ 
         },
         
         onSelectHome: function() { //nav list item home -> carga fragment detailHome
@@ -69,17 +55,16 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary) {
             that.byId("fechaDesdePickerOfertas").setValue(fechaDesde);
             that.byId("fechaHastaPickerOfertas").setValue(fechaHasta);
                 
-            /** 
-            this._oModel.read("/PedidoSet", {
+            this._oModel.read("/ZI_PurchaseOrder", {
                 urlParameters: {
-                    "$filter": "Lifnr eq '" + that._oProveedor + "' and FechaDesde eq '"+ fechaDesde +"' and FechaHasta eq '"+ fechaHasta +"'" 
+                    //"$filter": "Lifnr eq '" + that._oProveedor + "' and FechaDesde eq '"+ fechaDesde +"' and FechaHasta eq '"+ fechaHasta +"'" 
                 },
                 success: function(dataPedidos, responsePedidos) {
-                    that._jsonModel.setProperty("/PedidoSet",dataPedidos.results);                                              
+                    that._jsonModel.setProperty("/ZI_PurchaseOrder",dataPedidos.results);                                              
                 },
                 error: function(oError) {
                 }
-            });*/      
+            });   
             this.getSplitAppObj().toDetail(this.createId("detailOfertas"));
         },
 
@@ -244,21 +229,6 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary) {
             if (estadoFiltro)
                 estadoFiltro = " and Estado eq '"+ estadoFiltro +"'";
             
-
-            this._oModel.read("/FacturaSet", {
-                urlParameters: {
-                    "$filter": "Lifnr eq '" + this._oProveedor + //"'"
-                    "' and FechaDesde eq '"+ fechaDesde +"' and FechaHasta eq '"+ fechaHasta +"'" 
-                    + pedidoFiltro + estadoFiltro + facturaFiltro
-                },
-                success: function(data, response) {
-                    this._jsonModel.setProperty("/FacturaSet",data);
-                    this.getView().setModel(this._jsonModel); 
-                    this.byId("tableListaFacturas").setBusy(false);                                               
-                },
-                error: function(oError) {
-                }
-            });
             this.getSplitAppObj().toDetail(this.createId("detailOferta"));
         } ,
         
@@ -355,19 +325,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary) {
             var bloqueadoFiltro = "";
             if (this.byId("checkLiberarPedidos").getSelected())
                 bloqueadoFiltro = " and Bloqu eq 'X'";
-            
-            this._oModel.read("/PedidoSet", {
-                urlParameters: {
-                    "$filter": "Lifnr eq '" + this._oProveedor + 
-                    "' and FechaDesde eq '"+ fechaDesde +"' and FechaHasta eq '"+ fechaHasta +"'" 
-                    + pedidoFiltro + estadoFiltro + anticipoFiltro + bloqueadoFiltro
-                },
-                success: function(dataPedidos, responsePedidos) {
-                    this._jsonModel.setProperty("/PedidoSet",dataPedidos.results);                                              
-                },
-                error: function(oError) {
-                }
-            });      
+               
             this.getSplitAppObj().toDetail(this.createId("detailPedidos"));
         },
         createColumnConfigPedidos: function() {

@@ -10,7 +10,7 @@
 			<List id="listHome"
 				headerText=""
 				headerLevel="H2"
-				items="{ path: '/SociedadSet'}"   >
+				items="{ path: '/ZI_PurchaseOrder'}"   >
 				
 				<StandardListItem id="itemCalendarHome"
 					icon="sap-icon://calendar" 
