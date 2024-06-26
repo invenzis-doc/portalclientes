@@ -110,10 +110,10 @@
 							<m:Text id="textMoneda" text="{DocumentCurrency}" />								
 						</template>
 					</Column>
-					<Column id="columnValorNetoOferta" sortProperty="Netwr" >
+					<Column id="columnValorNetoOferta" sortProperty="to_PurchaseOrderItem/NetAmount" >
 					<m:Label id="textValorNeto" text="Valor Neto"/>
 					<template>
-						<m:Text id="columnTextValorNetoOferta" text="{Netwr}" />								
+						<m:Text id="columnTextValorNetoOferta" text="{to_PurchaseOrderItem/NetAmount}" />								
 					</template>
 					</Column>
 					<Column id="columnBloqueadoOferta" width="7rem" sortProperty="PurchasingProcessingStatus">

@@ -78,7 +78,7 @@
 					<Column id="columFechaEntrega" width="6rem" sortProperty="Fkdat" >
 						<m:Label id="labelFechaEntrega"   text="Fecha"/>
 						<template>
-							<m:Text id="textFechaEntrega" text="Fkdat" />
+							<m:Text id="textFechaEntrega" text="{Fkdat}" />
 						</template>
 					</Column>
 					
