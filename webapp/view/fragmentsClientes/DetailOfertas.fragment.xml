@@ -32,7 +32,7 @@
 								<m:DatePicker
 									id="fechaDesdePickerOfertas"											
 									change="onChangeFechaDesde"
-									valueFormat="yyyyMMdd"
+									valueFormat="dd/MM/yyyy"
 									displayFormat="dd/MM/yyyy" />											
 							</fb:control>
 						</fb:FilterGroupItem>
@@ -42,7 +42,7 @@
 								<m:DatePicker
 									id="fechaHastaPickerOfertas"											
 									change="handleChange"
-									valueFormat="yyyyMMdd"
+									valueFormat="dd/MM/yyyy"
 									displayFormat="dd/MM/yyyy"/>											
 							</fb:control>
 						</fb:FilterGroupItem>
