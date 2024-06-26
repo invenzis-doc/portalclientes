@@ -76,7 +76,7 @@
 					<Column id="columFechaFactura" width="6rem" sortProperty="Fkdat" >
 						<m:Label id="labelFechaFactura"   text="Fecha"/>
 						<template>
-							<m:Text id="textFechaFactura" text="{path:'Fkdat' , formatter:'.formatter.stringDate'}" />
+							<m:Text id="textFechaFactura" text="{Fkdat}" />
 						</template>
 					</Column>
 					<Column id="columnValorNetoFactura" sortProperty="Netwr" >

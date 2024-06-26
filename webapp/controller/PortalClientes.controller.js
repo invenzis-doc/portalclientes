@@ -3,12 +3,13 @@ sap.ui.define([
     'sap/ui/model/odata/v2/ODataModel',
     'sap/ui/model/json/JSONModel',
     '../model/formatter',
-    'sap/ui/export/library'
+    'sap/ui/export/library',
+    "sap/m/MessageToast"
 ],
 /**
  * @param {typeof sap.ui.core.mvc.Controller} Controller
  */
-function (Controller, ODataModel, JSONModel,formatter, exportLibrary) {
+function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToast) {
     "use strict";
     var EdmType = exportLibrary.EdmType;
 
@@ -35,7 +36,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary) {
                     },
                     error: function(oError) {
                     }
-                });	     
+                });
         },
         
         onSelectHome: function() { //nav list item home -> carga fragment detailHome
@@ -46,18 +47,18 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary) {
             var that = this;
             //Inicializar los filtros de fecha
             var fechaHoy = new Date();
-            var fechaHasta = this.formatFilterDate(fechaHoy)
+            var fechaHasta = this.formatDateToISO(fechaHoy)
 
             var fechaDesde = fechaHoy;
             fechaDesde.setMonth(fechaHoy.getMonth() - 4);
-            fechaDesde = this.formatFilterDate(fechaDesde);
-
+            fechaDesde = this.formatDateToISO(fechaDesde);
+            
             that.byId("fechaDesdePickerOfertas").setValue(fechaDesde);
             that.byId("fechaHastaPickerOfertas").setValue(fechaHasta);
                 
             this._oModel.read("/ZI_PurchaseOrder", {
                 urlParameters: {
-                    //"$filter": "Lifnr eq '" + that._oProveedor + "' and FechaDesde eq '"+ fechaDesde +"' and FechaHasta eq '"+ fechaHasta +"'" 
+                    "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'" 
                 },
                 success: function(dataPedidos, responsePedidos) {
                     that._jsonModel.setProperty("/ZI_PurchaseOrder",dataPedidos.results);                                              
@@ -72,26 +73,25 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary) {
             var that = this;
             //Inicializar los filtros de fecha
             var fechaHoy = new Date();
-            var fechaHasta = this.formatFilterDate(fechaHoy)
+            var fechaHasta = this.formatDateToISO(fechaHoy)
 
             var fechaDesde = fechaHoy;
             fechaDesde.setMonth(fechaHoy.getMonth() - 4);
-            fechaDesde = this.formatFilterDate(fechaDesde);
+            fechaDesde = this.formatDateToISO(fechaDesde);
             
             that.byId("fechaDesdePickerPedidos").setValue(fechaDesde);
             that.byId("fechaHastaPickerPedidos").setValue(fechaHasta);
-                  
-            /**
-            that._oModel.read("/PedidoSet", {
+            
+            that._oModel.read("/ZI_PurchaseOrder", {
                 urlParameters: {
-                    "$filter": "Lifnr eq '" + that._oProveedor + "' and FechaDesde eq '"+ fechaDesde +"' and FechaHasta eq '"+ fechaHasta +"'" 
+                    "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'" 
                 },
                 success: function(dataPedidos, responsePedidos) {
-                    that._jsonModel.setProperty("/PedidoSet",dataPedidos.results);                                              
+                    that._jsonModel.setProperty("/ZI_PurchaseOrder",dataPedidos.results);                                              
                 },
                 error: function(oError) {
                 }
-            });       */
+            });       
             this.getSplitAppObj().toDetail(this.createId("detailPedidos"));
         },
 
@@ -108,17 +108,16 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary) {
             that.byId("fechaDesdePickerEntregas").setValue(fechaDesde);
             that.byId("fechaHastaPickerEntregas").setValue(fechaHasta);
                
-            /** 
-            this._oModel.read("/PedidoSet", {
+            this._oModel.read("/ZI_PurchaseOrder", {
                 urlParameters: {
-                    "$filter": "Lifnr eq '" + that._oProveedor + "' and FechaDesde eq '"+ fechaDesde +"' and FechaHasta eq '"+ fechaHasta +"'" 
+                    //"$filter": "Lifnr eq '" + that._oProveedor + "' and FechaDesde eq '"+ fechaDesde +"' and FechaHasta eq '"+ fechaHasta +"'" 
                 },
                 success: function(dataPedidos, responsePedidos) {
-                    that._jsonModel.setProperty("/PedidoSet",dataPedidos.results);                                              
+                    that._jsonModel.setProperty("/ZI_PurchaseOrder",dataPedidos.results);                                              
                 },
                 error: function(oError) {
                 }
-            });*/      
+            });      
             this.getSplitAppObj().toDetail(this.createId("detailEntregas"));
         },
 
@@ -159,13 +158,13 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary) {
         },
 
         handleLinkPedido: function(evt) { //link pedido -> detail pedido
-            /**var linkPedido = evt.getSource();
+            var linkPedido = evt.getSource();
             var numPedido = linkPedido.getText();
             var that = this;
 
-            this._oModel.read("/PedidoSet('" + numPedido +"')", {
+            this._oModel.read("/I_PurchaseOrderItem('" + numPedido +"')", {
                 urlParameters: {
-                    "$expand": "PosicionSet,EntregaSet,FacturaSet,PagoSet",
+                    //"$expand": "PosicionSet,EntregaSet,FacturaSet,PagoSet",
                     "sap-lang":'S'
                 },
                 success: function(data, response) {
@@ -174,29 +173,29 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary) {
                 },
                 error: function(oError) {
                 }
-            });*/
+            });
 
             this.getSplitAppObj().toDetail(this.createId("detailPedidoDET"));
 
         },
 
         handleLinkOferta: function(evt) {// link oferta -> detail oferta
-            /**var linkPedido = evt.getSource();
+            var linkPedido = evt.getSource();
             var numPedido = linkPedido.getText();
             var that = this;
 
-            this._oModel.read("/PedidoSet('" + numPedido +"')", {
+            this._oModel.read("/I_PurchaseOrderItem('" + numPedido +"')", {
                 urlParameters: {
-                    "$expand": "PosicionSet,EntregaSet,FacturaSet,PagoSet",
+                    //"$expand": "PosicionSet,EntregaSet,FacturaSet,PagoSet",
                     "sap-lang":'S'
                 },
                 success: function(data, response) {
-                    that._jsonModel.setProperty("/PedidoSeleccionado",data);
+                    that._jsonModel.setProperty("/OfertaSeleccionada",data);
                     that.getView().setModel(that._jsonModel);                        
                 },
                 error: function(oError) {
                 }
-            }); */
+            });
 
             this.getSplitAppObj().toDetail(this.createId("detailOfertaDET"));
 
@@ -389,6 +388,23 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary) {
             mes = mes.toString().padStart(2, '0');
             var valorFechaHasta = date.getFullYear() + mes + dia;
             return (valorFechaHasta)
+        },
+        formatDateToISO: function(dateString) {
+            // Crear un objeto Date a partir del string
+            var date = new Date(dateString);
+        
+            // Obtener componentes de la fecha
+            var year = date.getFullYear();
+            var month = ("0" + (date.getMonth() + 1)).slice(-2);
+            var day = ("0" + date.getDate()).slice(-2);
+            var hours = ("0" + date.getHours()).slice(-2);
+            var minutes = ("0" + date.getMinutes()).slice(-2);
+            var seconds = ("0" + date.getSeconds()).slice(-2);
+        
+            // Formatear en ISO 8601
+            var formattedDate = year + "-" + month + "-" + day + "T" + hours + ":" + minutes + ":" + seconds;
+        
+            return formattedDate;
         }
 
     });

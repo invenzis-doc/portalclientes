@@ -16,7 +16,7 @@
 							  markFlagged="true"
 							  markChanges="false"
 							  markChangesPress="handleMarkChangesPress"
-							  objectSubtitle="{/OfertaSeleccionado/Ebeln}"
+							  objectSubtitle="{/OfertaSeleccionada/PurchaseOrder}"
 							  isObjectTitleAlwaysVisible="false"
 							  isObjectSubtitleAlwaysVisible="false"
 							  showPlaceholder="false">		
@@ -27,32 +27,32 @@
 
 				<l:HorizontalLayout>					
 					<m:Label id="LabelPosicionOferta" text="Posicion: " class="labelHeader"/>
-					<Text text="Posicion del pedido" id="textPosicionOferta" />
+					<Text text="{/OfertaSeleccionada/PurchaseOrderItem}" id="textPosicionOferta" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
 					<m:Label id="labelMaterialOferta" text="Material:" class="labelHeader"/>
-					<Text text="Material" id="textMaterialOferta" />
+					<Text text="{/OfertaSeleccionada/Material}" id="textMaterialOferta" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
 					<m:Label id="labelTextoPosicionOferta" text="Posicion:" class="labelHeader"/>
-					<Text text="Texto breve posicion de pedido de cliente" id="textTextoPosicionOferta" />
+					<Text text="{/OfertaSeleccionada/PurchaseOrderItemText}" id="textTextoPosicionOferta" />
 				</l:HorizontalLayout>
 				
 				<l:HorizontalLayout>					
 					<m:Label id="labelCantidadOferta" text="Cantidad:" class="labelHeader"/>
-					<Text text="Cantidad" id="textCantidadOferta" />
+					<Text text="{/OfertaSeleccionada/OrderQuantity}" id="textCantidadOferta" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
 					<m:Label id="labelUnidadOferta" text="Unidad:" class="labelHeader"/>
-					<Text text="Unidad" id="textUnidadOferta" />
+					<Text text="{/OfertaSeleccionada/PurchaseOrderQuantityUnit}" id="textUnidadOferta" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
 					<m:Label id="labelValorNetoOferta" text="Valor Neto: " class="labelHeader"/>
-					<Text text="Valor Neto" id="textValorNetoOferta" />
+					<Text text="{/OfertaSeleccionada/NetAmount}" id="textValorNetoOferta" />
 				</l:HorizontalLayout>
 			</l:VerticalLayout>			
 			

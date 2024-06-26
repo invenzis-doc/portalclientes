@@ -68,12 +68,6 @@
 							
 							<tnt:NavigationListItem id="item5" text="Facturas" icon="sap-icon://customer-briefing" select="onSelectFacturas">						
 							</tnt:NavigationListItem>
-							
-							<tnt:NavigationListItem id="item6" text="Pedidos de venta DET" icon="sap-icon://sales-order" select="onSelectPedidoDET">						
-							</tnt:NavigationListItem>	
-							
-							<tnt:NavigationListItem id="item7" text="Oferta DET" icon="sap-icon://order-status" select="onSelectOfertaDET">						
-							</tnt:NavigationListItem>
 
 						</tnt:NavigationList>		
 					</tnt:SideNavigation>

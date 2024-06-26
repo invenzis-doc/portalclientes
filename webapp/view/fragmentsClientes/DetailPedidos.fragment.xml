@@ -88,7 +88,7 @@
 					<Column id="columFechaPedido" width="6rem" sortProperty="CreationDate" >
 						<m:Label id="labelFechaPedido"   text="Fecha"/>
 						<template>
-							<m:Text id="textFechaPedido" text="CreationDate" />
+							<m:Text id="textFechaPedido" text="{path:'CreationDate' , formatter:'.formatter.stringDate'}" />
 						</template>
 					</Column>
 					<Column id="columnCampoVendedorPedido" sortProperty="CompanyCode">
@@ -124,7 +124,9 @@
 					<Column id="columnEstadoPedido" width="4rem" sortProperty="PurchasingCompletenessStatus" >
 						<m:Label id="labelEstadoPedido" text="Estado" />
 						<template>
-								<m:Text id="textEstadoPedido" text="{PurchasingCompletenessStatus}" />	
+							<m:ObjectStatus class="sapUiSmallMarginBegin" id="statusPedido"		
+								icon="{path:'PurchasingCompletenessStatus' , formatter:'.formatter.statusIcon'}"
+								state="{path:'PurchasingCompletenessStatus' , formatter:'.formatter.statusColor'}" />
 						</template>
 					</Column>
 				</columns>						

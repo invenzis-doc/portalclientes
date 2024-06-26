@@ -16,7 +16,7 @@
 							  markFlagged="true"
 							  markChanges="false"
 							  markChangesPress="handleMarkChangesPress"
-							  objectSubtitle="{/PedidoSeleccionado/Ebeln}"
+							  objectSubtitle="{/PedidoSeleccionado/PurchaseOrder}"
 							  isObjectTitleAlwaysVisible="false"
 							  isObjectSubtitleAlwaysVisible="false"
 							  showPlaceholder="false">		
@@ -27,32 +27,32 @@
 
 				<l:HorizontalLayout>					
 					<m:Label id="labelPosicionPedido" text="Pedido: " class="labelHeader"/>
-					<Text text="Posicion" id="textPosicionPedido" />
+					<Text text="{/PedidoSeleccionado/PurchaseOrderItem}" id="textPosicionPedido" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
 					<m:Label id="labelMaterialPedido" text="Material:" class="labelHeader"/>
-					<Text text="Material" id="textMaterialPedido" />
+					<Text text="{/PedidoSeleccionado/Material}" id="textMaterialPedido" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
 					<m:Label id="labelTextoPosicionPedido" text="Posicion:" class="labelHeader"/>
-					<Text text="Texto breve posicion de pedido de cliente" id="textTextoPosicionPedido" />
+					<Text text="{/PedidoSeleccionado/PurchaseOrderItemText}" id="textTextoPosicionPedido" />
 				</l:HorizontalLayout>
 				
 				<l:HorizontalLayout>					
 					<m:Label id="labelCantidadPedido" text="Cantidad:" class="labelHeader"/>
-					<Text text="Cantidad" id="textCantidadPedido" />
+					<Text text="{/PedidoSeleccionado/OrderQuantity}" id="textCantidadPedido" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
 					<m:Label id="labelUnidadPedido" text="Unidad:" class="labelHeader"/>
-					<Text text="Unidad" id="textUnidadPedido" />
+					<Text text="{/PedidoSeleccionado/PurchaseOrderQuantityUnit}" id="textUnidadPedido" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
 					<m:Label id="labelValorNetoPedido" text="Valor Neto: " class="labelHeader"/>
-					<Text text="Valor Neto" id="textValorNetoPedido" />
+					<Text text="{/PedidoSeleccionado/NetAmount}" id="textValorNetoPedido" />
 				</l:HorizontalLayout>
 			</l:VerticalLayout>			
 			
@@ -65,7 +65,7 @@
 						<Table
                             id="tableEntregaPedido"
                             inset="false"
-                            items="{path: '/PedidoSeleccionado/EntregaSet/results'}"
+                            items="{path: '/PedidoSeleccionado'}"
 							noDataText="Sin entregas"
 					    >
 						<columns>
@@ -117,7 +117,7 @@
 							<Table
                             id="tableFacturaPedido"
                             inset="false"
-                            items="{path: '/FacturaSeleccionada/DetalleSet'}"
+                            items="{path: '/PedidoSeleccionado'}"
 							noDataText="Sin facturas">
 						<columns>
 							<Column id="columnDocFactura" minScreenWidth="Tablet" demandPopin="true">

@@ -11,9 +11,45 @@ sap.ui.define([], function() {
     stringDate: function(sValue) {
                 if (!sValue) {
                     return "";
-                }               
-                return (sValue[6] + sValue[7] + '/' +  sValue[4] + sValue[5]  + '/' + sValue[0] + sValue[1] + sValue[2] + sValue[3]);               
+                }
+                var date = new Date(sValue);
+
+                // Extract the day, month, and year
+                var day = date.getDate();
+                var month = date.getMonth() + 1; // Months are zero-based
+                var year = date.getFullYear();
+
+                // Pad day and month with leading zeros if necessary
+                if (day < 10) {
+                    day = '0' + day;
+                }
+                if (month < 10) {
+                    month = '0' + month;
+                }
+
+                // Format the date as DD/MM/YYYY
+                var formattedDate = day + '/' + month + '/' + year;
+
+                return formattedDate;              
+                //return (sValue[6] + sValue[7] + '/' +  sValue[4] + sValue[5]  + '/' + sValue[0] + sValue[1] + sValue[2] + sValue[3]);               
                
+            },
+            formatDateToISO: function(dateString) {
+                // Crear un objeto Date a partir del string
+                var date = new Date(dateString);
+            
+                // Obtener componentes de la fecha
+                var year = date.getFullYear();
+                var month = ("0" + (date.getMonth() + 1)).slice(-2);
+                var day = ("0" + date.getDate()).slice(-2);
+                var hours = ("0" + date.getHours()).slice(-2);
+                var minutes = ("0" + date.getMinutes()).slice(-2);
+                var seconds = ("0" + date.getSeconds()).slice(-2);
+            
+                // Formatear en ISO 8601
+                var formattedDate = year + "-" + month + "-" + day + "T" + hours + ":" + minutes + ":" + seconds;
+            
+                return formattedDate;
             },
     timeDate: function(sValue) {
                 if (!sValue) {
@@ -27,9 +63,9 @@ sap.ui.define([], function() {
             },
     statusIcon: function (sValue){
         switch (sValue) {
-            case "V": return ("sap-icon://sys-enter-2");
+            case true: return ("sap-icon://sys-enter-2");
                         break;
-            case "R": return ("sap-icon://error");
+            case false: return ("sap-icon://error");
                         break;
             case "A": return ("sap-icon://alert");
                         break;
@@ -38,9 +74,9 @@ sap.ui.define([], function() {
     },
     statusColor: function (sValue){
         switch (sValue) {
-            case "V": return ("Success");
+            case true: return ("Success");
                         break;
-            case "R": return ("Error");
+            case false: return ("Error");
                         break;
             case "A": return ("Warning");
                         break;
