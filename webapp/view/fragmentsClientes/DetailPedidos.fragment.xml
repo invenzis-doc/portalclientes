@@ -48,24 +48,6 @@
 						
 					</fb:filterGroupItems>
 				</fb:FilterBar>
-					
-				<l:VerticalLayout class="sapUiSmallMarginTop" >					
-					<m:Label class="sapUiTinyMarginTop" text="Completo" />	
-					<m:CheckBox id="checkEstadoPedidosV" />		
-					<m:Label class="sapUiTinyMarginTop" text="Cumpliendo" />	
-					<m:CheckBox id="checkEstadoPedidosA" />	
-					<m:Label class="sapUiTinyMarginTop" text="Sin Tratar  " />	
-					<m:CheckBox id="checkEstadoPedidosR"/>	
-				</l:VerticalLayout>	
-				
-				<l:VerticalLayout class="sapUiSmallMarginTop" >					
-					<m:Label class="sapUiTinyMarginTop" text="Anticipos" />	
-					<m:CheckBox id="checkAnticipoPedidos" />		
-					<m:Label class="sapUiTinyMarginTop" text="Bloqueados" />	
-					<m:CheckBox id="checkLiberarPedidos" />	
-					<m:Label class="sapUiTinyMarginTop" text="Vencidos" />	
-					<m:CheckBox id="checkVencidoPedidos" />	
-				</l:VerticalLayout>
 
 				<l:VerticalLayout class="sapUiSmallMarginTop" >					
 					<m:Button text="Buscar" press="onFilterPedidos"/>
@@ -76,28 +58,36 @@
 
 		<Table
 			id="tablePedidos"						
-			rows="{path: '/ZI_PurchaseOrder'}"	
+			rows="{path: '/Pedidos'}"	
 			selectionMode="None">
+			<extension>
+				<m:OverflowToolbar  style="Clear">
+					<m:ToolbarSpacer/>
+					
+					<m:Input id="inputSearchPedidos"
+						placeholder="Buscar" width="10rem" class="sapUiMediumMarginEnd" liveChange="onSearchPedidos" />							
+						</m:OverflowToolbar>
+			</extension>
 				<columns>
-					<Column id="columnPedido" width="7rem" sortProperty="PurchaseOrder" >
+					<Column id="columnPedido" width="8rem" sortProperty="PurchaseOrder" >
 						<m:Label id="labelPedido" text="Pedido"/>
 						<template>
 								<m:Link id="linkPedido" text="{PurchaseOrder}" press="handleLinkPedido"/>	
 						</template>									
 					</Column>
-					<Column id="columFechaPedido" width="6rem" sortProperty="CreationDate" >
+					<Column id="columFechaPedido" width="8rem" sortProperty="CreationDate" >
 						<m:Label id="labelFechaPedido"   text="Fecha"/>
 						<template>
 							<m:Text id="textFechaPedido" text="{path:'CreationDate' , formatter:'.formatter.stringDate'}" />
 						</template>
 					</Column>
-					<Column id="columnCampoVendedorPedido" sortProperty="CompanyCode">
+					<Column id="columnCampoVendedorPedido" width="10rem" sortProperty="CompanyCode">
 						<m:Label id="labelCampoVendedorPedido" text="Campo Vendedor"/>
 						<template>
 							<m:Text id="textCampoVendedorPedido" text="{CompanyCode}" />								
 						</template>
 					</Column>
-					<Column id="columnTipoPedidoPedido" sortProperty="PurchaseOrderType">
+					<Column id="columnTipoPedidoPedido" width="10rem" sortProperty="PurchaseOrderType">
 						<m:Label id="labelTipoPedidoPedido" text="Tipo de Pedido"/>
 						<template>
 							<m:Text id="textTipoPedidoPedido" text="{PurchaseOrderType}" />								
@@ -109,10 +99,10 @@
 							<m:Text id="textMonedaPedido" text="{DocumentCurrency}" />								
 						</template>
 					</Column>
-					<Column id="columnValorNetoPedido" sortProperty="to_PurchaseOrderItem/NetAmount" >
+					<Column id="columnValorNetoPedido" sortProperty="to_PurchaseOrderItem" >
 					<m:Label id="label2ValorNetoPedido" text="Valor Neto"/>
 					<template>
-						<m:Text id="textoValorNetoPedido" text="{to_PurchaseOrderItem/NetAmount}" />								
+						<m:Text id="textoValorNetoPedido" width="10rem" text="{path:'to_PurchaseOrderItem/results/0/NetAmount' , formatter:'.formatter.removeZeros'}" />								
 					</template>
 					</Column>
 					<Column id="columnBloqueadoPedido" width="7rem" sortProperty="PurchasingProcessingStatus">
@@ -121,7 +111,7 @@
 							<m:Text id="textBloqueadoPedido" text="{PurchasingProcessingStatus}" />							
 						</template>
 					</Column>
-					<Column id="columnEstadoPedido" width="4rem" sortProperty="PurchasingCompletenessStatus" >
+					<Column id="columnEstadoPedido" width="6rem" sortProperty="PurchasingCompletenessStatus" >
 						<m:Label id="labelEstadoPedido" text="Estado" />
 						<template>
 							<m:ObjectStatus class="sapUiSmallMarginBegin" id="statusPedido"		

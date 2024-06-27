@@ -65,7 +65,7 @@
 						<Table
                             id="tableEntregaPedido"
                             inset="false"
-                            items="{path: '/PedidoSeleccionado'}"
+                            items="{path: '/PedidoSeleccionado/Entregas'}"
 							noDataText="Sin entregas"
 					    >
 						<columns>
@@ -117,7 +117,7 @@
 							<Table
                             id="tableFacturaPedido"
                             inset="false"
-                            items="{path: '/PedidoSeleccionado'}"
+                            items="{path: '/FacturaSeleccionada'}"
 							noDataText="Sin facturas">
 						<columns>
 							<Column id="columnDocFactura" minScreenWidth="Tablet" demandPopin="true">

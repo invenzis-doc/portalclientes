@@ -34,23 +34,23 @@ sap.ui.define([], function() {
                 //return (sValue[6] + sValue[7] + '/' +  sValue[4] + sValue[5]  + '/' + sValue[0] + sValue[1] + sValue[2] + sValue[3]);               
                
             },
-            formatDateToISO: function(dateString) {
-                // Crear un objeto Date a partir del string
-                var date = new Date(dateString);
-            
-                // Obtener componentes de la fecha
-                var year = date.getFullYear();
-                var month = ("0" + (date.getMonth() + 1)).slice(-2);
-                var day = ("0" + date.getDate()).slice(-2);
-                var hours = ("0" + date.getHours()).slice(-2);
-                var minutes = ("0" + date.getMinutes()).slice(-2);
-                var seconds = ("0" + date.getSeconds()).slice(-2);
-            
-                // Formatear en ISO 8601
-                var formattedDate = year + "-" + month + "-" + day + "T" + hours + ":" + minutes + ":" + seconds;
-            
-                return formattedDate;
-            },
+    formatDateToISO: function(dateString) {
+        // Crear un objeto Date a partir del string
+        var date = new Date(dateString);
+    
+        // Obtener componentes de la fecha
+        var year = date.getFullYear();
+        var month = ("0" + (date.getMonth() + 1)).slice(-2);
+        var day = ("0" + date.getDate()).slice(-2);
+        var hours = ("0" + date.getHours()).slice(-2);
+        var minutes = ("0" + date.getMinutes()).slice(-2);
+        var seconds = ("0" + date.getSeconds()).slice(-2);
+    
+        // Formatear en ISO 8601
+        var formattedDate = year + "-" + month + "-" + day + "T" + hours + ":" + minutes + ":" + seconds;
+    
+        return formattedDate;
+    },
     timeDate: function(sValue) {
                 if (!sValue) {
                     return "";

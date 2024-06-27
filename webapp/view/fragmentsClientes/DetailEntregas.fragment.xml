@@ -30,8 +30,7 @@
 							<fb:control>
 								<m:DatePicker
 									id="fechaDesdePickerEntregas"											
-									change="onChangeFechaDesde"
-									valueFormat="yyyyMMdd"
+									valueFormat="dd/MM/yyyy"
 									displayFormat="dd/MM/yyyy"
 								/>											
 							</fb:control>
@@ -41,8 +40,7 @@
 							<fb:control>
 								<m:DatePicker
 									id="fechaHastaPickerEntregas"											
-									change="handleChange"
-									valueFormat="yyyyMMdd"
+									valueFormat="dd/MM/yyyy"
 									displayFormat="dd/MM/yyyy"/>											
 							</fb:control>
 						</fb:FilterGroupItem>
@@ -60,13 +58,27 @@
 
 		<Table
 			id="tableEntregas"						
-			rows="{path: '/ZI_PurchaseOrder'}"	
+			rows="{path: '/ZI_PurchaseOrder/Entregas'}"	
 			selectionMode="None">
+				<extension>
+				<m:OverflowToolbar  style="Clear">
+					<m:ToolbarSpacer/>
+					
+					<m:Input id="inputSearchEntregas"
+						placeholder="Buscar" width="10rem" class="sapUiMediumMarginEnd" liveChange="onSearchEntregas" />							
+						</m:OverflowToolbar>
+				</extension>
 				<columns>
 					<Column id="columnPedidoEntrega" width="7rem" sortProperty="Vbeln" >
 						<m:Label id="labelPedidoEntrega" text="Entrega"/>
 						<template>
-								<m:Link id="linkPedidoEntrega" text="{Vbeln}" press="handleLinkPedido"/>	
+								<m:Text id="textPedidoEntrega" text="{Vbeln}"/>	
+						</template>									
+					</Column>
+					<Column id="columnNPedidoEntrega" width="7rem" sortProperty="Vbeln" >
+						<m:Label id="labelNPedidoEntrega" text="Pedido"/>
+						<template>
+								<m:Link id="linkNPedidoEntrega" text="{Vbeln}" press="handleLinkPedido"/>	
 						</template>									
 					</Column>
 					<Column id="columnPosicionEntrega" sortProperty="Posnr">

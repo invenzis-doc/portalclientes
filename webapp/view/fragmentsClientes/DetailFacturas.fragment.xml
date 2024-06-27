@@ -29,8 +29,7 @@
 							<fb:control>
 								<m:DatePicker
 									id="fechaDesdePickerFacturas"											
-									change="onChangeFechaDesde"
-									valueFormat="yyyyMMdd"
+									valueFormat="dd/MM/yyyy"
 									displayFormat="dd/MM/yyyy"
 								/>											
 							</fb:control>
@@ -40,8 +39,7 @@
 							<fb:control>
 								<m:DatePicker
 									id="fechaHastaPickerFacturas"											
-									change="handleChange"
-									valueFormat="yyyyMMdd"
+									valueFormat="dd/MM/yyyy"
 									displayFormat="dd/MM/yyyy"/>											
 							</fb:control>
 						</fb:FilterGroupItem>
@@ -58,11 +56,25 @@
 
 		<Table
 			id="tableFacturas"						
-			rows="{path: '/ZI_PurchaseOrder'}"	
+			rows="{path: '/ZI_PurchaseOrder/Facturas'}"	
 			selectionMode="None">
+				<extension>
+				<m:OverflowToolbar  style="Clear">
+					<m:ToolbarSpacer/>
+					
+					<m:Input id="inputSearchFacturas"
+						placeholder="Buscar" width="10rem" class="sapUiMediumMarginEnd" liveChange="onSearchFacturas" />							
+						</m:OverflowToolbar>
+				</extension>
 				<columns>
+					<Column id="columnDocumentoFactura" width="7rem" sortProperty="Vbeln" >
+						<m:Label id="labelDocumentoFactura" text="DocFactura"/>
+						<template>
+								<m:Text id="textDocumentoFactura" text="{Vbeln}"/>	
+						</template>									
+					</Column>
 					<Column id="columnPedidoFactura" width="7rem" sortProperty="Vbeln" >
-						<m:Label id="labelPedidoFactura" text="DocFactura"/>
+						<m:Label id="labelPedidoFactura" text="Pedido"/>
 						<template>
 								<m:Link id="linkPedidoFactura" text="{Vbeln}" press="handleLinkPedido"/>	
 						</template>									

@@ -4,12 +4,14 @@ sap.ui.define([
     'sap/ui/model/json/JSONModel',
     '../model/formatter',
     'sap/ui/export/library',
-    "sap/m/MessageToast"
+    "sap/m/MessageToast",
+    'sap/ui/model/Filter',
+	'sap/ui/model/FilterOperator'
 ],
 /**
  * @param {typeof sap.ui.core.mvc.Controller} Controller
  */
-function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToast) {
+function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToast, Filter, FilterOperator) {
     "use strict";
     var EdmType = exportLibrary.EdmType;
 
@@ -57,7 +59,8 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
                 
             this._oModel.read("/ZI_PurchaseOrder", {
                 urlParameters: {
-                    "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'" 
+                    "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'",
+                    "$expand": "to_PurchaseOrderItem"
                 },
                 success: function(dataPedidos, responsePedidos) {
                     that._jsonModel.setProperty("/ZI_PurchaseOrder", dataPedidos.results);
@@ -90,8 +93,8 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
                     "$expand": "to_PurchaseOrderItem"
                 },
                 success: function(dataPedidos, responsePedidos) {
-                    that._jsonModel.setProperty("/ZI_PurchaseOrder", dataPedidos.results);
-                    that.getView().setModel(that._jsonModel);                                             
+                    that._jsonModel.setProperty("/Pedidos", dataPedidos.results);
+                    that.getView().setModel(that._jsonModel);                                    
                 },
                 error: function(oError) {
                 }
@@ -226,6 +229,60 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
                 }
             });   
             this.getSplitAppObj().toDetail(this.createId("detailOfertas"));
+        },onSearchOfertas: function() {
+            //Inicio los filtros vacios
+            var tableFilters = [];
+            
+            var inputPedido = this.byId("inputSearchOfertas");
+            var valuePedido = inputPedido.getValue();
+            var busquedaPedido = inputPedido.getValue()
+            
+            //Para cualquier campo, pregunto si contiene el string
+            var totalFilter = new Filter({
+                filters: [                      
+                    new Filter({
+                        path: "PurchaseOrder",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaPedido
+                    }),
+                    new Filter({
+                        path: "CreationDate",
+                        operator: FilterOperator.EQ,
+                        value1: busquedaPedido
+                    }), 
+                    new Filter({
+                        path: "CompanyCode",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaPedido
+                    }), 
+                    new Filter({
+                        path: "PurchaseOrderType",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaPedido
+                    }), 
+                    new Filter({
+                        path: "DocumentCurrency",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaPedido
+                    }), 
+                    new Filter({
+                        path: "PurchasingProcessingStatus",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaPedido
+                    }), 
+                    new Filter({
+                        path: "PurchasingCompletenessStatus",
+                        operator: FilterOperator.EQ,
+                        value1: busquedaPedido
+                    }),
+                ],
+                  
+                and: false
+              })
+                         
+            var oTable = this.getView().byId("tableOfertas");
+            oTable.getBinding("rows").filter(totalFilter);   
+
         },
 
         onFilterPedidos: function() { //boton buscar -> aplica filtros pedido
@@ -255,6 +312,61 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             });   
             this.getSplitAppObj().toDetail(this.createId("detailPedidos"));
         },
+        onSearchPedidos: function() {
+            //Inicio los filtros vacios
+            var tableFilters = [];
+            
+            var inputPedido = this.byId("inputSearchPedidos");
+            var valuePedido = inputPedido.getValue();
+            var busquedaPedido = inputPedido.getValue()
+            
+            //Para cualquier campo, pregunto si contiene el string
+            var totalFilter = new Filter({
+                filters: [                      
+                    new Filter({
+                        path: "PurchaseOrder",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaPedido
+                    }),
+                    new Filter({
+                        path: "CreationDate",
+                        operator: FilterOperator.EQ,
+                        value1: busquedaPedido
+                    }), 
+                    new Filter({
+                        path: "CompanyCode",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaPedido
+                    }), 
+                    new Filter({
+                        path: "PurchaseOrderType",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaPedido
+                    }), 
+                    new Filter({
+                        path: "DocumentCurrency",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaPedido
+                    }), 
+                    new Filter({
+                        path: "PurchasingProcessingStatus",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaPedido
+                    }), 
+                    new Filter({
+                        path: "PurchasingCompletenessStatus",
+                        operator: FilterOperator.EQ,
+                        value1: busquedaPedido
+                    }),
+                ],
+                  
+                and: false
+              })
+                         
+            var oTable = this.getView().byId("tablePedidos");
+            oTable.getBinding("rows").filter(totalFilter);   
+
+        },
 
         onFilterFacturas: function() { //boton buscar -> aplica filtros pedido
 
@@ -283,7 +395,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             });   
             this.getSplitAppObj().toDetail(this.createId("detailFacturas"));
         },
-        
+
         onFilterEntregas: function() { //boton buscar -> aplica filtros pedido
 
             var that = this;    
@@ -291,16 +403,16 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             //Obtiene filtros de fecha
             var fechaDesde = this.byId("fechaDesdePickerEntregas").getValue();
             var fechaHasta = this.byId("fechaHastaPickerEntregas").getValue();
-            var factura = this.byId("inputFactura").getValue();
-            var facturaFiltro= "";
-            if (factura)
-                facturaFiltro = " and PurchaseOrder eq '"+ factura +"'";
+            var entrega = this.byId("inputEntrega").getValue();
+            var entregaFiltro= "";
+            if (entrega)
+                entregaFiltro = " and PurchaseOrder eq '"+ entrega +"'";
             
             fechaHasta = this.formatNewDateToISO(fechaHasta)
             fechaDesde = this.formatNewDateToISO(fechaDesde);
             this._oModel.read("/ZI_PurchaseOrder", {
                 urlParameters: {
-                    "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'" + facturaFiltro
+                    "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'" + entregaFiltro
                 },
                 success: function(dataEntregas, responseEntregas) {
                     that._jsonModel.setProperty("/ZI_PurchaseOrder",dataEntregas.results);
