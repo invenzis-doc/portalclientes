@@ -63,9 +63,9 @@ sap.ui.define([], function() {
             },
     statusIcon: function (sValue){
         switch (sValue) {
-            case true: return ("sap-icon://sys-enter-2");
+            case "C": return ("sap-icon://sys-enter-2");
                         break;
-            case false: return ("sap-icon://error");
+            case "E": return ("sap-icon://error");
                         break;
             case "A": return ("sap-icon://alert");
                         break;
@@ -74,9 +74,9 @@ sap.ui.define([], function() {
     },
     statusColor: function (sValue){
         switch (sValue) {
-            case true: return ("Success");
+            case "C": return ("Success");
                         break;
-            case false: return ("Error");
+            case "E": return ("Error");
                         break;
             case "A": return ("Warning");
                         break;

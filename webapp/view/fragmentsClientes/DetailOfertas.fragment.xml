@@ -59,7 +59,7 @@
 		</form:SimpleForm>
 		<Table
 			id="tableOfertas"						
-			rows="{path: '/ZI_PurchaseOrder'}"	
+			rows="{path: '/Ofertas'}"	
 			selectionMode="None">
 				<extension>
 				<m:OverflowToolbar  style="Clear">
@@ -70,10 +70,10 @@
 						</m:OverflowToolbar>
 				</extension>
 				<columns>
-					<Column id="columnPedidoOferta" width="7rem" sortProperty="PurchaseOrder" >
+					<Column id="columnPedidoOferta" width="7rem" sortProperty="SalesQuotation" >
 						<m:Label id="text2" text="Pedido"/>
 						<template>
-								<m:Link id="linkPedidoOferta" text="{PurchaseOrder}" press="handleLinkOferta"/>	
+								<m:Link id="linkPedidoOferta" text="{SalesQuotation}" press="handleLinkOferta"/>	
 						</template>									
 					</Column>
 					<Column id="columnFecha" width="8rem" sortProperty="CreationDate" >
@@ -82,43 +82,23 @@
 							<m:Text id="columnText" text="{path:'CreationDate' , formatter:'.formatter.stringDate'}" />
 						</template>
 					</Column>
-					<Column id="columnCampoVendedor" width="10rem" sortProperty="CompanyCode">
+					<Column id="columnCampoVendedor" width="10rem" sortProperty="SalesOffice">
 						<m:Label id="labelCampoVendedor" text="Campo Vendedor"/>
 						<template>
-							<m:Text id="textCampoVendedor" text="{CompanyCode}" />								
+							<m:Text id="textCampoVendedor" text="{SalesOffice}" />								
 						</template>
 					</Column>
-					<Column id="columnTipoPedido" width="10rem" sortProperty="PurchaseOrderType">
-						<m:Label id="labelTipoPedido" text="Tipo de Pedido"/>
-						<template>
-							<m:Text id="columnTextTipoPedido" text="{PurchaseOrderType}" />								
-						</template>
-					</Column>
-					<Column id="columnMoneda" sortProperty="DocumentCurrency" width="5rem">
+					<Column id="columnMoneda" sortProperty="TransactionCurrency" width="5rem">
 						<m:Label id="labelMoneda" text="Moneda"/>
 						<template>
-							<m:Text id="textMoneda" text="{DocumentCurrency}" />								
+							<m:Text id="textMoneda" text="{TransactionCurrency}" />								
 						</template>
 					</Column>
-					<Column id="columnValorNetoOferta" sortProperty="to_PurchaseOrderItem/results/0/NetAmount" >
+					<Column id="columnValorNetoOferta" sortProperty="TotalNetAmount" >
 					<m:Label id="textValorNeto" text="Valor Neto"/>
 					<template>
-						<m:Text id="columnTextValorNetoOferta" text="{path:'to_PurchaseOrderItem/results/0/NetAmount' , formatter:'.formatter.removeZeros'}" />
+						<m:Text id="columnTextValorNetoOferta" text="{path:'TotalNetAmount' , formatter:'.formatter.removeZeros'}" />
 					</template>
-					</Column>
-					<Column id="columnBloqueadoOferta" width="7rem" sortProperty="PurchasingProcessingStatus">
-						<m:Label id="labelBloqueadoOferta" text="Bloqueado"/>
-						<template>
-							<m:Text id="textBloqueadoOferta" text="{PurchasingProcessingStatus}" />							
-						</template>
-					</Column>
-					<Column id="columnEstadoOferta" width="6rem" sortProperty="PurchasingCompletenessStatus" >
-						<m:Label id="labelEstadoOferta" text="Estado" />
-						<template>
-								<m:ObjectStatus class="sapUiSmallMarginBegin" id="statusOferta"		
-								icon="{path:'PurchasingCompletenessStatus' , formatter:'.formatter.statusIcon'}"
-								state="{path:'PurchasingCompletenessStatus' , formatter:'.formatter.statusColor'}" />
-						</template>
 					</Column>
 				</columns>						
 		</Table>

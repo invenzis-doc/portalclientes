@@ -27,32 +27,32 @@
 
 				<l:HorizontalLayout>					
 					<m:Label id="LabelPosicionOferta" text="Posicion: " class="labelHeader"/>
-					<Text text="{/OfertaSeleccionada/PurchaseOrderItem}" id="textPosicionOferta" />
+					<Text text="{SalesQuotationItem}" id="textPosicionOferta" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
 					<m:Label id="labelMaterialOferta" text="Material:" class="labelHeader"/>
-					<Text text="{/OfertaSeleccionada/Material}" id="textMaterialOferta" />
+					<Text text="{Material}" id="textMaterialOferta" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
 					<m:Label id="labelTextoPosicionOferta" text="Posicion:" class="labelHeader"/>
-					<Text text="{/OfertaSeleccionada/PurchaseOrderItemText}" id="textTextoPosicionOferta" />
+					<Text text="{SalesQuotationItemText}" id="textTextoPosicionOferta" />
 				</l:HorizontalLayout>
 				
 				<l:HorizontalLayout>					
 					<m:Label id="labelCantidadOferta" text="Cantidad:" class="labelHeader"/>
-					<Text text="{/OfertaSeleccionada/OrderQuantity}" id="textCantidadOferta" />
+					<Text text="{OrderQuantity}" id="textCantidadOferta" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
 					<m:Label id="labelUnidadOferta" text="Unidad:" class="labelHeader"/>
-					<Text text="{/OfertaSeleccionada/PurchaseOrderQuantityUnit}" id="textUnidadOferta" />
+					<Text text="{OrderQuantityUnit}" id="textUnidadOferta" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
 					<m:Label id="labelValorNetoOferta" text="Valor Neto: " class="labelHeader"/>
-					<Text text="{/OfertaSeleccionada/NetAmount}" id="textValorNetoOferta" />
+					<Text text="{NetAmount}" id="textValorNetoOferta" />
 				</l:HorizontalLayout>
 			</l:VerticalLayout>			
 			

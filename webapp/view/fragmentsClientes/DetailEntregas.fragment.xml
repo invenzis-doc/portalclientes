@@ -69,10 +69,10 @@
 						</m:OverflowToolbar>
 				</extension>
 				<columns>
-					<Column id="columnPedidoEntrega" width="7rem" sortProperty="Vbeln" >
+					<Column id="columnPedidoEntrega" width="7rem" sortProperty="OutBoundDelivery" >
 						<m:Label id="labelPedidoEntrega" text="Entrega"/>
 						<template>
-								<m:Text id="textPedidoEntrega" text="{Vbeln}"/>	
+								<m:Text id="textPedidoEntrega" text="{OutBoundDelivery}"/>	
 						</template>									
 					</Column>
 					<Column id="columnNPedidoEntrega" width="7rem" sortProperty="Vbeln" >
@@ -81,41 +81,47 @@
 								<m:Link id="linkNPedidoEntrega" text="{Vbeln}" press="handleLinkPedido"/>	
 						</template>									
 					</Column>
-					<Column id="columnPosicionEntrega" sortProperty="Posnr">
+					<Column id="columnPosicionEntrega" sortProperty="OutBoundDeliveryItem">
 						<m:Label id="labelPosicionEntrega" text="Posicion"/>
 						<template>
-							<m:Text id="textPosicionEntrega" text="{Posnr}" />								
+							<m:Text id="textPosicionEntrega" text="{OutBoundDeliveryItem}" />								
 						</template>
 					</Column>
-					<Column id="columFechaEntrega" width="6rem" sortProperty="Fkdat" >
+					<Column id="columFechaEntrega" width="6rem" sortProperty="CreationDate" >
 						<m:Label id="labelFechaEntrega"   text="Fecha"/>
 						<template>
-							<m:Text id="textFechaEntrega" text="{Fkdat}" />
+							<m:Text id="textFechaEntrega" text="{CreationDate}" />
 						</template>
 					</Column>
 					
-					<Column id="columnMaterialEntrega" sortProperty="Matnr">
+					<Column id="columnMaterialEntrega" sortProperty="Material">
 						<m:Label id="labelMaterialEntrega" text="Material"/>
 						<template>
-							<m:Text id="textMaterialEntrega" text="{Matnr}" />								
+							<m:Text id="textMaterialEntrega" text="{Material}" />								
 						</template>
 					</Column>
-					<Column id="columnTextoPosicionEntrega" width="5rem" sortProperty="Arktx">
+					<Column id="columnTextoPosicionEntrega" width="5rem" sortProperty="DeliveryDocumentItemText">
 						<m:Label id="labelTextoPosicionEntrega" text="Texto Posicion"/>
 						<template>
-							<m:Text id="textTextoPosicionEntrega" text="{Arktx}" />								
+							<m:Text id="textTextoPosicionEntrega" text="{DeliveryDocumentItemText}" />								
 						</template>
 					</Column>
-					<Column id="columnValorNetoEntrega" sortProperty="Netwr" >
-					<m:Label id="labelValorNetoEntrega" text="Cantidad Entregada"/>
+					<Column id="columnCantDeEntrega" sortProperty="ActualDeliveryQuantity" >
+					<m:Label id="labelCantDeEntrega" text="Cantidad de Entrega"/>
 					<template>
-						<m:Text id="textValorNetoEntrega" text="{Netwr}" />								
+						<m:Text id="textCantDeEntrega" text="{ActualDeliveryQuantity}" />								
 					</template>
 					</Column>
-					<Column id="columnUnidadEntrega" width="7rem" sortProperty="Meins">
+					<Column id="columnCantEntregada" sortProperty="ActualDeliveryQTYInBaseUnit" >
+					<m:Label id="labelCantEntregada" text="Cantidad Entregada"/>
+					<template>
+						<m:Text id="textCantEntregada" text="{ActualDeliveryQTYInBaseUnit}" />								
+					</template>
+					</Column>
+					<Column id="columnUnidadEntrega" width="7rem" sortProperty="BaseUnit">
 						<m:Label id="labelUnidadEntrega" text="Unidad"/>
 						<template>
-							<m:Text id="textUnidadEntrega" text="{Meins}" />							
+							<m:Text id="textUnidadEntrega" text="{BaseUnit}" />							
 						</template>
 					</Column>
 				</columns>						

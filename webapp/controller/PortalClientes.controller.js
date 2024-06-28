@@ -20,13 +20,13 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
         formatter:formatter,
                     
         onInit: function () { //al cargar la pagina setea los datos
-            this._oModel = new ODataModel("/sap/opu/odata/sap/Z_PURCHASEORDER_SRV", true);
+            this._oModel = new ODataModel("/sap/opu/odata/sap/ZI_SALESORDER_CDS", true);
             this._oModel.setHeaders({
                 "Accept":"application/pdf",
                 "Content-Type": "application/pdf"
             })
             var that = this;
-            this._oModel.read("/ZI_PurchaseOrder", {
+            this._oModel.read("/I_SalesOrder", {
                 success: function(data, response) {
                     var jsonModel = new JSONModel();
                     that.getView().setModel(jsonModel);
@@ -57,13 +57,13 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             that.byId("fechaDesdePickerOfertas").setValue(fechaI);
             that.byId("fechaHastaPickerOfertas").setValue(fechaF);
                 
-            this._oModel.read("/ZI_PurchaseOrder", {
+            this._oModel.read("/I_SalesQuotation", {
                 urlParameters: {
                     "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'",
-                    "$expand": "to_PurchaseOrderItem"
+                    //"$expand": "to_PurchaseOrderItem"
                 },
                 success: function(dataPedidos, responsePedidos) {
-                    that._jsonModel.setProperty("/ZI_PurchaseOrder", dataPedidos.results);
+                    that._jsonModel.setProperty("/Ofertas", dataPedidos.results);
                     that.getView().setModel(that._jsonModel);                                             
                 },
                 error: function(oError) {
@@ -87,13 +87,13 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             that.byId("fechaDesdePickerPedidos").setValue(fechaI);
             that.byId("fechaHastaPickerPedidos").setValue(fechaF);
             
-            that._oModel.read("/ZI_PurchaseOrder", {
+            that._oModel.read("/I_SalesOrder", {
                 urlParameters: {
                     "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'",
-                    "$expand": "to_PurchaseOrderItem"
+                    //"$expand": "to_PurchaseOrderItem"
                 },
                 success: function(dataPedidos, responsePedidos) {
-                    that._jsonModel.setProperty("/Pedidos", dataPedidos.results);
+                    that._jsonModel.setProperty("/I_SalesOrder", dataPedidos.results);
                     that.getView().setModel(that._jsonModel);                                    
                 },
                 error: function(oError) {
@@ -118,7 +118,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             that.byId("fechaDesdePickerEntregas").setValue(fechaI);
             that.byId("fechaHastaPickerEntregas").setValue(fechaF);
                
-            this._oModel.read("/ZI_PurchaseOrder", {
+            /*this._oModel.read("/ZI_PurchaseOrder", {
                 urlParameters: {
                     "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'"
                 },
@@ -128,7 +128,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
                 },
                 error: function(oError) {
                 }
-            });      
+            });      */
             this.getSplitAppObj().toDetail(this.createId("detailEntregas"));
         },
 
@@ -147,7 +147,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             that.byId("fechaDesdePickerFacturas").setValue(fechaI);
             that.byId("fechaHastaPickerFacturas").setValue(fechaF);
                
-            this._oModel.read("/ZI_PurchaseOrder", {
+            /*this._oModel.read("/ZI_PurchaseOrder", {
                 urlParameters: {
                     "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'"
                 },
@@ -157,7 +157,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
                 },
                 error: function(oError) {
                 }
-            });    
+            });    */
             this.getSplitAppObj().toDetail(this.createId("detailFacturas"));
         },
 
@@ -166,12 +166,14 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             var numPedido = linkPedido.getText();
             var that = this;
 
-            this._oModel.read("/ZI_PurchaseOrder('" + numPedido +"')/to_PurchaseOrderItem", {
+            this._oModel.read("/Z_SALESORDERITEM", {
                 urlParameters: {
-                    "sap-lang":'S'
+                    "$filter": "SalesOrder eq '" + numPedido + "'"
+                    //"sap-lang":'S'
                 },
                 success: function(data, response) {
                     that._jsonModel.setProperty("/PedidoSeleccionado",data.results[0]);
+                    console.log(that._jsonModel.getProperty("/PedidoSeleccionado"));
                     that.getView().setModel(that._jsonModel);                        
                 },
                 error: function(oError) {
@@ -186,7 +188,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             var numPedido = linkPedido.getText();
             var that = this;
 
-            this._oModel.read("/ZI_PurchaseOrder('" + numPedido +"')/to_PurchaseOrderItem", {
+            /*this._oModel.read("/ZI_SalesOrder('" + numPedido +"')", {
                 urlParameters: {
                     "sap-lang":'S'
                 },
@@ -196,7 +198,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
                 },
                 error: function(oError) {
                 }
-            });
+            });*/
 
             this.getSplitAppObj().toDetail(this.createId("detailOfertaDET"));
 
@@ -212,17 +214,17 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             var pedido = this.byId("inputOfertas").getValue();
             var pedidoFiltro= "";
             if (pedido)
-                pedidoFiltro = " and PurchaseOrder eq '"+ pedido +"'";
+                pedidoFiltro = " and SalesOrder eq '"+ pedido +"'";
             
             fechaHasta = this.formatNewDateToISO(fechaHasta)
             fechaDesde = this.formatNewDateToISO(fechaDesde);
 
-            this._oModel.read("/ZI_PurchaseOrder", {
+            this._oModel.read("/ZI_SalesOrder", {
                 urlParameters: {
-                    "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'" + pedidoFiltro
+                    "$filter": "SalesOrderDate ge datetime'"+ fechaDesde +"' and SalesOrderDate le datetime'"+ fechaHasta +"'" + pedidoFiltro
                 },
                 success: function(dataPedidos, responsePedidos) {
-                    that._jsonModel.setProperty("/ZI_PurchaseOrder",dataPedidos.results);
+                    that._jsonModel.setProperty("/Ofertas",dataPedidos.results);
                     that.getView().setModel(that._jsonModel);                                             
                 },
                 error: function(oError) {
@@ -295,16 +297,16 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             var pedido = this.byId("inputPedido").getValue();
             var pedidoFiltro= "";
             if (pedido)
-                pedidoFiltro = " and PurchaseOrder eq '"+ pedido +"'";
+                pedidoFiltro = " and SalesOrder eq '"+ pedido +"'";
             
             fechaHasta = this.formatNewDateToISO(fechaHasta)
             fechaDesde = this.formatNewDateToISO(fechaDesde);
-            this._oModel.read("/ZI_PurchaseOrder", {
+            this._oModel.read("/I_SalesOrder", {
                 urlParameters: {
                     "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'" + pedidoFiltro
                 },
                 success: function(dataPedidos, responsePedidos) {
-                    that._jsonModel.setProperty("/ZI_PurchaseOrder",dataPedidos.results);
+                    that._jsonModel.setProperty("/Pedidos",dataPedidos.results);
                     that.getView().setModel(that._jsonModel);                                             
                 },
                 error: function(oError) {
@@ -324,7 +326,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             var totalFilter = new Filter({
                 filters: [                      
                     new Filter({
-                        path: "PurchaseOrder",
+                        path: "SalesOrder",
                         operator: FilterOperator.Contains,
                         value1: busquedaPedido
                     }),
@@ -382,7 +384,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             
             fechaHasta = this.formatNewDateToISO(fechaHasta)
             fechaDesde = this.formatNewDateToISO(fechaDesde);
-            this._oModel.read("/ZI_PurchaseOrder", {
+            /*this._oModel.read("/ZI_PurchaseOrder", {
                 urlParameters: {
                     "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'" + facturaFiltro
                 },
@@ -392,7 +394,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
                 },
                 error: function(oError) {
                 }
-            });   
+            });   */
             this.getSplitAppObj().toDetail(this.createId("detailFacturas"));
         },
 
@@ -410,7 +412,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             
             fechaHasta = this.formatNewDateToISO(fechaHasta)
             fechaDesde = this.formatNewDateToISO(fechaDesde);
-            this._oModel.read("/ZI_PurchaseOrder", {
+            /*this._oModel.read("/ZI_PurchaseOrder", {
                 urlParameters: {
                     "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'" + entregaFiltro
                 },
@@ -420,7 +422,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
                 },
                 error: function(oError) {
                 }
-            });   
+            });   */
             this.getSplitAppObj().toDetail(this.createId("detailEntregas"));
         },
 

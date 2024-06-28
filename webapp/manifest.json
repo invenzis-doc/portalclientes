@@ -11,13 +11,13 @@
         "description": "{{appDescription}}",
         "resources": "resources.json",
         "dataSources": {
-            "Z_PURCHASEORDER_SRV": {
-                "uri": "/sap/opu/odata/sap/Z_PURCHASEORDER_SRV",
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZI_SALESORDER_CDS/",
                 "type": "OData",
                 "settings": {
-                    "annotations": [],
-                    "localUri": "localService/metadata.xml",
-                    "odataVersion": "2.0"
+                  "annotations": [],
+                  "localUri": "localService/metadata.xml",
+                  "odataVersion": "2.0"
                 }
             }
         },
@@ -70,12 +70,10 @@
                 }
             },
             "": {
-                "dataSource": "Z_PURCHASEORDER_SRV",
+                "dataSource": "mainService",
                 "preload": true,
-                "settings": {
-                    "defaultBindingMode": "TwoWay"
-                }
-            }
+                "settings": {"defaultBindingMode": "TwoWay"}
+              }
         },
         "resources": {
             "css": [

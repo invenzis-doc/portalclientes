@@ -58,7 +58,7 @@
 
 		<Table
 			id="tablePedidos"						
-			rows="{path: '/Pedidos'}"	
+			rows="{path: '/I_SalesOrder'}"	
 			selectionMode="None">
 			<extension>
 				<m:OverflowToolbar  style="Clear">
@@ -69,10 +69,10 @@
 						</m:OverflowToolbar>
 			</extension>
 				<columns>
-					<Column id="columnPedido" width="8rem" sortProperty="PurchaseOrder" >
+					<Column id="columnPedido" width="8rem" sortProperty="SalesOrder" >
 						<m:Label id="labelPedido" text="Pedido"/>
 						<template>
-								<m:Link id="linkPedido" text="{PurchaseOrder}" press="handleLinkPedido"/>	
+								<m:Link id="linkPedido" text="{SalesOrder}" press="handleLinkPedido"/>	
 						</template>									
 					</Column>
 					<Column id="columFechaPedido" width="8rem" sortProperty="CreationDate" >
@@ -81,42 +81,42 @@
 							<m:Text id="textFechaPedido" text="{path:'CreationDate' , formatter:'.formatter.stringDate'}" />
 						</template>
 					</Column>
-					<Column id="columnCampoVendedorPedido" width="10rem" sortProperty="CompanyCode">
+					<Column id="columnCampoVendedorPedido" width="10rem" sortProperty="SalesOffice">
 						<m:Label id="labelCampoVendedorPedido" text="Campo Vendedor"/>
 						<template>
-							<m:Text id="textCampoVendedorPedido" text="{CompanyCode}" />								
+							<m:Text id="textCampoVendedorPedido" text="{SalesOffice}" />								
 						</template>
 					</Column>
-					<Column id="columnTipoPedidoPedido" width="10rem" sortProperty="PurchaseOrderType">
+					<Column id="columnTipoPedidoPedido" width="10rem" sortProperty="SalesOrderType">
 						<m:Label id="labelTipoPedidoPedido" text="Tipo de Pedido"/>
 						<template>
-							<m:Text id="textTipoPedidoPedido" text="{PurchaseOrderType}" />								
+							<m:Text id="textTipoPedidoPedido" text="{SalesOrderType}" />								
 						</template>
 					</Column>
-					<Column id="columnMonedaPedido" width="5rem" sortProperty="DocumentCurrency">
+					<Column id="columnMonedaPedido" width="5rem" sortProperty="TransactionCurrency">
 						<m:Label id="labelMonedaPedido" text="Moneda"/>
 						<template>
-							<m:Text id="textMonedaPedido" text="{DocumentCurrency}" />								
+							<m:Text id="textMonedaPedido" text="{TransactionCurrency}" />								
 						</template>
 					</Column>
-					<Column id="columnValorNetoPedido" sortProperty="to_PurchaseOrderItem" >
+					<Column id="columnValorNetoPedido" sortProperty="TotalNetAmount" >
 					<m:Label id="label2ValorNetoPedido" text="Valor Neto"/>
 					<template>
-						<m:Text id="textoValorNetoPedido" width="10rem" text="{path:'to_PurchaseOrderItem/results/0/NetAmount' , formatter:'.formatter.removeZeros'}" />								
+						<m:Text id="textoValorNetoPedido" width="10rem" text="{path:'TotalNetAmount' , formatter:'.formatter.removeZeros'}" />								
 					</template>
 					</Column>
-					<Column id="columnBloqueadoPedido" width="7rem" sortProperty="PurchasingProcessingStatus">
+					<Column id="columnBloqueadoPedido" width="7rem" sortProperty="DeliveryBlockReason">
 						<m:Label id="labelBloqueadoPedido" text="Bloqueado"/>
 						<template>
-							<m:Text id="textBloqueadoPedido" text="{PurchasingProcessingStatus}" />							
+							<m:Text id="textBloqueadoPedido" text="{path:'DeliveryBlockReason' , formatter:'.formatter.stringBloq'}" />							
 						</template>
 					</Column>
-					<Column id="columnEstadoPedido" width="6rem" sortProperty="PurchasingCompletenessStatus" >
+					<Column id="columnEstadoPedido" width="6rem" sortProperty="OverallSDProcessStatus" >
 						<m:Label id="labelEstadoPedido" text="Estado" />
 						<template>
-							<m:ObjectStatus class="sapUiSmallMarginBegin" id="statusPedido"		
-								icon="{path:'PurchasingCompletenessStatus' , formatter:'.formatter.statusIcon'}"
-								state="{path:'PurchasingCompletenessStatus' , formatter:'.formatter.statusColor'}" />
+							<m:ObjectStatus class="sapUiSmallMarginBegin" id="CompleteDeliveryIsDefined"		
+								icon="{path:'OverallSDProcessStatus' , formatter:'.formatter.statusIcon'}"
+								state="{path:'OverallSDProcessStatus' , formatter:'.formatter.statusColor'}" />
 						</template>
 					</Column>
 				</columns>						

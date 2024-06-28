@@ -16,7 +16,7 @@
 							  markFlagged="true"
 							  markChanges="false"
 							  markChangesPress="handleMarkChangesPress"
-							  objectSubtitle="{/PedidoSeleccionado/PurchaseOrder}"
+							  objectSubtitle="{/PedidoSeleccionado/SalesOrder}"
 							  isObjectTitleAlwaysVisible="false"
 							  isObjectSubtitleAlwaysVisible="false"
 							  showPlaceholder="false">		
@@ -26,8 +26,8 @@
 			<l:VerticalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="labelPosicionPedido" text="Pedido: " class="labelHeader"/>
-					<Text text="{/PedidoSeleccionado/PurchaseOrderItem}" id="textPosicionPedido" />
+					<m:Label id="labelPosicionPedido" text="Posicion: " class="labelHeader"/>
+					<Text text="{/PedidoSeleccionado/SalesOrderItem}" id="textPosicionPedido" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
@@ -36,23 +36,23 @@
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="labelTextoPosicionPedido" text="Posicion:" class="labelHeader"/>
-					<Text text="{/PedidoSeleccionado/PurchaseOrderItemText}" id="textTextoPosicionPedido" />
+					<m:Label id="labelTextoPosicionPedido" text="Texto de Posicion:" class="labelHeader"/>
+					<Text text="{/PedidoSeleccionado/SalesOrderItemText}" id="textTextoPosicionPedido" />
 				</l:HorizontalLayout>
 				
 				<l:HorizontalLayout>					
 					<m:Label id="labelCantidadPedido" text="Cantidad:" class="labelHeader"/>
-					<Text text="{/PedidoSeleccionado/OrderQuantity}" id="textCantidadPedido" />
+					<Text text="{/PedidoSeleccionado/TargetQuantity}" id="textCantidadPedido" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
 					<m:Label id="labelUnidadPedido" text="Unidad:" class="labelHeader"/>
-					<Text text="{/PedidoSeleccionado/PurchaseOrderQuantityUnit}" id="textUnidadPedido" />
+					<Text text="{/PedidoSeleccionado/TargetQuantityUnit}" id="textUnidadPedido" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
 					<m:Label id="labelValorNetoPedido" text="Valor Neto: " class="labelHeader"/>
-					<Text text="{/PedidoSeleccionado/NetAmount}" id="textValorNetoPedido" />
+					<Text text="{path:'/PedidoSeleccionado/NetAmount' , formatter:'.formatter.removeZeros'}" id="textValorNetoPedido" />
 				</l:HorizontalLayout>
 			</l:VerticalLayout>			
 			
@@ -95,13 +95,14 @@
 						<items>
 							<ColumnListItem id="columnPosItemEntrega" vAlign="Middle">
 								<cells>								
-                                    <Text id="rowPosicionEntrega" text="{Vbeln}" />
-                                    <Text id="rowCodEntrega" text="{Posnr}" />
-                                    <Text id="rowDescEntrega" text="{Erdat}" />                                                                      							
-									<Text id="rowCantEntrega" text="{Matnr}" />
-									<Text id="rowPosicionTextoEntrega" text="{Arktx}" />
-									<Text id="rowCantidadEntrega" text="{path:'Lfimg' , formatter:'.formatter.removeZeros'}" />
-									<Text id="rowUnidadEntrega" text="{Meins}" />
+                                    <Text id="rowPosicionEntrega" text="{OutboundDelivery}" />
+                                    <Text id="rowCodEntrega" text="{OutboundDeliveryItem}" />
+                                    <Text id="rowDescEntrega" text="{CreationDate}" />                                                                      							
+									<Text id="rowCantEntrega" text="{Material}" />
+									<Text id="rowPosicionTextoEntrega" text="{DeliveryDocumentItemText}" />
+									<Text id="rowCantidadEntrega" text="{ActualDeliveryQuantity}" />
+									<Text id="rowCantidadEntregada" text="{ActualDeliveryQuantityInBaseUnit}" />
+									<Text id="rowUnidadEntrega" text="{BaseUnit}" />
 								</cells>
 							</ColumnListItem>
 						</items>
@@ -141,11 +142,13 @@
 						<items>
 							<ColumnListItem id="columnPosItemFactura" vAlign="Middle">
 								<cells>
-									<Text id="rowDocFactura" text="{Vbeln}" />
-									<Text id="rowMonedaFactura" text="{Waerk}" />								
-                                    <Text id="rowFechaFactura" text="{path:'Fkdat' , formatter:'.formatter.stringDate'}" />
-                                    <Text id="rowImporteFactura" text="{path:'Netwr' , formatter:'.formatter.removeZeros'}" />
-									<Link id="linkFactura" text="{Xblnr}" press="handleLinkFactura" />                                    																
+									<Text id="rowDocFactura" text="{BillingDocument}" />
+									<Text id="rowCondDePagoFactura" text="{CustomerPaymentTerms}" />
+									<Text id="rowMonedaFactura" text="{TransactionCurrency}" />								
+                                    <Text id="rowFechaFactura" text="{path:'CreationDate' , formatter:'.formatter.stringDate'}" />
+                                    <Text id="rowImporteFactura" text="{path:'TotalNetAmount' , formatter:'.formatter.removeZeros'}" />
+									<Text id="rowImporteImpuestoFactura" text="{path:'TotalTaxAmount' , formatter:'.formatter.removeZeros'}" />
+									<Link id="linkFactura" text="{DocuemntReferenceID}" press="handleLinkFactura" />                                    																
 								</cells>
 							</ColumnListItem>
 						</items>
