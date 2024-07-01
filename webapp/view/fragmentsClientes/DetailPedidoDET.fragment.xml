@@ -65,7 +65,7 @@
 						<Table
                             id="tableEntregaPedido"
                             inset="false"
-                            items="{path: '/PedidoSeleccionado/Entregas'}"
+                            items="{path: '/Entregas'}"
 							noDataText="Sin entregas"
 					    >
 						<columns>
@@ -81,8 +81,11 @@
 							<Column id="columnMaterial" minScreenWidth="Tablet" demandPopin="true">
 								<Text id="textMaterial" text="Material"/>								
 							</Column>
-							<Column id="columnTextoPosicion" minScreenWidth="Tablet" demandPopin="true">
-								<Text id="textTextoPosicion" text="Posicion"/>								
+							<Column id="columnTextoMaterial" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textTextoMaterial" text="Descripcion de Material"/>								
+							</Column>
+							<Column id="columnCantidadEntrega" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textCantidadEntrega" text="Cantidad de entrega"/>								
 							</Column>
 							<Column id="columnCantidadEntregada" minScreenWidth="Tablet" demandPopin="true">
 								<Text id="textCantidadEntregada" text="Cantidad entregada"/>								
@@ -97,11 +100,11 @@
 								<cells>								
                                     <Text id="rowPosicionEntrega" text="{OutboundDelivery}" />
                                     <Text id="rowCodEntrega" text="{OutboundDeliveryItem}" />
-                                    <Text id="rowDescEntrega" text="{CreationDate}" />                                                                      							
+                                    <Text id="rowDescEntrega" text="{path:'CreationDate' , formatter:'.formatter.stringDate'}" />                                                                      							
 									<Text id="rowCantEntrega" text="{Material}" />
 									<Text id="rowPosicionTextoEntrega" text="{DeliveryDocumentItemText}" />
 									<Text id="rowCantidadEntrega" text="{ActualDeliveryQuantity}" />
-									<Text id="rowCantidadEntregada" text="{ActualDeliveryQuantityInBaseUnit}" />
+									<Text id="rowCantidadEntregada" text="{ActualDeliveredQtyInBaseUnit}" />
 									<Text id="rowUnidadEntrega" text="{BaseUnit}" />
 								</cells>
 							</ColumnListItem>
@@ -118,11 +121,14 @@
 							<Table
                             id="tableFacturaPedido"
                             inset="false"
-                            items="{path: '/FacturaSeleccionada'}"
+                            items="{path: '/Facturas'}"
 							noDataText="Sin facturas">
 						<columns>
 							<Column id="columnDocFactura" minScreenWidth="Tablet" demandPopin="true">
 								<Text id="textDocFactura" text="Doc Factura"/>
+							</Column>
+							<Column id="columnCondFactura" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textCondFactura" text="Condicion de Pago"/>
 							</Column>
 							<Column id="columnMonedaTablaFactura" minScreenWidth="Tablet" demandPopin="true">
 								<Text id="textMonedaTablaFactura" text="Moneda"/>									
@@ -132,6 +138,9 @@
 							</Column>
 							<Column id="columnValorNetoTablaFactura" minScreenWidth="Tablet" demandPopin="true">
 								<Text id="textValorNetoTablaFactura" text="Valor Neto"/>								
+							</Column>
+							<Column id="columnImporteImpuestoTablaFactura" minScreenWidth="Tablet" demandPopin="true">
+								<Text id="textImporteImpuestoTablaFactura" text="Importe de  Impuesto"/>								
 							</Column>
 							<Column id="columnNReferencia" minScreenWidth="Tablet" demandPopin="true">
 								<Text id="textNReferencia" text="Numero de Referencia"/>								
@@ -144,11 +153,11 @@
 								<cells>
 									<Text id="rowDocFactura" text="{BillingDocument}" />
 									<Text id="rowCondDePagoFactura" text="{CustomerPaymentTerms}" />
-									<Text id="rowMonedaFactura" text="{TransactionCurrency}" />								
-                                    <Text id="rowFechaFactura" text="{path:'CreationDate' , formatter:'.formatter.stringDate'}" />
-                                    <Text id="rowImporteFactura" text="{path:'TotalNetAmount' , formatter:'.formatter.removeZeros'}" />
-									<Text id="rowImporteImpuestoFactura" text="{path:'TotalTaxAmount' , formatter:'.formatter.removeZeros'}" />
-									<Link id="linkFactura" text="{DocuemntReferenceID}" press="handleLinkFactura" />                                    																
+									<Text id="rowMonedaFactura" text="{TransactionCurrency}" />
+									<Text id="rowFechaFactura" text="{path:'CreationDate' , formatter:'.formatter.stringDate'}" />
+									<Text id="rowImporteFactura" text="{path:'TotalNetAmount' , formatter:'.formatter.removeZeros'}" />	
+									<Text id="rowImporteImpuestoFactura" text="{path:'TaxAmount' , formatter:'.formatter.removeZeros'}" />
+									<Text id="linkFactura" text="{DocuemntReferenceID}"/>                                    																
 								</cells>
 							</ColumnListItem>
 						</items>

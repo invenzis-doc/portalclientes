@@ -75,10 +75,10 @@
 						</template>									
 					</Column>
 
-					<Column id="columnPedidoFactura" width="7rem" sortProperty="Vbeln" >
+					<Column id="columnPedidoFactura" width="7rem" sortProperty="ReferenceSDDocument" >
 						<m:Label id="labelPedidoFactura" text="Pedido"/>
 						<template>
-								<m:Link id="linkPedidoFactura" text="{Vbeln}" press="handleLinkPedido"/>	
+								<m:Link id="linkPedidoFactura" text="{to_Item/results/0/ReferenceSDDocument}" press="handleLinkPedido"/>	
 						</template>									
 					</Column>
 
@@ -110,7 +110,7 @@
 					</template>
 					</Column>
 
-					<Column id="columnImporteDeImpuestoFactura" sortProperty="TotalTaxAmount">
+					<Column id="columnImporteDeImpuestoFactura" sortProperty="TaxAmount">
 						<m:Label id="labelImporteDeImpuestoFactura" text="Importe De Impuesto"/>
 						<template>
 							<m:Text id="textImporteDeImpuestoFactura" text="{path:'TaxAmount' , formatter:'.formatter.removeZeros'}" />								

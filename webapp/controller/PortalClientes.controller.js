@@ -19,7 +19,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
 
         formatter:formatter,
                     
-        onInit: function () { //al cargar la pagina setea los datos
+        onInit: function () {
             this._oModel = new ODataModel("/sap/opu/odata/sap/ZI_SALESORDER_CDS", true);
             this._oModel.setHeaders({
                 "Accept":"application/pdf",
@@ -40,7 +40,11 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
                 "Accept":"application/pdf",
                 "Content-Type": "application/pdf"
             })
-            
+            this._oModel5 = new ODataModel("/sap/opu/odata/sap/Z_BILLINGDOCUMENTITEM_CDS", true);
+            this._oModel5.setHeaders({
+                "Accept":"application/pdf",
+                "Content-Type": "application/pdf"
+            })
             var that = this;
             this._oModel.read("/I_SalesOrder", {
                 success: function(data, response) {
@@ -54,13 +58,13 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             });
         },
         
-        onSelectHome: function() { //nav list item home -> carga fragment detailHome
+        onSelectHome: function() {
             this.getSplitAppObj().toDetail(this.createId("detailHome"));
         },
         
-        onSelectOfertas: function() { //nav list item ofertas -> carga fragment detailOfertas y setea filters
+        onSelectOfertas: function() {
             var that = this;
-            //Inicializar los filtros de fecha
+
             var fechaHoy = new Date();
             var fechaF = this.formatFilterDate(fechaHoy);
             var fechaHasta = this.formatDateToISO(fechaHoy)
@@ -87,9 +91,9 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             this.getSplitAppObj().toDetail(this.createId("detailOfertas"));
         },
 
-        onSelectPedidos: function() {// nav list item pedidos -> carga fragment y filters
+        onSelectPedidos: function() {
             var that = this;
-            //Inicializar los filtros de fecha
+
             var fechaHoy = new Date();
             var fechaF = this.formatFilterDate(fechaHoy);
             var fechaHasta = this.formatDateToISO(fechaHoy)
@@ -117,9 +121,9 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             this.getSplitAppObj().toDetail(this.createId("detailPedidos"));
         },
 
-        onSelectEntregas: function() { //nav list item entregas -> carga fragment detailEntregas y setea filters
+        onSelectEntregas: function() {
             var that = this;
-            //Inicializar los filtros de fecha
+           
             var fechaHoy = new Date();
             var fechaF = this.formatFilterDate(fechaHoy);
             var fechaHasta = this.formatDateToISO(fechaHoy)
@@ -134,7 +138,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
                
             this._oModel3.read("/ZI_OutboundDeliveryItem", {
                 urlParameters: {
-                    "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'"
+                    //"$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'"
                 },
                 success: function(data, response) {
                     that._jsonModel.setProperty("/ZI_OutboundDeliveryItem",data.results);
@@ -146,9 +150,9 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             this.getSplitAppObj().toDetail(this.createId("detailEntregas"));
         },
 
-        onSelectFacturas: function() {// nav list item facturas -> carga fragment y filters
+        onSelectFacturas: function() {
             var that = this;
-            //Inicializar los filtros de fecha
+
             var fechaHoy = new Date();
             var fechaF = this.formatFilterDate(fechaHoy);
             var fechaHasta = this.formatDateToISO(fechaHoy)
@@ -163,19 +167,33 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
                
             this._oModel4.read("/ZI_BillingDocument", {
                 urlParameters: {
-                    "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'"
+                    "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'",
+                    "$expand": "to_Item"
                 },
                 success: function(data, response) {
                     that._jsonModel.setProperty("/ZI_BillingDocument",data.results);
+                    console.log(data.results[0]/to_Item);
                     that.getView().setModel(that._jsonModel);                                              
                 },
                 error: function(oError) {
                 }
             });
+            /*this._oModel5.read("/I_BillingDocument", {
+                urlParameters: {
+                    //"$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'"
+                },
+                success: function(data, response) {
+                    that._jsonModel.setProperty("/ZI_BillingDocument",data.results);
+                    console.log(data.results);
+                    that.getView().setModel(that._jsonModel);                                              
+                },
+                error: function(oError) {
+                }
+            });*/
             this.getSplitAppObj().toDetail(this.createId("detailFacturas"));
         },
 
-        handleLinkPedido: function(evt) { //link pedido -> detail pedido
+        handleLinkPedido: function(evt) {
             var linkPedido = evt.getSource();
             var numPedido = linkPedido.getText();
             var that = this;
@@ -183,12 +201,57 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             this._oModel.read("/Z_SALESORDERITEM", {
                 urlParameters: {
                     "$filter": "SalesOrder eq '" + numPedido + "'"
-                    //"sap-lang":'S'
                 },
                 success: function(data, response) {
                     that._jsonModel.setProperty("/PedidoSeleccionado",data.results[0]);
-                    console.log(that._jsonModel.getProperty("/PedidoSeleccionado"));
                     that.getView().setModel(that._jsonModel);                        
+                },
+                error: function(oError) {
+                }
+            });
+
+            this._oModel4.read("/Z_BillingDocumentItem", {
+                urlParameters: {
+                    "$filter": "ReferenceSDDocument eq '" + numPedido + "'",
+                    "$expand": "to_BillingDocument"
+                },
+                success: function(data, response) {
+                    that._jsonModel.setProperty("/Facturas", data);
+                    console.log(data);
+                    that.getView().setModel(that._jsonModel);       
+                                                                  
+                },
+                error: function(oError) {
+                }
+            });
+
+            /*this._oModel4.read("/ZI_BillingDocument", {
+                urlParameters: {
+                    "$expand": "to_Item"
+                },
+                success: function(data, response) {
+                    var filteredData = data.results.filter(function(billingDoc) {
+                        return billingDoc.to_Item.results.some(function(item) {
+                            return item.ReferenceSDDocument === numPedido;
+                        });
+                    });
+                    
+                    that._jsonModel.setProperty("/Facturas", filteredData);
+                    console.log(filteredData);
+                    that.getView().setModel(that._jsonModel);       
+                                                                  
+                },
+                error: function(oError) {
+                }
+            });*/
+
+            this._oModel3.read("/ZI_OutboundDeliveryItem", {
+                urlParameters: {
+                    "$filter": "ReferenceSDDocument eq '" + numPedido + "'"
+                },
+                success: function(data, response) {
+                    that._jsonModel.setProperty("/Entregas",data.results);
+                    that.getView().setModel(that._jsonModel);                                              
                 },
                 error: function(oError) {
                 }
@@ -197,7 +260,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             this.getSplitAppObj().toDetail(this.createId("detailPedidoDET"));
         },
 
-        handleLinkOferta: function(evt) {// link oferta -> detail oferta
+        handleLinkOferta: function(evt) {
             var linkOferta = evt.getSource();
             var numOferta = linkOferta.getText();
             var that = this;
@@ -219,7 +282,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
 
         },
 
-        onFilterOfertas: function() { // boton buscar -> aplica filtros
+        onFilterOfertas: function() {
             var that = this;    
 
             var fechaDesde = this.byId("fechaDesdePickerOfertas").getValue();
@@ -245,51 +308,39 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
                 }
             });   
             this.getSplitAppObj().toDetail(this.createId("detailOfertas"));
-        },onSearchOfertas: function() {
-            //Inicio los filtros vacios
-            var tableFilters = [];
+        },
+        
+        onSearchOfertas: function() {
             
-            var inputPedido = this.byId("inputSearchOfertas");
-            var valuePedido = inputPedido.getValue();
-            var busquedaPedido = inputPedido.getValue()
+            var inputOferta = this.byId("inputSearchOfertas");
+            var busquedaOferta = inputOferta.getValue()
             
-            //Para cualquier campo, pregunto si contiene el string
             var totalFilter = new Filter({
                 filters: [                      
                     new Filter({
-                        path: "PurchaseOrder",
+                        path: "SalesQuotation",
                         operator: FilterOperator.Contains,
-                        value1: busquedaPedido
+                        value1: busquedaOferta
                     }),
                     new Filter({
                         path: "CreationDate",
                         operator: FilterOperator.EQ,
-                        value1: busquedaPedido
+                        value1: busquedaOferta
                     }), 
                     new Filter({
-                        path: "CompanyCode",
+                        path: "SalesOffice",
                         operator: FilterOperator.Contains,
-                        value1: busquedaPedido
+                        value1: busquedaOferta
                     }), 
                     new Filter({
-                        path: "PurchaseOrderType",
+                        path: "TransactionCurrency",
                         operator: FilterOperator.Contains,
-                        value1: busquedaPedido
+                        value1: busquedaOferta
                     }), 
                     new Filter({
-                        path: "DocumentCurrency",
+                        path: "TotalNetAmount",
                         operator: FilterOperator.Contains,
-                        value1: busquedaPedido
-                    }), 
-                    new Filter({
-                        path: "PurchasingProcessingStatus",
-                        operator: FilterOperator.Contains,
-                        value1: busquedaPedido
-                    }), 
-                    new Filter({
-                        path: "PurchasingCompletenessStatus",
-                        operator: FilterOperator.EQ,
-                        value1: busquedaPedido
+                        value1: busquedaOferta
                     }),
                 ],
                   
@@ -301,11 +352,10 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
 
         },
 
-        onFilterPedidos: function() { //boton buscar -> aplica filtros pedido
+        onFilterPedidos: function() {
 
             var that = this;    
 
-            //Obtiene filtros de fecha
             var fechaDesde = this.byId("fechaDesdePickerPedidos").getValue();
             var fechaHasta = this.byId("fechaHastaPickerPedidos").getValue();
             var pedido = this.byId("inputPedido").getValue();
@@ -320,7 +370,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
                     "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'" + pedidoFiltro
                 },
                 success: function(dataPedidos, responsePedidos) {
-                    that._jsonModel.setProperty("/Pedidos",dataPedidos.results);
+                    that._jsonModel.setProperty("/I_SalesOrder",dataPedidos.results);
                     that.getView().setModel(that._jsonModel);                                             
                 },
                 error: function(oError) {
@@ -328,15 +378,12 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             });   
             this.getSplitAppObj().toDetail(this.createId("detailPedidos"));
         },
+
         onSearchPedidos: function() {
-            //Inicio los filtros vacios
-            var tableFilters = [];
             
             var inputPedido = this.byId("inputSearchPedidos");
-            var valuePedido = inputPedido.getValue();
             var busquedaPedido = inputPedido.getValue()
             
-            //Para cualquier campo, pregunto si contiene el string
             var totalFilter = new Filter({
                 filters: [                      
                     new Filter({
@@ -350,28 +397,33 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
                         value1: busquedaPedido
                     }), 
                     new Filter({
-                        path: "CompanyCode",
+                        path: "SalesOffice",
                         operator: FilterOperator.Contains,
                         value1: busquedaPedido
                     }), 
                     new Filter({
-                        path: "PurchaseOrderType",
+                        path: "SalesOrderType",
                         operator: FilterOperator.Contains,
                         value1: busquedaPedido
                     }), 
                     new Filter({
-                        path: "DocumentCurrency",
+                        path: "TransactionCurrency",
                         operator: FilterOperator.Contains,
                         value1: busquedaPedido
-                    }), 
+                    }),
                     new Filter({
-                        path: "PurchasingProcessingStatus",
-                        operator: FilterOperator.Contains,
-                        value1: busquedaPedido
-                    }), 
-                    new Filter({
-                        path: "PurchasingCompletenessStatus",
+                        path: "TotalNetAmount",
                         operator: FilterOperator.EQ,
+                        value1: busquedaPedido
+                    }), 
+                    new Filter({
+                        path: "DeliveryBlockReason",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaPedido
+                    }), 
+                    new Filter({
+                        path: "OverallSDProcessStatus",
+                        operator: FilterOperator.Contains,
                         value1: busquedaPedido
                     }),
                 ],
@@ -384,70 +436,186 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
 
         },
 
-        onFilterFacturas: function() { //boton buscar -> aplica filtros pedido
+        onFilterFacturas: function() {
 
             var that = this;    
 
-            //Obtiene filtros de fecha
             var fechaDesde = this.byId("fechaDesdePickerFacturas").getValue();
             var fechaHasta = this.byId("fechaHastaPickerFacturas").getValue();
             var factura = this.byId("inputFactura").getValue();
             var facturaFiltro= "";
             if (factura)
-                facturaFiltro = " and PurchaseOrder eq '"+ factura +"'";
+                facturaFiltro = " and BillingDocument eq '"+ factura +"'";
             
             fechaHasta = this.formatNewDateToISO(fechaHasta)
             fechaDesde = this.formatNewDateToISO(fechaDesde);
-            /*this._oModel.read("/ZI_PurchaseOrder", {
+            this._oModel4.read("/ZI_BillingDocument", {
                 urlParameters: {
-                    "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'" + facturaFiltro
+                    "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'" + facturaFiltro,
+                    "$expand": "to_Item"
                 },
-                success: function(dataFacturas, responsefacturas) {
-                    that._jsonModel.setProperty("/ZI_PurchaseOrder",dataFacturas.results);
-                    that.getView().setModel(that._jsonModel);                                             
+                success: function(data, response) {
+                    that._jsonModel.setProperty("/ZI_BillingDocument",data.results);
+                    that.getView().setModel(that._jsonModel);                                              
                 },
                 error: function(oError) {
                 }
-            });   */
+            });
             this.getSplitAppObj().toDetail(this.createId("detailFacturas"));
         },
+        onSearchFacturas: function() {
+            
+            var inputFactura = this.byId("inputSearchFacturas");
+            var busquedaFactura = inputFactura.getValue()
+            
+            var totalFilter = new Filter({
+                filters: [                      
+                    new Filter({
+                        path: "BillingDocument",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaFactura
+                    }),
+                    new Filter({
+                        path: "CreationDate",
+                        operator: FilterOperator.EQ,
+                        value1: busquedaFactura
+                    }), 
+                    new Filter({
+                        path: "CustomerPaymentTermsName",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaFactura
+                    }),
+                    new Filter({
+                        path: "TransactionCurrency",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaFactura
+                    }),
+                    new Filter({
+                        path: "TaxAmount",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaFactura
+                    }), 
+                    new Filter({
+                        path: "TotalNetAmount",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaFactura
+                    }),
+                    new Filter({
+                        path: "DocumentReferenceID",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaFactura
+                    }),
+                    new Filter({
+                        path: "to_Item/results/0/ReferenceSDDocument",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaFactura
+                    }),
+                ],
+                  
+                and: false
+              })
+                         
+            var oTable = this.getView().byId("tableFacturas");
+            oTable.getBinding("rows").filter(totalFilter);   
 
-        onFilterEntregas: function() { //boton buscar -> aplica filtros pedido
+        },
+
+        onFilterEntregas: function() {
 
             var that = this;    
 
-            //Obtiene filtros de fecha
             var fechaDesde = this.byId("fechaDesdePickerEntregas").getValue();
             var fechaHasta = this.byId("fechaHastaPickerEntregas").getValue();
             var entrega = this.byId("inputEntrega").getValue();
             var entregaFiltro= "";
             if (entrega)
-                entregaFiltro = " and PurchaseOrder eq '"+ entrega +"'";
+                entregaFiltro = " and OutboundDelivery eq'"+ entrega +"'";
             
             fechaHasta = this.formatNewDateToISO(fechaHasta)
             fechaDesde = this.formatNewDateToISO(fechaDesde);
-            /*this._oModel.read("/ZI_PurchaseOrder", {
+            this._oModel3.read("/ZI_OutboundDeliveryItem", {
                 urlParameters: {
                     "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'" + entregaFiltro
                 },
-                success: function(dataEntregas, responseEntregas) {
-                    that._jsonModel.setProperty("/ZI_PurchaseOrder",dataEntregas.results);
-                    that.getView().setModel(that._jsonModel);                                             
+                success: function(data, response) {
+                    that._jsonModel.setProperty("/ZI_OutboundDeliveryItem",data.results);
+                    that.getView().setModel(that._jsonModel);                                              
                 },
                 error: function(oError) {
                 }
-            });   */
+            });
             this.getSplitAppObj().toDetail(this.createId("detailEntregas"));
         },
+        onSearchEntregas: function() {
+            
+            var inputEntrega = this.byId("inputSearchEntrega");
+            var busquedaEntrega = inputEntrega.getValue()
+            var totalFilter = new Filter({
+                filters: [                      
+                    new Filter({
+                        path: "OutboundDelivery",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaEntrega
+                    }),
+                    new Filter({
+                        path: "CreationDate",
+                        operator: FilterOperator.EQ,
+                        value1: busquedaEntrega
+                    }), 
+                    new Filter({
+                        path: "OutboundDeliveryItem",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaEntrega
+                    }),
+                    new Filter({
+                        path: "DeliveryDocumentItemText",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaEntrega
+                    }),
+                    new Filter({
+                        path: "Material",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaEntrega
+                    }), 
+                    new Filter({
+                        path: "ActualDeliveryQuantity",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaEntrega
+                    }),
+                    new Filter({
+                        path: "ActualDeliveredQtyInBaseUnit",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaEntrega
+                    }),
+                    new Filter({
+                        path: "BaseUnit",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaEntrega
+                    }),
+                    new Filter({
+                        path: "ReferenceSDDocument",
+                        operator: FilterOperator.Contains,
+                        value1: busquedaEntrega
+                    }),
+                ],
+                  
+                and: false
+              })
+              console.log("salio");
+                         
+            var oTable = this.getView().byId("tableEntregas");
+            oTable.getBinding("rows").filter(totalFilter);   
 
-        getSplitAppObj: function () { // nav function
+        },
+
+        getSplitAppObj: function () {
             var result = this.byId("SplitContDemo");
             if (!result) {
                 Log.info("SplitApp object can't be found");
             }
             return result;
         },
-        formatFilterDate : function (date) { //format date filters
+        formatFilterDate : function (date) {
             if (!date) {
                 return "";
             }
@@ -465,10 +633,8 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             return formattedDate; 
         },
         formatDateToISO: function(dateString) {
-            // Crear un objeto Date a partir del string
             var date = new Date(dateString);
         
-            // Obtener componentes de la fecha
             var year = date.getFullYear();
             var month = ("0" + (date.getMonth() + 1)).slice(-2);
             var day = ("0" + date.getDate()).slice(-2);
@@ -476,7 +642,6 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             var minutes = ("0" + date.getMinutes()).slice(-2);
             var seconds = ("0" + date.getSeconds()).slice(-2);
         
-            // Formatear en ISO 8601
             var formattedDate = year + "-" + month + "-" + day + "T" + hours + ":" + minutes + ":" + seconds;
         
             return formattedDate;

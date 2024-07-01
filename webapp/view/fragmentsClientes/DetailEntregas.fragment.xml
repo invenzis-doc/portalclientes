@@ -64,7 +64,7 @@
 				<m:OverflowToolbar  style="Clear">
 					<m:ToolbarSpacer/>
 					
-					<m:Input id="inputSearchEntregas"
+					<m:Input id="inputSearchEntrega"
 						placeholder="Buscar" width="10rem" class="sapUiMediumMarginEnd" liveChange="onSearchEntregas" />							
 						</m:OverflowToolbar>
 				</extension>
@@ -76,10 +76,10 @@
 						</template>									
 					</Column>
 
-					<Column id="columnNPedidoEntrega" width="7rem" sortProperty="Vbeln" >
+					<Column id="columnNPedidoEntrega" width="7rem" sortProperty="ReferenceSDDocument" >
 						<m:Label id="labelNPedidoEntrega" text="Pedido"/>
 						<template>
-								<m:Link id="linkNPedidoEntrega" text="{Vbeln}" press="handleLinkPedido"/>	
+								<m:Link id="linkNPedidoEntrega" text="{ReferenceSDDocument}" press="handleLinkPedido"/>	
 						</template>									
 					</Column>
 
@@ -105,7 +105,7 @@
 					</Column>
 
 					<Column id="columnTextoPosicionEntrega" width="10rem" sortProperty="DeliveryDocumentItemText">
-						<m:Label id="labelTextoPosicionEntrega" text="Texto Posicion"/>
+						<m:Label id="labelTextoPosicionEntrega" text="Descripcion de Material"/>
 						<template>
 							<m:Text id="textTextoPosicionEntrega" text="{DeliveryDocumentItemText}" />								
 						</template>

@@ -11,6 +11,8 @@
                     <PropertyRef Name="OutboundDeliveryItem"/>
                 </Key>
                 <Property Name="OutboundDelivery" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Entrega de salida"/>
+                <Property Name="ReferenceSDDocument" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase"/>
+                <Property Name="ReferenceSDDocumentItem" Type="Edm.String" MaxLength="6" sap:display-format="NonNegative"/>
                 <Property Name="OutboundDeliveryItem" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="NonNegative" sap:label="Posición entr.salida" sap:quickinfo="Posición entrega salida"/>
                 <Property Name="DeliveryDocumentItemCategory" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Tipo de posición" sap:quickinfo="Tipo de posición de la entrega"/>
                 <Property Name="CreationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Creado el" sap:quickinfo="Fecha de creación del registro"/>
