@@ -58,7 +58,7 @@
 
 		<Table
 			id="tableEntregas"						
-			rows="{path: '/ZI_PurchaseOrder/Entregas'}"	
+			rows="{path: '/ZI_OutboundDeliveryItem'}"	
 			selectionMode="None">
 				<extension>
 				<m:OverflowToolbar  style="Clear">
@@ -69,28 +69,31 @@
 						</m:OverflowToolbar>
 				</extension>
 				<columns>
-					<Column id="columnPedidoEntrega" width="7rem" sortProperty="OutBoundDelivery" >
+					<Column id="columnPedidoEntrega" width="7rem" sortProperty="OutboundDelivery" >
 						<m:Label id="labelPedidoEntrega" text="Entrega"/>
 						<template>
-								<m:Text id="textPedidoEntrega" text="{OutBoundDelivery}"/>	
+								<m:Text id="textPedidoEntrega" text="{OutboundDelivery}"/>	
 						</template>									
 					</Column>
+
 					<Column id="columnNPedidoEntrega" width="7rem" sortProperty="Vbeln" >
 						<m:Label id="labelNPedidoEntrega" text="Pedido"/>
 						<template>
 								<m:Link id="linkNPedidoEntrega" text="{Vbeln}" press="handleLinkPedido"/>	
 						</template>									
 					</Column>
-					<Column id="columnPosicionEntrega" sortProperty="OutBoundDeliveryItem">
+
+					<Column id="columnPosicionEntrega" sortProperty="OutboundDeliveryItem">
 						<m:Label id="labelPosicionEntrega" text="Posicion"/>
 						<template>
-							<m:Text id="textPosicionEntrega" text="{OutBoundDeliveryItem}" />								
+							<m:Text id="textPosicionEntrega" text="{OutboundDeliveryItem}" />								
 						</template>
 					</Column>
+
 					<Column id="columFechaEntrega" width="6rem" sortProperty="CreationDate" >
 						<m:Label id="labelFechaEntrega"   text="Fecha"/>
 						<template>
-							<m:Text id="textFechaEntrega" text="{CreationDate}" />
+							<m:Text id="textFechaEntrega" text="{path:'CreationDate' , formatter:'.formatter.stringDate'}" />
 						</template>
 					</Column>
 					
@@ -100,30 +103,35 @@
 							<m:Text id="textMaterialEntrega" text="{Material}" />								
 						</template>
 					</Column>
-					<Column id="columnTextoPosicionEntrega" width="5rem" sortProperty="DeliveryDocumentItemText">
+
+					<Column id="columnTextoPosicionEntrega" width="10rem" sortProperty="DeliveryDocumentItemText">
 						<m:Label id="labelTextoPosicionEntrega" text="Texto Posicion"/>
 						<template>
 							<m:Text id="textTextoPosicionEntrega" text="{DeliveryDocumentItemText}" />								
 						</template>
 					</Column>
+
 					<Column id="columnCantDeEntrega" sortProperty="ActualDeliveryQuantity" >
 					<m:Label id="labelCantDeEntrega" text="Cantidad de Entrega"/>
 					<template>
 						<m:Text id="textCantDeEntrega" text="{ActualDeliveryQuantity}" />								
 					</template>
 					</Column>
-					<Column id="columnCantEntregada" sortProperty="ActualDeliveryQTYInBaseUnit" >
+
+					<Column id="columnCantEntregada" sortProperty="ActualDeliveredQtyInBaseUnit" >
 					<m:Label id="labelCantEntregada" text="Cantidad Entregada"/>
 					<template>
-						<m:Text id="textCantEntregada" text="{ActualDeliveryQTYInBaseUnit}" />								
+						<m:Text id="textCantEntregada" text="{ActualDeliveredQtyInBaseUnit}" />								
 					</template>
 					</Column>
+
 					<Column id="columnUnidadEntrega" width="7rem" sortProperty="BaseUnit">
 						<m:Label id="labelUnidadEntrega" text="Unidad"/>
 						<template>
 							<m:Text id="textUnidadEntrega" text="{BaseUnit}" />							
 						</template>
 					</Column>
+
 				</columns>						
 			</Table>
 		</l:VerticalLayout>

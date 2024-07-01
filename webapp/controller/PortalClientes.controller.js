@@ -25,6 +25,22 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
                 "Accept":"application/pdf",
                 "Content-Type": "application/pdf"
             })
+            this._oModel2 = new ODataModel("/sap/opu/odata/sap/ZI_SALESQUOTATION_CDS", true);
+            this._oModel2.setHeaders({
+                "Accept":"application/pdf",
+                "Content-Type": "application/pdf"
+            })
+            this._oModel3 = new ODataModel("/sap/opu/odata/sap/ZI_OUTBOUNDDELIVERYITEM_CDS", true);
+            this._oModel3.setHeaders({
+                "Accept":"application/pdf",
+                "Content-Type": "application/pdf"
+            })
+            this._oModel4 = new ODataModel("/sap/opu/odata/sap/ZI_BILLINGDOCUMENT_CDS", true);
+            this._oModel4.setHeaders({
+                "Accept":"application/pdf",
+                "Content-Type": "application/pdf"
+            })
+            
             var that = this;
             this._oModel.read("/I_SalesOrder", {
                 success: function(data, response) {
@@ -57,10 +73,9 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             that.byId("fechaDesdePickerOfertas").setValue(fechaI);
             that.byId("fechaHastaPickerOfertas").setValue(fechaF);
                 
-            this._oModel.read("/I_SalesQuotation", {
+            this._oModel2.read("/ZI_SalesQuotation", {
                 urlParameters: {
-                    "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'",
-                    //"$expand": "to_PurchaseOrderItem"
+                    "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'"
                 },
                 success: function(dataPedidos, responsePedidos) {
                     that._jsonModel.setProperty("/Ofertas", dataPedidos.results);
@@ -89,8 +104,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             
             that._oModel.read("/I_SalesOrder", {
                 urlParameters: {
-                    "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'",
-                    //"$expand": "to_PurchaseOrderItem"
+                    "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'"
                 },
                 success: function(dataPedidos, responsePedidos) {
                     that._jsonModel.setProperty("/I_SalesOrder", dataPedidos.results);
@@ -118,17 +132,17 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             that.byId("fechaDesdePickerEntregas").setValue(fechaI);
             that.byId("fechaHastaPickerEntregas").setValue(fechaF);
                
-            /*this._oModel.read("/ZI_PurchaseOrder", {
+            this._oModel3.read("/ZI_OutboundDeliveryItem", {
                 urlParameters: {
                     "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'"
                 },
-                success: function(dataPedidos, responsePedidos) {
-                    that._jsonModel.setProperty("/ZI_PurchaseOrder",dataPedidos.results);
+                success: function(data, response) {
+                    that._jsonModel.setProperty("/ZI_OutboundDeliveryItem",data.results);
                     that.getView().setModel(that._jsonModel);                                              
                 },
                 error: function(oError) {
                 }
-            });      */
+            });
             this.getSplitAppObj().toDetail(this.createId("detailEntregas"));
         },
 
@@ -147,17 +161,17 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
             that.byId("fechaDesdePickerFacturas").setValue(fechaI);
             that.byId("fechaHastaPickerFacturas").setValue(fechaF);
                
-            /*this._oModel.read("/ZI_PurchaseOrder", {
+            this._oModel4.read("/ZI_BillingDocument", {
                 urlParameters: {
                     "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'"
                 },
-                success: function(dataPedidos, responsePedidos) {
-                    that._jsonModel.setProperty("/ZI_PurchaseOrder",dataPedidos.results);
+                success: function(data, response) {
+                    that._jsonModel.setProperty("/ZI_BillingDocument",data.results);
                     that.getView().setModel(that._jsonModel);                                              
                 },
                 error: function(oError) {
                 }
-            });    */
+            });
             this.getSplitAppObj().toDetail(this.createId("detailFacturas"));
         },
 
@@ -184,12 +198,13 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
         },
 
         handleLinkOferta: function(evt) {// link oferta -> detail oferta
-            var linkPedido = evt.getSource();
-            var numPedido = linkPedido.getText();
+            var linkOferta = evt.getSource();
+            var numOferta = linkOferta.getText();
             var that = this;
 
-            /*this._oModel.read("/ZI_SalesOrder('" + numPedido +"')", {
+            this._oModel2.read("/ZI_SalesQuotationItem", {
                 urlParameters: {
+                    "$filter": "SalesQuotation eq '" + numOferta + "'",
                     "sap-lang":'S'
                 },
                 success: function(data, response) {
@@ -198,7 +213,7 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
                 },
                 error: function(oError) {
                 }
-            });*/
+            });
 
             this.getSplitAppObj().toDetail(this.createId("detailOfertaDET"));
 
@@ -207,21 +222,20 @@ function (Controller, ODataModel, JSONModel,formatter, exportLibrary, MessageToa
         onFilterOfertas: function() { // boton buscar -> aplica filtros
             var that = this;    
 
-            //Obtiene filtros de fecha
             var fechaDesde = this.byId("fechaDesdePickerOfertas").getValue();
             var fechaHasta = this.byId("fechaHastaPickerOfertas").getValue();
 
             var pedido = this.byId("inputOfertas").getValue();
             var pedidoFiltro= "";
             if (pedido)
-                pedidoFiltro = " and SalesOrder eq '"+ pedido +"'";
+                pedidoFiltro = " and SalesQuotation eq '"+ pedido +"'";
             
             fechaHasta = this.formatNewDateToISO(fechaHasta)
             fechaDesde = this.formatNewDateToISO(fechaDesde);
 
-            this._oModel.read("/ZI_SalesOrder", {
+            this._oModel2.read("/ZI_SalesQuotation", {
                 urlParameters: {
-                    "$filter": "SalesOrderDate ge datetime'"+ fechaDesde +"' and SalesOrderDate le datetime'"+ fechaHasta +"'" + pedidoFiltro
+                    "$filter": "CreationDate ge datetime'"+ fechaDesde +"' and CreationDate le datetime'"+ fechaHasta +"'" + pedidoFiltro
                 },
                 success: function(dataPedidos, responsePedidos) {
                     that._jsonModel.setProperty("/Ofertas",dataPedidos.results);

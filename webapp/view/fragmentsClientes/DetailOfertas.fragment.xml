@@ -70,20 +70,20 @@
 						</m:OverflowToolbar>
 				</extension>
 				<columns>
-					<Column id="columnPedidoOferta" width="7rem" sortProperty="SalesQuotation" >
-						<m:Label id="text2" text="Pedido"/>
+					<Column id="columnPedidoOferta" width="10rem" sortProperty="SalesQuotation" >
+						<m:Label id="text2" text="Numero de Oferta"/>
 						<template>
 								<m:Link id="linkPedidoOferta" text="{SalesQuotation}" press="handleLinkOferta"/>	
 						</template>									
 					</Column>
-					<Column id="columnFecha" width="8rem" sortProperty="CreationDate" >
-						<m:Label id="text3"   text="Fecha"/>
+					<Column id="columnFecha" width="10rem" sortProperty="CreationDate" >
+						<m:Label id="text3"   text="Fecha de creacion"/>
 						<template>
 							<m:Text id="columnText" text="{path:'CreationDate' , formatter:'.formatter.stringDate'}" />
 						</template>
 					</Column>
 					<Column id="columnCampoVendedor" width="10rem" sortProperty="SalesOffice">
-						<m:Label id="labelCampoVendedor" text="Campo Vendedor"/>
+						<m:Label id="labelCampoVendedor" text="Oficina de Venta"/>
 						<template>
 							<m:Text id="textCampoVendedor" text="{SalesOffice}" />								
 						</template>
@@ -95,7 +95,7 @@
 						</template>
 					</Column>
 					<Column id="columnValorNetoOferta" sortProperty="TotalNetAmount" >
-					<m:Label id="textValorNeto" text="Valor Neto"/>
+					<m:Label id="textValorNeto" text="Importe Neto"/>
 					<template>
 						<m:Text id="columnTextValorNetoOferta" text="{path:'TotalNetAmount' , formatter:'.formatter.removeZeros'}" />
 					</template>

@@ -16,7 +16,7 @@
 							  markFlagged="true"
 							  markChanges="false"
 							  markChangesPress="handleMarkChangesPress"
-							  objectSubtitle="{/OfertaSeleccionada/PurchaseOrder}"
+							  objectSubtitle="{/OfertaSeleccionada/SalesOrder}"
 							  isObjectTitleAlwaysVisible="false"
 							  isObjectSubtitleAlwaysVisible="false"
 							  showPlaceholder="false">		
@@ -26,33 +26,33 @@
 			<l:VerticalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="LabelPosicionOferta" text="Posicion: " class="labelHeader"/>
-					<Text text="{SalesQuotationItem}" id="textPosicionOferta" />
+					<m:Label id="LabelPosicionOferta" text="Posicion de Oferta: " class="labelHeader"/>
+					<Text text="{/OfertaSeleccionada/SalesQuotationItem}" id="textPosicionOferta" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
 					<m:Label id="labelMaterialOferta" text="Material:" class="labelHeader"/>
-					<Text text="{Material}" id="textMaterialOferta" />
+					<Text text="{/OfertaSeleccionada/Material}" id="textMaterialOferta" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="labelTextoPosicionOferta" text="Posicion:" class="labelHeader"/>
-					<Text text="{SalesQuotationItemText}" id="textTextoPosicionOferta" />
+					<m:Label id="labelTextoPosicionOferta" text="Descripcion del Material:" class="labelHeader"/>
+					<Text text="{/OfertaSeleccionada/SalesQuotationItemText}" id="textTextoPosicionOferta" />
 				</l:HorizontalLayout>
 				
 				<l:HorizontalLayout>					
 					<m:Label id="labelCantidadOferta" text="Cantidad:" class="labelHeader"/>
-					<Text text="{OrderQuantity}" id="textCantidadOferta" />
+					<Text text="{/OfertaSeleccionada/OrderQuantity}" id="textCantidadOferta" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
 					<m:Label id="labelUnidadOferta" text="Unidad:" class="labelHeader"/>
-					<Text text="{OrderQuantityUnit}" id="textUnidadOferta" />
+					<Text text="{/OfertaSeleccionada/OrderQuantityUnit}" id="textUnidadOferta" />
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="labelValorNetoOferta" text="Valor Neto: " class="labelHeader"/>
-					<Text text="{NetAmount}" id="textValorNetoOferta" />
+					<m:Label id="labelImporteNetoOferta" text="Importe Neto: " class="labelHeader"/>
+					<Text text="{/OfertaSeleccionada/NetAmount}" id="textImporteNetoOferta" />
 				</l:HorizontalLayout>
 			</l:VerticalLayout>			
 			

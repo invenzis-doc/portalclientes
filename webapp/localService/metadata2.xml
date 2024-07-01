@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0"
+xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+xmlns:sap="http://www.sap.com/Protocols/SAPData">
+<edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"
+xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+<edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+</edmx:Reference>
+<edmx:DataServices m:DataServiceVersion="2.0">
+    <Schema Namespace="ZI_SALESQUOTATION_CDS" xml:lang="es" sap:schema-version="1"
+    xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+    <EntityType Name="ZI_SalesQuotationType" sap:content-version="1">
+        <Key>
+            <PropertyRef Name="SalesQuotation"/>
+        </Key>
+        <Property Name="SalesQuotation" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Oferta a un cliente"/>
+        <Property Name="CreationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Creado el" sap:quickinfo="Fecha de creación del registro"/>
+        <Property Name="SalesOffice" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Oficina de ventas"/>
+        <Property Name="TotalNetAmount" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="TransactionCurrency" sap:label="Valor neto" sap:quickinfo="Valor neto del pedido en moneda del documento"/>
+        <Property Name="TransactionCurrency" Type="Edm.String" MaxLength="5" sap:label="Moneda del documento" sap:quickinfo="Moneda de documento comercial" sap:semantics="currency-code"/>
+        <NavigationProperty Name="to_SalesQuotationItem" Relationship="ZI_SALESQUOTATION_CDS.assoc_49B2B59995CD897D33ED39037B292929" FromRole="FromRole_assoc_49B2B59995CD897D33ED39037B292929" ToRole="ToRole_assoc_49B2B59995CD897D33ED39037B292929"/>
+    </EntityType>
+    <EntityType Name="ZI_SalesQuotationItemType" sap:content-version="1">
+        <Key>
+            <PropertyRef Name="SalesQuotation"/>
+            <PropertyRef Name="SalesQuotationItem"/>
+        </Key>
+        <Property Name="SalesQuotation" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Oferta a un cliente"/>
+        <Property Name="SalesQuotationItem" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="NonNegative" sap:text="SalesQuotationItemText" sap:label="Pos.oferta cliente" sap:quickinfo="Posición de oferta de ventas"/>
+        <Property Name="SalesQuotationItemText" Type="Edm.String" MaxLength="40" sap:label="Denominación" sap:quickinfo="Texto breve posición de pedido de cliente"/>
+        <Property Name="Material" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Material" sap:quickinfo="Número de material"/>
+        <Property Name="OrderQuantity" Type="Edm.Decimal" Precision="15" Scale="3" sap:unit="OrderQuantityUnit" sap:label="Cantidad de pedido" sap:quickinfo="Cantidad de pedido acumulada (en unidades de venta)"/>
+        <Property Name="OrderQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Un.medida venta" sap:quickinfo="Unidad de medida de venta" sap:semantics="unit-of-measure"/>
+        <Property Name="NetAmount" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="P652D52FA14A2039733A2F5D18E400938" sap:label="Valor neto" sap:quickinfo="Valor neto de posición de pedido en moneda de documento"/>
+    </EntityType>
+    <Association Name="assoc_49B2B59995CD897D33ED39037B292929" sap:content-version="1">
+        <End Type="ZI_SALESQUOTATION_CDS.ZI_SalesQuotationType" Multiplicity="1" Role="FromRole_assoc_49B2B59995CD897D33ED39037B292929"/>
+        <End Type="ZI_SALESQUOTATION_CDS.ZI_SalesQuotationItemType" Multiplicity="*" Role="ToRole_assoc_49B2B59995CD897D33ED39037B292929"/>
+    </Association>
+    <EntityContainer Name="ZI_SALESQUOTATION_CDS_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+        <EntitySet Name="ZI_SalesQuotation" EntityType="ZI_SALESQUOTATION_CDS.ZI_SalesQuotationType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+        <EntitySet Name="ZI_SalesQuotationItem" EntityType="ZI_SALESQUOTATION_CDS.ZI_SalesQuotationItemType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+        <AssociationSet Name="assoc_49B2B59995CD897D33ED39037B292929" Association="ZI_SALESQUOTATION_CDS.assoc_49B2B59995CD897D33ED39037B292929" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+            <End EntitySet="ZI_SalesQuotation" Role="FromRole_assoc_49B2B59995CD897D33ED39037B292929"/>
+            <End EntitySet="ZI_SalesQuotationItem" Role="ToRole_assoc_49B2B59995CD897D33ED39037B292929"/>
+        </AssociationSet>
+    </EntityContainer>
+    <atom:link rel="self" href="http://sap-bghtp-qadev:8000/sap/opu/odata/sap/ZI_SALESQUOTATION_CDS/$metadata"
+    xmlns:atom="http://www.w3.org/2005/Atom"/>
+    <atom:link rel="latest-version" href="http://sap-bghtp-qadev:8000/sap/opu/odata/sap/ZI_SALESQUOTATION_CDS/$metadata"
+    xmlns:atom="http://www.w3.org/2005/Atom"/>
+</Schema>
+</edmx:DataServices>
+</edmx:Edmx>

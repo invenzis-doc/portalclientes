@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZI_BILLINGDOCUMENT_CDS" xml:lang="es" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ZI_BillingDocumentType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="BillingDocument"/>
+                </Key>
+                <Property Name="BillingDocument" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Factura"/>
+                <Property Name="CustomerPaymentTerms" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Condiciones de pago" sap:quickinfo="Clave de condiciones de pago"/>
+                <Property Name="TransactionCurrency" Type="Edm.String" MaxLength="5" sap:label="Moneda del documento" sap:quickinfo="Moneda de documento comercial" sap:semantics="currency-code"/>
+                <Property Name="TotalNetAmount" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="TransactionCurrency" sap:label="Valor neto" sap:quickinfo="Valor neto en moneda de documento"/>
+                <Property Name="CreationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Creado el" sap:quickinfo="Fecha de creación del registro"/>
+                <Property Name="TaxAmount" Type="Edm.Decimal" Precision="14" Scale="3" sap:unit="TransactionCurrency" sap:label="Importe del impuesto" sap:quickinfo="Importe del impuesto en moneda del documento"/>
+                <Property Name="DocumentReferenceID" Type="Edm.String" MaxLength="16" sap:display-format="UpperCase" sap:label="Referencia" sap:quickinfo="Número de documento de referencia"/>
+                <Property Name="CustomerPaymentTermsName" Type="Edm.String" MaxLength="30" sap:label="Denominación" sap:quickinfo="Denominación de las condiciones de pago"/>
+            </EntityType>
+            <EntityContainer Name="ZI_BILLINGDOCUMENT_CDS_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZI_BillingDocument" EntityType="ZI_BILLINGDOCUMENT_CDS.ZI_BillingDocumentType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="http://sap-bghtp-qadev:8000/sap/opu/odata/sap/ZI_BILLINGDOCUMENT_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://sap-bghtp-qadev:8000/sap/opu/odata/sap/ZI_BILLINGDOCUMENT_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

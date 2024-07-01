@@ -19,6 +19,33 @@
                   "localUri": "localService/metadata.xml",
                   "odataVersion": "2.0"
                 }
+            },
+            "ZI_SALESQUOTATION_CDS": {
+                "uri": "/sap/opu/odata/sap/ZI_SALESQUOTATION_CDS/",
+                "type": "OData",
+                "settings": {
+                  "annotations": [],
+                  "localUri": "localService/metadata2.xml",
+                  "odataVersion": "2.0"
+                }
+            },
+            "ZI_OUTBOUNDDELIVERYITEM_CDS": {
+                "uri": "/sap/opu/odata/sap/ZI_OUTBOUNDDELIVERYITEM_CDS/",
+                "type": "OData",
+                "settings": {
+                  "annotations": [],
+                  "localUri": "localService/metadata3.xml",
+                  "odataVersion": "2.0"
+                }
+            },
+            "ZI_BILLINGDOCUMENT_CDS": {
+                "uri": "/sap/opu/odata/sap/ZI_BILLINGDOCUMENT_CDS/",
+                "type": "OData",
+                "settings": {
+                  "annotations": [],
+                  "localUri": "localService/metadata4.xml",
+                  "odataVersion": "2.0"
+                }
             }
         },
         "sourceTemplate": {
@@ -73,7 +100,22 @@
                 "dataSource": "mainService",
                 "preload": true,
                 "settings": {"defaultBindingMode": "TwoWay"}
-              }
+            },
+            "ZI_SALESQUOTATION_CDS": {
+                "dataSource": "ZI_SALESQUOTATION_CDS",
+                "preload": true,
+                "settings": {"defaultBindingMode": "TwoWay"}
+            },
+            "ZI_OUTBOUNDDELIVERYITEM_CDS": {
+                "dataSource": "ZI_OUTBOUNDDELIVERYITEM_CDS",
+                "preload": true,
+                "settings": {"defaultBindingMode": "TwoWay"}
+            },
+            "ZI_BILLINGDOCUMENT_CDS": {
+                "dataSource": "ZI_BILLINGDOCUMENT_CDS",
+                "preload": true,
+                "settings": {"defaultBindingMode": "TwoWay"}
+            }
         },
         "resources": {
             "css": [

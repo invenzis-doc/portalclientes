@@ -56,7 +56,7 @@
 
 		<Table
 			id="tableFacturas"						
-			rows="{path: '/ZI_PurchaseOrder/Facturas'}"	
+			rows="{path: '/ZI_BillingDocument'}"	
 			selectionMode="None">
 				<extension>
 				<m:OverflowToolbar  style="Clear">
@@ -67,54 +67,63 @@
 						</m:OverflowToolbar>
 				</extension>
 				<columns>
+
 					<Column id="columnDocumentoFactura" width="7rem" sortProperty="BillingDocument" >
 						<m:Label id="labelDocumentoFactura" text="DocFactura"/>
 						<template>
 								<m:Text id="textDocumentoFactura" text="{BillingDocument}"/>	
 						</template>									
 					</Column>
+
 					<Column id="columnPedidoFactura" width="7rem" sortProperty="Vbeln" >
 						<m:Label id="labelPedidoFactura" text="Pedido"/>
 						<template>
 								<m:Link id="linkPedidoFactura" text="{Vbeln}" press="handleLinkPedido"/>	
 						</template>									
 					</Column>
-					<Column id="columnCondDePagoFactura" width="7rem" sortProperty="CustomerPaymentTerms" >
-						<m:Label id="labelCondDePagoFactura" text="Pedido"/>
+
+					<Column id="columnCondDePagoFactura" width="10rem" sortProperty="CustomerPaymentTermsName" >
+						<m:Label id="labelCondDePagoFactura" text="Condicion de Pago"/>
 						<template>
-								<m:Text id="textCondDePagoFactura" text="{CustomerPaymentTerms}" />		
+								<m:Text id="textCondDePagoFactura" text="{CustomerPaymentTermsName}" />		
 						</template>									
 					</Column>
+
 					<Column id="columnMonedaFactura" width="5rem" sortProperty="TransactionCurrency">
 						<m:Label id="labelMonedaFactura" text="Moneda"/>
 						<template>
 							<m:Text id="textMonedaFactura" text="{TransactionCurrency}" />								
 						</template>
 					</Column>
+
 					<Column id="columFechaFactura" width="6rem" sortProperty="CreationDate" >
 						<m:Label id="labelFechaFactura"   text="Fecha"/>
 						<template>
-							<m:Text id="textFechaFactura" text="{CreationDate}" />
+							<m:Text id="textFechaFactura" text="{path:'CreationDate' , formatter:'.formatter.stringDate'}" />
 						</template>
 					</Column>
+
 					<Column id="columnValorNetoFactura" sortProperty="TotalNetAmount" >
 					<m:Label id="labelValorNetoFactura" text="Valor Neto"/>
 					<template>
-						<m:Text id="textValorNetoFactura" text="{TotalNetAmount}" />								
+						<m:Text id="textValorNetoFactura" text="{path:'TotalNetAmount' , formatter:'.formatter.removeZeros'}" />								
 					</template>
 					</Column>
+
 					<Column id="columnImporteDeImpuestoFactura" sortProperty="TotalTaxAmount">
 						<m:Label id="labelImporteDeImpuestoFactura" text="Importe De Impuesto"/>
 						<template>
-							<m:Text id="textImporteDeImpuestoFactura" text="{TotalTaxAmount}" />								
+							<m:Text id="textImporteDeImpuestoFactura" text="{path:'TaxAmount' , formatter:'.formatter.removeZeros'}" />								
 						</template>
 					</Column>
+
 					<Column id="columnNLegalFactura" sortProperty="DocumentReferenceID">
 						<m:Label id="labelNLegalFactura" text="N°Legal de Factura"/>
 						<template>
 							<m:Text id="textNLegalFactura" text="{DocumentReferenceID}" />								
 						</template>
 					</Column>
+
 				</columns>						
 			</Table>
 		</l:VerticalLayout>

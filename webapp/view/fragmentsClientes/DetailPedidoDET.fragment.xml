@@ -26,7 +26,7 @@
 			<l:VerticalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="labelPosicionPedido" text="Posicion: " class="labelHeader"/>
+					<m:Label id="labelPosicionPedido" text="Posicion de Pedido: " class="labelHeader"/>
 					<Text text="{/PedidoSeleccionado/SalesOrderItem}" id="textPosicionPedido" />
 				</l:HorizontalLayout>
 
@@ -36,7 +36,7 @@
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="labelTextoPosicionPedido" text="Texto de Posicion:" class="labelHeader"/>
+					<m:Label id="labelTextoPosicionPedido" text="Descripcion de Material:" class="labelHeader"/>
 					<Text text="{/PedidoSeleccionado/SalesOrderItemText}" id="textTextoPosicionPedido" />
 				</l:HorizontalLayout>
 				
@@ -51,8 +51,8 @@
 				</l:HorizontalLayout>
 
 				<l:HorizontalLayout>					
-					<m:Label id="labelValorNetoPedido" text="Valor Neto: " class="labelHeader"/>
-					<Text text="{path:'/PedidoSeleccionado/NetAmount' , formatter:'.formatter.removeZeros'}" id="textValorNetoPedido" />
+					<m:Label id="labelImporteNetoPedidoDet" text="Importe Neto: " class="labelHeader"/>
+					<Text text="{path:'/PedidoSeleccionado/NetAmount' , formatter:'.formatter.removeZeros'}" id="textImporteNetoPedido" />
 				</l:HorizontalLayout>
 			</l:VerticalLayout>			
 			

@@ -70,21 +70,21 @@
 			</extension>
 				<columns>
 					<Column id="columnPedido" width="8rem" sortProperty="SalesOrder" >
-						<m:Label id="labelPedido" text="Pedido"/>
+						<m:Label id="labelPedido" text="Pedido de Venta"/>
 						<template>
 								<m:Link id="linkPedido" text="{SalesOrder}" press="handleLinkPedido"/>	
 						</template>									
 					</Column>
 					<Column id="columFechaPedido" width="8rem" sortProperty="CreationDate" >
-						<m:Label id="labelFechaPedido"   text="Fecha"/>
+						<m:Label id="labelFechaPedido"   text="Fecha de Pedido"/>
 						<template>
 							<m:Text id="textFechaPedido" text="{path:'CreationDate' , formatter:'.formatter.stringDate'}" />
 						</template>
 					</Column>
-					<Column id="columnCampoVendedorPedido" width="10rem" sortProperty="SalesOffice">
-						<m:Label id="labelCampoVendedorPedido" text="Campo Vendedor"/>
+					<Column id="columnOficinaVentaPedido" width="10rem" sortProperty="SalesOffice">
+						<m:Label id="labelOficinaVentaPedido" text="Oficina de Venta"/>
 						<template>
-							<m:Text id="textCampoVendedorPedido" text="{SalesOffice}" />								
+							<m:Text id="textOficinaVentaPedido" text="{SalesOffice}" />								
 						</template>
 					</Column>
 					<Column id="columnTipoPedidoPedido" width="10rem" sortProperty="SalesOrderType">
@@ -99,20 +99,20 @@
 							<m:Text id="textMonedaPedido" text="{TransactionCurrency}" />								
 						</template>
 					</Column>
-					<Column id="columnValorNetoPedido" sortProperty="TotalNetAmount" >
-					<m:Label id="label2ValorNetoPedido" text="Valor Neto"/>
+					<Column id="columnImporteNetoPedido" sortProperty="TotalNetAmount" >
+					<m:Label id="labelImporteNetoPedido" text="Importe Neto"/>
 					<template>
-						<m:Text id="textoValorNetoPedido" width="10rem" text="{path:'TotalNetAmount' , formatter:'.formatter.removeZeros'}" />								
+						<m:Text id="textoImporteNetoPedido" width="10rem" text="{path:'TotalNetAmount' , formatter:'.formatter.removeZeros'}" />								
 					</template>
 					</Column>
-					<Column id="columnBloqueadoPedido" width="7rem" sortProperty="DeliveryBlockReason">
-						<m:Label id="labelBloqueadoPedido" text="Bloqueado"/>
+					<Column id="columnBloqueadoPedido" width="10rem" sortProperty="DeliveryBlockReason">
+						<m:Label id="labelBloqueadoPedido" text="Motivo de bloqueo"/>
 						<template>
 							<m:Text id="textBloqueadoPedido" text="{path:'DeliveryBlockReason' , formatter:'.formatter.stringBloq'}" />							
 						</template>
 					</Column>
-					<Column id="columnEstadoPedido" width="6rem" sortProperty="OverallSDProcessStatus" >
-						<m:Label id="labelEstadoPedido" text="Estado" />
+					<Column id="columnEstadoPedido" width="8rem" sortProperty="OverallSDProcessStatus" >
+						<m:Label id="labelEstadoPedido" text="Estado Global" />
 						<template>
 							<m:ObjectStatus class="sapUiSmallMarginBegin" id="CompleteDeliveryIsDefined"		
 								icon="{path:'OverallSDProcessStatus' , formatter:'.formatter.statusIcon'}"
